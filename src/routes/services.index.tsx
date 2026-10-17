@@ -1,0 +1,79 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
+import { SERVICES, type Service } from "@/lib/content";
+import { seo } from "@/lib/seo";
+
+export const Route = createFileRoute("/services/")({
+  head: () =>
+    seo(
+      "Services — Consulting, Technology, Business & Election Campaigns | ZYQO",
+      "Every ZYQO service in one place: consulting, AI, software, web, mobile, cloud, CRM, e-commerce, digital marketing and election campaign services.",
+    ),
+  component: Page,
+});
+
+const CATS: Service["category"][] = ["Consulting", "Civic", "Technology", "Business"];
+const CAT_LABEL = {
+  Consulting: "Consulting",
+  Civic: "Election & civic",
+  Technology: "Technology",
+  Business: "Business",
+};
+
+function Page() {
+  return (
+    <main>
+      <PageHero
+        eyebrow="Services"
+        title={
+          <>
+            Every service.
+            <br />
+            <em className="text-primary">One accountable team.</em>
+          </>
+        }
+        intro="Choose a service to see what it covers, how we deliver it and what you can expect."
+      />
+      <section className="pb-28">
+        <div className="container-z space-y-16">
+          {CATS.map((cat, categoryIndex) => (
+            <Reveal key={cat} className="service-category-block" delay={categoryIndex * 140}>
+              <p className="eyebrow text-primary">{CAT_LABEL[cat]}</p>
+              <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+                {SERVICES.filter((s) => s.category === cat).map((s, i) => (
+                  <Reveal key={s.id} delay={i * 40} className="bg-background">
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: s.id }}
+                      className="group flex h-full min-h-48 flex-col justify-between p-7 transition-colors hover:bg-card"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <span className="text-xs text-muted-foreground">
+                          {String(s.items.length).padStart(2, "0")} capabilities
+                        </span>
+                        <ArrowUpRight
+                          size={18}
+                          className="text-muted-foreground transition-colors group-hover:text-primary"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="mt-10 text-2xl font-semibold transition-colors group-hover:text-primary">
+                          {s.title}
+                        </h2>
+                        <p className="mt-2 text-sm text-muted-foreground">{s.blurb}</p>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </Reveal>
+          ))}
+          <Reveal delay={160}>
+            <GlassButton to="/contact">Discuss your requirement</GlassButton>
+          </Reveal>
+        </div>
+      </section>
+    </main>
+  );
+}

@@ -1,0 +1,411 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDown, ArrowUpRight, Compass, Cpu, LineChart, Workflow } from "lucide-react";
+import strategySession from "@/assets/strategy-session.jpg";
+import transformationOperations from "@/assets/transformation-operations.jpg";
+import { ConsultingGlobe } from "@/components/site/ConsultingGlobe";
+import { GlassButton, Reveal, SectionHead } from "@/components/site/primitives";
+import { COMPANY, CONSULTING_PILLARS, ENGAGEMENT_STEPS, INDUSTRIES, SERVICES } from "@/lib/content";
+import { IndustryAccordion } from "@/components/site/IndustryAccordion";
+import { seo } from "@/lib/seo";
+
+export const Route = createFileRoute("/")({
+  head: () =>
+    seo(
+      "ZYQO — Business & Technology Consulting for Decisive Growth",
+      "ZYQO connects business strategy, AI, data, software and operational transformation to help ambitious organisations move from complexity to measurable progress.",
+    ),
+  component: Home,
+});
+
+const PILLAR_ICONS = [Compass, LineChart, Cpu, Workflow];
+const RIBBON_ITEMS = ["Strategy", "AI & data", "Technology", "Operations", "Measurable progress"];
+
+function Hero() {
+  return (
+    <section className="home-hero" aria-labelledby="home-hero-title">
+      <div className="container-z">
+        <div className="home-hero-grid">
+          <div className="home-hero-copy">
+            <p className="eyebrow home-hero-kicker">Business & technology consulting</p>
+            <p className="home-wordmark" aria-hidden="true">
+              ZYQO
+            </p>
+            <h1 id="home-hero-title" className="home-hero-title">
+              <span className="home-hero-line">
+                <span className="home-hero-line-inner">Clarity to decide.</span>
+              </span>
+              <span className="home-hero-line home-hero-line-accent">
+                <span className="home-hero-line-inner">Capability to deliver.</span>
+              </span>
+            </h1>
+            <p className="home-hero-description">
+              {COMPANY.tagline} We connect business strategy, data, AI and technology delivery to
+              help ambitious organisations make better decisions and build durable advantage.
+            </p>
+            <div className="home-hero-actions">
+              <GlassButton to="/contact">Start a conversation</GlassButton>
+              <a
+                href="#process-h"
+                className="inline-flex min-h-12 items-center gap-2 border border-border bg-card/55 px-5 text-[.68rem] font-bold tracking-[.13em] text-foreground uppercase transition-colors hover:border-teal/70 hover:text-teal"
+              >
+                See our process <ArrowDown size={14} aria-hidden />
+              </a>
+            </div>
+            <div className="home-hero-utility">
+              <span>New Delhi · India</span>
+              <a href="#capabilities-h" className="home-hero-scroll">
+                Explore the approach <ArrowDown size={13} aria-hidden />
+              </a>
+            </div>
+          </div>
+
+          <div
+            className="home-hero-art"
+            role="group"
+            aria-label="Interactive visualization of connected strategy and technology"
+          >
+            <span className="hero-art-note hero-art-note-top">Strategy · 28.61°N</span>
+            <ConsultingGlobe />
+            <span className="hero-orbit-node hero-orbit-node-gold" aria-hidden="true" />
+            <span className="hero-orbit-node hero-orbit-node-teal" aria-hidden="true" />
+            <span className="hero-art-note hero-art-note-bottom">One accountable team</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Home() {
+  return (
+    <main>
+      <Hero />
+
+      <section className="border-b border-border py-8 sm:py-10">
+        <div className="container-z grid gap-6 text-sm text-muted-foreground sm:grid-cols-3">
+          <p>
+            <span className="mr-3 text-primary">01</span>One accountable team from advisory to
+            execution
+          </p>
+          <p>
+            <span className="mr-3 text-primary">02</span>Solutions shaped around outcomes, not
+            trends
+          </p>
+          <p>
+            <span className="mr-3 text-primary">03</span>Practical capability built into your
+            organisation
+          </p>
+        </div>
+        <div className="motion-ribbon mt-8" aria-hidden="true">
+          <div className="motion-ribbon-track">
+            {[...RIBBON_ITEMS, ...RIBBON_ITEMS].map((item, index) => (
+              <span className="motion-ribbon-item" key={`${item}-${index}`}>
+                {item}
+                <span className="motion-ribbon-spark" />
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-32" aria-labelledby="capabilities-h">
+        <div className="container-z">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+            <SectionHead
+              eyebrow="Core capabilities"
+              title={<span id="capabilities-h">From boardroom decision to working system.</span>}
+              intro="ZYQO closes the gap between advice and implementation. We define what matters, design the change and help deliver it."
+            />
+            <div className="border-t border-border">
+              {CONSULTING_PILLARS.map((pillar, index) => {
+                const Icon = PILLAR_ICONS[index];
+                return (
+                  <Reveal
+                    key={pillar.title}
+                    className="group grid gap-5 border-b border-border py-7 sm:grid-cols-[3rem_1fr_auto] sm:items-start"
+                    delay={index * 70}
+                  >
+                    <span className="text-xs text-primary">{pillar.number}</span>
+                    <div>
+                      <h3 className="text-2xl font-semibold">{pillar.title}</h3>
+                      <p className="mt-2 max-w-xl leading-relaxed text-muted-foreground">
+                        {pillar.blurb}
+                      </p>
+                    </div>
+                    {Icon && (
+                      <Icon
+                        className="text-primary transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+                        size={24}
+                        strokeWidth={1.3}
+                      />
+                    )}
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border py-24 sm:py-32" aria-labelledby="services-h">
+        <div className="container-z">
+          <SectionHead
+            eyebrow="Services"
+            title={<span id="services-h">Every capability, one accountable team.</span>}
+            intro="Explore what we deliver across consulting, technology, business and civic work — each service has its own detailed page."
+          />
+          <div className="mt-14 grid gap-10 md:grid-cols-2 xl:grid-cols-4">
+            {(["Consulting", "Technology", "Business", "Civic"] as const).map((cat, index) => (
+              <Reveal key={cat} className="services-category" delay={index * 120}>
+                <p className="eyebrow text-primary">{cat}</p>
+                <ul className="mt-5 border-t border-border">
+                  {SERVICES.filter((s) => s.category === cat).map((s, serviceIndex) => (
+                    <li key={s.id} style={{ animationDelay: `${serviceIndex * 55}ms` }}>
+                      <Link
+                        to="/services/$slug"
+                        params={{ slug: s.id }}
+                        className="group flex items-center justify-between gap-4 border-b border-border py-4 transition-colors hover:text-primary"
+                      >
+                        <span>
+                          <span className="block font-semibold">{s.title}</span>
+                          <span className="mt-1 block text-sm text-muted-foreground">
+                            {s.blurb}
+                          </span>
+                        </span>
+                        <ArrowUpRight
+                          size={18}
+                          className="flex-none text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border py-24 sm:py-32" aria-labelledby="practice-h">
+        <div className="container-z">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <Reveal className="lg:col-span-8">
+              <figure className="relative overflow-hidden border border-border">
+                <img
+                  src={strategySession}
+                  alt="Business leaders reviewing a strategy together in a New Delhi office"
+                  loading="lazy"
+                  width={1600}
+                  height={1072}
+                  className="aspect-[3/2] w-full object-cover grayscale-[20%] transition duration-700 hover:grayscale-0 hover:scale-[1.015]"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-background/85 px-5 py-4 text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground backdrop-blur-md">
+                  <span>Strategic alignment</span>
+                  <span className="text-primary">01 / Advisory</span>
+                </figcaption>
+              </figure>
+            </Reveal>
+            <Reveal className="lg:col-span-4" delay={120}>
+              <p className="eyebrow text-primary">Consulting in practice</p>
+              <h2
+                id="practice-h"
+                className="mt-5 text-[clamp(2.3rem,4vw,4.4rem)] leading-[0.96] font-semibold"
+              >
+                Close to the decision. Accountable for the outcome.
+              </h2>
+              <p className="mt-6 leading-relaxed text-muted-foreground">
+                Our work brings leadership, operations and technology into the same room. That
+                shared context produces stronger decisions and fewer handover gaps.
+              </p>
+              <div className="mt-8 flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-primary">
+                <span className="h-px w-12 bg-primary" /> Evidence over assumption
+              </div>
+            </Reveal>
+          </div>
+          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-start">
+            <Reveal className="order-2 lg:order-1 lg:col-span-4" delay={80}>
+              <p className="eyebrow text-primary">Transformation delivery</p>
+              <h3 className="mt-5 text-3xl font-semibold">
+                Visibility that changes how the business moves.
+              </h3>
+              <p className="mt-5 leading-relaxed text-muted-foreground">
+                From operating dashboards to intelligent workflows, we build the information layer
+                teams need to act with confidence.
+              </p>
+              <div className="mt-8 grid grid-cols-2 gap-px bg-border">
+                <div className="bg-background p-4">
+                  <LineChart className="text-primary" size={21} strokeWidth={1.4} />
+                  <p className="mt-4 text-sm">Decision intelligence</p>
+                </div>
+                <div className="bg-background p-4">
+                  <Workflow className="text-primary" size={21} strokeWidth={1.4} />
+                  <p className="mt-4 text-sm">Connected operations</p>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal className="order-1 lg:order-2 lg:col-span-8" delay={150}>
+              <figure className="relative overflow-hidden border border-border">
+                <img
+                  src={transformationOperations}
+                  alt="A consulting team using operational data to guide transformation"
+                  loading="lazy"
+                  width={1600}
+                  height={1072}
+                  className="aspect-[3/2] w-full object-cover grayscale-[20%] transition duration-700 hover:grayscale-0 hover:scale-[1.015]"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-background/85 px-5 py-4 text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground backdrop-blur-md">
+                  <span>Connected operations</span>
+                  <span className="text-primary">02 / Execution</span>
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="outcomes-band border-y border-border py-24 sm:py-32"
+        aria-labelledby="outcomes-h"
+      >
+        <div className="container-z">
+          <p className="eyebrow text-primary">What changes</p>
+          <h2
+            id="outcomes-h"
+            className="mt-5 max-w-5xl text-[clamp(2.3rem,5vw,5rem)] leading-[0.96] font-semibold"
+          >
+            Clearer decisions. Leaner operations. Stronger digital capability.
+          </h2>
+          <div className="mt-16 grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              [
+                "01",
+                "Strategic clarity",
+                "A prioritised roadmap aligned to value, risk and feasibility.",
+              ],
+              [
+                "02",
+                "Operational momentum",
+                "Simpler workflows, better visibility and fewer manual bottlenecks.",
+              ],
+              [
+                "03",
+                "Technology confidence",
+                "Systems selected and built around the business—not the other way around.",
+              ],
+              [
+                "04",
+                "Sustainable growth",
+                "Capability, governance and insight that compound beyond the engagement.",
+              ],
+            ].map(([n, t, d], i) => (
+              <Reveal
+                key={t}
+                delay={i * 70}
+                className="border-b border-border py-8 sm:px-6 sm:first:pl-0 lg:border-r lg:last:border-r-0"
+              >
+                <span className="text-xs text-primary">{n}</span>
+                <h3 className="mt-8 text-2xl font-semibold">{t}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{d}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-32" aria-labelledby="process-h">
+        <div className="container-z">
+          <SectionHead
+            eyebrow="How we engage"
+            title={<span id="process-h">A disciplined path from ambiguity to action.</span>}
+            intro="Every engagement is sized around the decision at hand—from a focused advisory sprint to end-to-end transformation delivery."
+          />
+          <ol className="process-timeline mt-16 grid gap-px border border-border bg-border md:grid-cols-4">
+            {ENGAGEMENT_STEPS.map((step, index) => (
+              <Reveal
+                as="li"
+                key={step.title}
+                delay={index * 80}
+                className="group min-h-72 bg-background p-7 transition-colors hover:bg-card"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="text-xs text-primary">{step.number}</span>
+                  <ArrowUpRight
+                    className="text-muted-foreground transition-colors group-hover:text-primary"
+                    size={18}
+                  />
+                </div>
+                <h3 className="mt-20 text-2xl font-semibold">{step.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{step.blurb}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section
+        className="outcomes-band border-y border-border py-24 sm:py-32"
+        aria-labelledby="industries-h"
+      >
+        <div className="container-z">
+          <SectionHead
+            eyebrow="Industry perspective"
+            title={<span id="industries-h">Context changes. The need for clarity does not.</span>}
+            intro="We combine cross-industry thinking with the practical detail needed to make change work in your environment."
+          />
+          <div className="mt-14">
+            <IndustryAccordion items={INDUSTRIES.slice(0, 6)} />
+          </div>
+          <div className="mt-10">
+            <GlassButton to="/industries">View industry experience</GlassButton>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-muted py-20 sm:py-24">
+        <div className="container-z">
+          <div className="grid gap-10 border border-border bg-card p-7 shadow-sm sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-14">
+            <Reveal>
+              <p className="eyebrow text-primary">A useful first conversation</p>
+              <h2 className="mt-5 max-w-4xl text-[clamp(2.5rem,5.4vw,4.5rem)] leading-[0.98] font-semibold">
+                Bring us the problem before you know the solution.
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                We will help frame the decision, identify the highest-value next move and explain
+                where ZYQO can contribute.
+              </p>
+            </Reveal>
+            <Reveal delay={120}>
+              <GlassButton to="/contact" variant="ink">
+                Start the conversation
+              </GlassButton>
+            </Reveal>
+          </div>
+          <div className="mt-5 flex flex-col items-start justify-between gap-5 border border-border bg-card p-6 sm:flex-row sm:items-center sm:px-8">
+            <div className="flex items-center gap-4">
+              <span
+                aria-hidden
+                className="h-3 w-3 shrink-0 animate-pulse rounded-full bg-primary"
+              />
+              <div>
+                <p className="eyebrow text-primary">Your next advantage</p>
+                <h3 className="mt-1 text-xl font-semibold">
+                  Turn complexity into decisive progress.
+                </h3>
+              </div>
+            </div>
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-foreground"
+            >
+              Request consultation{" "}
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
