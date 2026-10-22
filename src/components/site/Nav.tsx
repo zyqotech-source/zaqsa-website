@@ -16,6 +16,8 @@ export function Logo() {
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [docked, setDocked] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
   const listRef = useRef<HTMLUListElement>(null);
   const [indicator, setIndicator] = useState<{ left: number; width: number } | null>(null);
@@ -41,11 +43,33 @@ export function Nav() {
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      setDocked(y > 140);
+      const range = document.documentElement.scrollHeight - window.innerHeight;
+      navRef.current?.style.setProperty(
+        "--nav-progress",
+        String(range > 0 ? Math.min(1, Math.max(0, y / range)) : 0),
+      );
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => moveIndicator(), 460);
+    return () => window.clearTimeout(timer);
+  }, [docked, moveIndicator]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -63,13 +87,16 @@ export function Nav() {
   return (
     <header className="site-nav-wrap fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <nav
+        ref={navRef}
         aria-label="Main"
         className={cn(
           "site-nav flex items-center justify-between gap-4",
           (scrolled || open) && "is-scrolled",
+          docked && !open && "is-docked",
           open && "is-open",
         )}
       >
+        <span className="nav-progress" aria-hidden="true" />
         <Link to="/" aria-label="ZYQO home" className="shrink-0" onClick={() => setOpen(false)}>
           <Logo />
         </Link>

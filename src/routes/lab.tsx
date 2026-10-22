@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FutureMap } from "@/components/site/FutureMap";
-import { PageHero, Reveal, SectionHead } from "@/components/site/primitives";
+import { Reveal, SectionHead } from "@/components/site/primitives";
 import { FUTURE, LAB } from "@/lib/content";
+import { LabHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
-import { LabVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/lab")({
   head: () =>
@@ -19,18 +19,7 @@ const MODES = ["Exploring", "Learning", "Researching", "Experimenting", "Imagini
 function Page() {
   return (
     <main>
-      <PageHero
-        visual={<LabVisual />}
-        eyebrow="ZYQO Lab · Exploration in progress"
-        title={
-          <>
-            Where ideas get
-            <br />
-            <em className="text-primary">tested first.</em>
-          </>
-        }
-        intro="An experimental but practical space for prototypes, experiments and new product thinking."
-      />
+      <LabHero />
       <section className="pb-24">
         <div className="container-z">
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

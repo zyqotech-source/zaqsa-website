@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "@/components/site/ContactForm";
-import { PageHero, Reveal } from "@/components/site/primitives";
+import { Reveal } from "@/components/site/primitives";
 import { COMPANY } from "@/lib/content";
+import { ContactHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
-import { ContactVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/contact")({
   head: () =>
@@ -17,18 +17,7 @@ export const Route = createFileRoute("/contact")({
 function Page() {
   return (
     <main>
-      <PageHero
-        visual={<ContactVisual />}
-        eyebrow="Contact"
-        title={
-          <>
-            What are you thinking
-            <br />
-            <em className="text-primary">of building?</em>
-          </>
-        }
-        intro="Tell us about the problem, idea or possibility you have in mind."
-      />
+      <ContactHero />
       <section className="pb-28">
         <div className="container-z grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.7fr)]">
           <Reveal className="contact-form-reveal">

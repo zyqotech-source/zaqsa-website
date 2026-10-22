@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Timeline } from "@/components/site/IdeaBuilder";
-import { Chip, GlassButton, PageHero, Reveal, SectionHead } from "@/components/site/primitives";
+import { Chip, GlassButton, Reveal, SectionHead } from "@/components/site/primitives";
 import { CIVIC, CONSULTING, PRODUCTS } from "@/lib/content";
+import { SolutionsHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
-import { SolutionsVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/solutions")({
   head: () =>
@@ -42,18 +42,7 @@ const PLATFORM = [
 function Page() {
   return (
     <main>
-      <PageHero
-        visual={<SolutionsVisual />}
-        eyebrow="Solutions"
-        title={
-          <>
-            Thinking partner.
-            <br />
-            <em className="text-primary">Building partner.</em>
-          </>
-        }
-        intro="Before we write code, we help you think clearly. Strategy, planning and an honest journey from idea to launch."
-      />
+      <SolutionsHero />
 
       <section className="pb-24">
         <div className="container-z grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">

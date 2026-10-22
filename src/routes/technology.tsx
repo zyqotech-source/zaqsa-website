@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Explorer } from "@/components/site/Explorer";
-import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
+import { GlassButton, Reveal } from "@/components/site/primitives";
 import { TECHNOLOGY } from "@/lib/content";
+import { TechnologyHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
-import { TechnologyVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/technology")({
   head: () =>
@@ -17,18 +17,7 @@ export const Route = createFileRoute("/technology")({
 function Page() {
   return (
     <main>
-      <PageHero
-        visual={<TechnologyVisual />}
-        eyebrow="Technology universe"
-        title={
-          <>
-            Eight disciplines.
-            <br />
-            <em className="text-primary">One way of thinking.</em>
-          </>
-        }
-        intro="From AI agents to Wi-Fi networks, we choose technology by what the problem needs — not by what's fashionable."
-      />
+      <TechnologyHero />
       <section className="pb-28">
         <div className="container-z">
           <Reveal>

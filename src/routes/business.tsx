@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Explorer } from "@/components/site/Explorer";
-import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
+import { GlassButton, Reveal } from "@/components/site/primitives";
 import { BUSINESS } from "@/lib/content";
+import { BusinessHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
-import { BusinessVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/business")({
   head: () =>
@@ -17,18 +17,7 @@ export const Route = createFileRoute("/business")({
 function Page() {
   return (
     <main>
-      <PageHero
-        visual={<BusinessVisual />}
-        eyebrow="Business"
-        title={
-          <>
-            Software for the way
-            <br />
-            <em className="text-primary">you actually work.</em>
-          </>
-        }
-        intro="CRM, billing, inventory, people, schools, marketing and paperwork — practical systems that remove friction from everyday operations."
-      />
+      <BusinessHero />
       <section className="pb-28">
         <div className="container-z">
           <Reveal>

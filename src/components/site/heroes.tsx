@@ -1,0 +1,393 @@
+import type { CSSProperties, ReactNode } from "react";
+import {
+  Briefcase,
+  Building2,
+  Cpu,
+  Factory,
+  GraduationCap,
+  HeartPulse,
+  Landmark,
+  LineChart,
+  MessagesSquare,
+  ReceiptText,
+  Rocket,
+  ShoppingBag,
+  ShoppingCart,
+  Store,
+  Truck,
+  UserPlus,
+  Wheat,
+} from "lucide-react";
+import { COMPANY, INDUSTRIES, JOURNEY_STEPS, LAB, TECHNOLOGY } from "@/lib/content";
+import { GlassButton } from "@/components/site/primitives";
+import { TechBackdrop } from "@/components/site/motion";
+
+const vars = (values: Record<string, string | number>) => values as CSSProperties;
+
+function Eyebrow({ children }: { children: ReactNode }) {
+  return (
+    <p className="eyebrow hero-eyebrow">
+      <span className="page-hero-prompt" aria-hidden="true">
+        &gt;_
+      </span>
+      {children}
+    </p>
+  );
+}
+
+/* ------------------------------------------------------------------ Technology */
+export function TechnologyHero() {
+  return (
+    <header className="hero hero-editor">
+      <TechBackdrop />
+      <div className="container-z">
+        <div className="editor">
+          <div className="editor-bar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <em>technology.ts</em>
+            <b>TypeScript</b>
+          </div>
+          <div className="editor-grid">
+            <ol className="editor-gutter" aria-hidden="true">
+              {Array.from({ length: 12 }, (_, index) => (
+                <li key={index}>{index + 1}</li>
+              ))}
+            </ol>
+            <div className="editor-code">
+              <p className="ed-line ed-comment" style={vars({ "--i": 0 })}>
+                // ZYQO · Technology universe
+              </p>
+              <p className="ed-line" style={vars({ "--i": 1 })}>
+                <span className="ed-kw">export const</span> approach{" "}
+                <span className="ed-op">=</span> {"{"}
+              </p>
+              <h1 className="ed-title" style={vars({ "--i": 2 })}>
+                Eight disciplines.
+                <br />
+                <em>One way of thinking.</em>
+              </h1>
+              <p className="ed-line ed-comment ed-intro" style={vars({ "--i": 3 })}>
+                /** From AI agents to Wi-Fi networks, we choose technology by what the problem needs
+                — not by what's fashionable. */
+              </p>
+              <p className="ed-line" style={vars({ "--i": 4 })}>
+                &nbsp;&nbsp;disciplines<span className="ed-op">:</span> [
+              </p>
+              <p className="ed-line ed-list" style={vars({ "--i": 5 })}>
+                {TECHNOLOGY.map((group) => (
+                  <span key={group.id} className="ed-str">
+                    "{group.title}"
+                  </span>
+                ))}
+              </p>
+              <p className="ed-line" style={vars({ "--i": 6 })}>
+                &nbsp;&nbsp;],
+                <span className="ed-caret" />
+              </p>
+              <p className="ed-line" style={vars({ "--i": 7 })}>
+                {"}"};
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* ------------------------------------------------------------------- Business */
+export function BusinessHero() {
+  const nodes = [
+    [UserPlus, "Lead", "captured"],
+    [MessagesSquare, "Follow-up", "scheduled"],
+    [ReceiptText, "Invoice", "sent"],
+    [LineChart, "Report", "ready"],
+  ] as const;
+  return (
+    <header className="hero hero-center">
+      <TechBackdrop />
+      <div className="container-z">
+        <div className="hero-center-copy">
+          <Eyebrow>Business</Eyebrow>
+          <h1 className="hero-title">
+            Software for the way
+            <br />
+            <em>you actually work.</em>
+          </h1>
+          <p className="hero-lead">
+            CRM, billing, inventory, people, schools, marketing and paperwork — practical systems
+            that remove friction from everyday operations.
+          </p>
+        </div>
+        <ol className="pipe" aria-hidden="true">
+          {nodes.map(([Icon, label, state], index) => (
+            <li key={label} style={vars({ "--i": index })}>
+              <span className="pipe-icon">
+                <Icon size={22} strokeWidth={1.6} />
+              </span>
+              <strong>{label}</strong>
+              <small>{state}</small>
+            </li>
+          ))}
+          <span className="pipe-track">
+            <span className="pipe-run" />
+          </span>
+        </ol>
+      </div>
+    </header>
+  );
+}
+
+/* ------------------------------------------------------------------ Solutions */
+const WAVE = JOURNEY_STEPS.map((label, index) => ({
+  label,
+  x: 50 + index * 100,
+  y: 112 + Math.sin(index * 0.95) * 52,
+}));
+const WAVE_PATH = WAVE.map((point, index) => {
+  if (index === 0) return `M${point.x} ${point.y.toFixed(1)}`;
+  const previous = WAVE[index - 1]!;
+  const mid = (previous.x + point.x) / 2;
+  return `C${mid} ${previous.y.toFixed(1)}, ${mid} ${point.y.toFixed(1)}, ${point.x} ${point.y.toFixed(1)}`;
+}).join(" ");
+
+export function SolutionsHero() {
+  return (
+    <header className="hero hero-journey">
+      <TechBackdrop />
+      <div className="container-z">
+        <Eyebrow>Solutions</Eyebrow>
+        <h1 className="hero-title hero-title-wide">
+          Thinking partner.
+          <br />
+          <em>Building partner.</em>
+        </h1>
+        <p className="hero-lead">
+          Before we write code, we help you think clearly. Strategy, planning and an honest journey
+          from idea to launch.
+        </p>
+      </div>
+      <div className="journey" aria-hidden="true">
+        <svg viewBox="0 0 1000 220" preserveAspectRatio="xMidYMid meet">
+          <path className="journey-line" d={WAVE_PATH} />
+          <circle r="7" className="journey-dot">
+            <animateMotion dur="9s" repeatCount="indefinite" path={WAVE_PATH} />
+          </circle>
+        </svg>
+        {WAVE.map((point, index) => (
+          <span
+            key={point.label}
+            className={`journey-stop ${index % 2 ? "is-low" : ""}`}
+            style={vars({
+              left: `${point.x / 10}%`,
+              top: `${(point.y / 220) * 100}%`,
+              "--i": index,
+            })}
+          >
+            <i />
+            <em>{point.label}</em>
+          </span>
+        ))}
+      </div>
+    </header>
+  );
+}
+
+/* ----------------------------------------------------------------- Industries */
+const INDUSTRY_ICONS: Record<string, typeof Wheat> = {
+  Agriculture: Wheat,
+  Healthcare: HeartPulse,
+  Education: GraduationCap,
+  Finance: Landmark,
+  Retail: Store,
+  "E-commerce": ShoppingCart,
+  Logistics: Truck,
+  Manufacturing: Factory,
+  "Real Estate": Building2,
+  "Professional Services": Briefcase,
+  Startups: Rocket,
+  "Small Businesses": ShoppingBag,
+  "Technology Businesses": Cpu,
+};
+
+export function IndustriesHero() {
+  const rows = [INDUSTRIES.slice(0, 7), INDUSTRIES.slice(6)];
+  return (
+    <header className="hero hero-ticker">
+      <TechBackdrop />
+      <div className="container-z hero-center-copy">
+        <Eyebrow>Industries</Eyebrow>
+        <h1 className="hero-title">
+          Different industries.
+          <br />
+          <em>Same curiosity.</em>
+        </h1>
+        <p className="hero-lead">
+          Tap any industry to see how we think about it, where we can help, and what the work could
+          look like.
+        </p>
+      </div>
+      <div className="ticker" aria-hidden="true">
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className={`ticker-row ${rowIndex ? "is-reverse" : ""}`}>
+            <div className="ticker-track">
+              {[...row, ...row].map((industry, index) => {
+                const Icon = INDUSTRY_ICONS[industry.name] ?? Briefcase;
+                return (
+                  <span className="ticker-chip" key={`${industry.name}-${index}`}>
+                    <Icon size={20} strokeWidth={1.6} />
+                    {industry.name}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </header>
+  );
+}
+
+/* ------------------------------------------------------------------------ Lab */
+export function LabHero() {
+  const blips = [
+    ["AI", 34, 30],
+    ["IoT", 70, 36],
+    ["Data", 44, 68],
+    ["Robotics", 76, 70],
+    ["AR/VR", 56, 18],
+  ] as const;
+  return (
+    <header className="hero hero-lab">
+      <div className="lab-radar" aria-hidden="true">
+        <span className="lab-ring" />
+        <span className="lab-ring lab-ring-2" />
+        <span className="lab-ring lab-ring-3" />
+        <span className="lab-sweep" />
+        {blips.map(([label, x, y], index) => (
+          <span
+            key={label}
+            className="lab-blip"
+            style={vars({ left: `${x}%`, top: `${y}%`, "--i": index })}
+          >
+            <i />
+            {label}
+          </span>
+        ))}
+      </div>
+      <div className="container-z">
+        <div className="lab-copy">
+          <Eyebrow>ZYQO Lab · Exploration in progress</Eyebrow>
+          <h1 className="hero-title">
+            Where ideas get
+            <br />
+            <em>tested first.</em>
+          </h1>
+          <p className="hero-lead">
+            An experimental but practical space for prototypes, experiments and new product
+            thinking.
+          </p>
+          <ul className="lab-log" aria-hidden="true">
+            {LAB.slice(0, 4).map((item, index) => (
+              <li key={item} style={vars({ "--i": index })}>
+                <i />
+                <span>{item.toLowerCase().replace(/\s+/g, "-")}</span>
+                <b>exploring</b>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* ---------------------------------------------------------------------- About */
+export function AboutHero() {
+  return (
+    <header className="hero hero-portrait">
+      <TechBackdrop />
+      <div className="container-z hero-portrait-grid">
+        <div>
+          <Eyebrow>About ZYQO</Eyebrow>
+          <h1 className="hero-title">
+            Meet the
+            <br />
+            <em>founder.</em>
+          </h1>
+          <p className="hero-lead">{COMPANY.support}</p>
+          <blockquote className="portrait-quote">
+            “ZYQO begins with a simple belief: technology becomes meaningful when it solves
+            something real. I want ZYQO to grow beyond a single technology or a single industry —
+            into a place where different ideas, disciplines and people can come together to build
+            useful things.”
+            <footer>
+              {COMPANY.founder} · {COMPANY.role}
+            </footer>
+          </blockquote>
+          <div className="mt-8">
+            <GlassButton to="/contact">Talk to ZYQO</GlassButton>
+          </div>
+        </div>
+        <div className="founder-panel relative grid aspect-[4/4.6] w-full max-w-md place-items-center justify-self-center overflow-hidden border border-border lg:justify-self-end">
+          <span className="founder-panel-coordinate founder-coordinate-top">ZYQO / LEADERSHIP</span>
+          <div className="founder-monogram" aria-hidden="true">
+            CA
+          </div>
+          <div className="founder-panel-caption">
+            <span className="founder-caption-mark" aria-hidden="true" />
+            <span>
+              {COMPANY.founder}
+              <small>{COMPANY.role}</small>
+            </span>
+          </div>
+          <span className="founder-panel-coordinate founder-coordinate-bottom">
+            NEW DELHI · INDIA
+          </span>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* -------------------------------------------------------------------- Contact */
+export function ContactHero() {
+  return (
+    <header className="hero hero-chat">
+      <TechBackdrop />
+      <div className="container-z hero-center-copy">
+        <Eyebrow>Contact</Eyebrow>
+        <h1 className="hero-title">
+          What are you thinking
+          <br />
+          <em>of building?</em>
+        </h1>
+        <p className="hero-lead">
+          Tell us about the problem, idea or possibility you have in mind.
+        </p>
+        <div className="chat-window" aria-hidden="true">
+          <div className="chat-head">
+            <span className="chat-avatar">ZQ</span>
+            <span>
+              ZYQO team
+              <small>Start a conversation</small>
+            </span>
+          </div>
+          <div className="chat-body">
+            <p className="chat-msg chat-you chat-1">I have an idea for an app…</p>
+            <p className="chat-msg chat-us chat-2">Tell us more. What problem does it solve?</p>
+            <p className="chat-msg chat-you chat-3">It needs AI and a simple dashboard.</p>
+            <p className="chat-msg chat-typing">
+              <i />
+              <i />
+              <i />
+            </p>
+            <p className="chat-msg chat-us chat-4">Great. Share the details below.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

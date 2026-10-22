@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
+import { GlassButton, Reveal } from "@/components/site/primitives";
 import { IndustryAccordion } from "@/components/site/IndustryAccordion";
 import { INDUSTRIES } from "@/lib/content";
+import { IndustriesHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
-import { IndustriesVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/industries")({
   head: () =>
@@ -17,18 +17,7 @@ export const Route = createFileRoute("/industries")({
 function Page() {
   return (
     <main>
-      <PageHero
-        visual={<IndustriesVisual />}
-        eyebrow="Industries"
-        title={
-          <>
-            Different industries.
-            <br />
-            <em className="text-primary">Same curiosity.</em>
-          </>
-        }
-        intro="Tap any industry to see how we think about it, where we can help, and what the work could look like."
-      />
+      <IndustriesHero />
       <section className="pb-28">
         <div className="container-z">
           <IndustryAccordion items={INDUSTRIES} defaultOpen={0} />

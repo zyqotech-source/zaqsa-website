@@ -293,3 +293,5 @@ export const STACK_ROWS = [
 ] as const;
 
 export const TECH_RIBBON = ["Software", "AI & ML", "Cloud", "Mobile", "Data", "DevOps", "IoT", "Automation"] as const;
+
+export const JOURNEY_STEPS = ["Discover", "Understand", "Discuss", "Plan", "Build", "Test", "Improve", "Deploy", "Support", "Evolve"] as const;
