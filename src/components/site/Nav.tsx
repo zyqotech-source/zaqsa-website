@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { NAV } from "@/lib/content";
@@ -17,6 +17,26 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+  const listRef = useRef<HTMLUListElement>(null);
+  const [indicator, setIndicator] = useState<{ left: number; width: number } | null>(null);
+
+  const moveIndicator = useCallback((target?: HTMLElement | null) => {
+    const list = listRef.current;
+    const link = target ?? list?.querySelector<HTMLElement>('[data-status="active"]');
+    if (!list || !link) {
+      setIndicator(null);
+      return;
+    }
+    setIndicator({ left: link.offsetLeft, width: link.offsetWidth });
+  }, []);
+
+  useLayoutEffect(() => {
+    moveIndicator();
+    const onResize = () => moveIndicator();
+    window.addEventListener("resize", onResize);
+    document.fonts?.ready.then(onResize).catch(() => undefined);
+    return () => window.removeEventListener("resize", onResize);
+  }, [pathname, moveIndicator]);
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -54,9 +74,27 @@ export function Nav() {
           <Logo />
         </Link>
 
-        <ul className="nav-links hidden min-w-0 2xl:flex" aria-label="Main pages">
+        <ul
+          ref={listRef}
+          className="nav-links hidden min-w-0 xl:flex"
+          aria-label="Main pages"
+          onMouseLeave={() => moveIndicator()}
+        >
+          <span
+            aria-hidden="true"
+            className="nav-indicator"
+            style={
+              indicator
+                ? {
+                    transform: `translateX(${indicator.left}px)`,
+                    width: indicator.width,
+                    opacity: 1,
+                  }
+                : { opacity: 0 }
+            }
+          />
           {NAV.map((item) => (
-            <li key={item.to}>
+            <li key={item.to} onMouseEnter={(event) => moveIndicator(event.currentTarget)}>
               <Link
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
@@ -82,7 +120,7 @@ export function Nav() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="nav-menu-button grid 2xl:hidden"
+            className="nav-menu-button grid xl:hidden"
           >
             {open ? <X size={19} strokeWidth={1.7} /> : <Menu size={19} strokeWidth={1.7} />}
           </button>
@@ -92,7 +130,7 @@ export function Nav() {
       {open && (
         <div
           id="mobile-navigation"
-          className="site-mobile-panel fixed inset-x-3 top-[5.5rem] bottom-3 z-40 overflow-y-auto border border-border bg-background/95 p-5 shadow-2xl backdrop-blur-xl sm:inset-x-5 sm:p-7 2xl:hidden"
+          className="site-mobile-panel fixed inset-x-3 top-[5.5rem] bottom-3 z-40 overflow-y-auto border border-border bg-background/95 p-5 shadow-2xl backdrop-blur-xl sm:inset-x-5 sm:p-7 xl:hidden"
         >
           <p className="eyebrow mb-3 text-teal">Explore ZYQO</p>
           <ul className="flex flex-col">
