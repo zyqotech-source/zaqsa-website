@@ -32,11 +32,10 @@ function prefersReducedMotion() {
   );
 }
 
-/** Animated "<ZYQO />" wordmark: letters drop in, then ripple with a shifting gradient. */
+/** Animated ZYQO wordmark: letters rise out of a mask, with a soft light sweep. */
 export function AnimatedWordmark({ className }: { className?: string }) {
   return (
     <span className={cn("zy-wordmark", className)} aria-hidden="true">
-      <span className="zy-bracket zy-bracket-open">&lt;</span>
       {"ZYQO".split("").map((char, index) => (
         <span
           key={char}
@@ -47,8 +46,6 @@ export function AnimatedWordmark({ className }: { className?: string }) {
           {char}
         </span>
       ))}
-      <span className="zy-bracket zy-bracket-close">/&gt;</span>
-      <span className="zy-cursor" />
     </span>
   );
 }

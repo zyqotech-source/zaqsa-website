@@ -2238,108 +2238,57 @@ body {
   background-attachment: fixed;
 }
 
-/* Animated wordmark */
+/* Animated wordmark: solid ink letters rising from a mask, one soft light sweep */
 .zy-wordmark {
   display: inline-flex;
   align-items: baseline;
+  overflow: hidden;
+  padding-bottom: 0.08em;
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 .zy-wordmark.home-wordmark {
   margin-top: clamp(0.9rem, 2vw, 1.5rem);
-  font-size: clamp(3.4rem, 10.5vw, 8.2rem);
-  color: var(--foreground);
-  letter-spacing: -0.03em;
+  font-size: clamp(3.4rem, 10vw, 7.6rem);
+  letter-spacing: -0.045em;
 }
 .zy-letter {
   position: relative;
   display: inline-block;
-  background: var(--ink-grad);
-  background-size: 300% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation:
-    zy-drop 900ms calc(var(--i) * 120ms + 200ms) cubic-bezier(0.2, 0.9, 0.25, 1.15) both,
-    zy-shift 5s calc(var(--i) * -0.6s) ease-in-out infinite,
-    zy-wave 3.6s calc(var(--i) * 0.18s + 1.4s) ease-in-out infinite;
+  color: var(--secondary);
+  animation: zy-rise 900ms calc(var(--i) * 110ms + 150ms) cubic-bezier(0.16, 0.8, 0.2, 1) both;
 }
-.zy-letter::before,
+.zy-letter:nth-child(3) {
+  color: var(--primary);
+}
 .zy-letter::after {
   position: absolute;
   inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.95) 50%, transparent 60%);
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   content: attr(data-char);
-  opacity: 0;
-  pointer-events: none;
+  animation: zy-sheen 5s calc(var(--i) * 140ms + 1.6s) ease-in-out infinite;
 }
-.zy-letter::before {
-  color: #06b6d4;
-  animation: zy-glitch-a 6s calc(var(--i) * 90ms + 2s) infinite;
-}
-.zy-letter::after {
-  color: #7c3aed;
-  animation: zy-glitch-b 6s calc(var(--i) * 90ms + 2s) infinite;
-}
-.zy-bracket {
-  color: var(--accent-2);
-  font-weight: 500;
-  font-size: 0.5em;
-  letter-spacing: 0;
-  opacity: 0;
-  animation: zy-bracket-in 700ms 900ms ease-out both;
-}
-.zy-bracket-open {
-  margin-right: 0.18em;
-}
-.zy-bracket-close {
-  margin-left: 0.18em;
-  animation-delay: 1100ms;
-}
-.zy-cursor {
-  align-self: flex-end;
-  width: 0.08em;
-  height: 0.7em;
-  margin-left: 0.12em;
-  background: var(--accent-2);
-  animation: caret 1s steps(1) infinite 1.6s;
-}
-@keyframes zy-drop {
+@keyframes zy-rise {
   from {
-    opacity: 0;
-    transform: translateY(-1.1em) rotateX(80deg) scale(0.8);
-    filter: blur(8px);
+    transform: translateY(105%);
   }
   to {
-    opacity: 1;
     transform: none;
-    filter: none;
   }
 }
-@keyframes zy-shift {
-  0%,
+@keyframes zy-sheen {
+  0% {
+    background-position: 150% 0;
+  }
+  40%,
   100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-@keyframes zy-wave {
-  0%,
-  60%,
-  100% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-0.07em);
-  }
-}
-@keyframes zy-bracket-in {
-  to {
-    opacity: 0.85;
+    background-position: -100% 0;
   }
 }
 @keyframes caret {
@@ -2351,40 +2300,13 @@ body {
     opacity: 0;
   }
 }
-@keyframes zy-glitch-a {
+@keyframes zy-shift {
   0%,
-  92%,
   100% {
-    opacity: 0;
-    transform: none;
+    background-position: 0% 50%;
   }
-  94% {
-    opacity: 0.8;
-    transform: translate(-0.04em, 0.02em);
-    clip-path: inset(10% 0 55% 0);
-  }
-  97% {
-    opacity: 0.8;
-    transform: translate(0.03em, -0.02em);
-    clip-path: inset(60% 0 8% 0);
-  }
-}
-@keyframes zy-glitch-b {
-  0%,
-  92%,
-  100% {
-    opacity: 0;
-    transform: none;
-  }
-  95% {
-    opacity: 0.7;
-    transform: translate(0.04em, -0.02em);
-    clip-path: inset(45% 0 25% 0);
-  }
-  98% {
-    opacity: 0.7;
-    transform: translate(-0.03em, 0.02em);
-    clip-path: inset(5% 0 70% 0);
+  50% {
+    background-position: 100% 50%;
   }
 }
 
@@ -2428,10 +2350,7 @@ body {
   line-height: 1.02;
 }
 .home-hero-line-accent .home-hero-line-inner {
-  background: var(--ink-grad);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: var(--primary);
   font-weight: 600;
 }
 .hero-chip {
@@ -2545,15 +2464,9 @@ body {
 }
 .page-hero-title {
   font-weight: 600;
-  background: var(--ink-grad);
-  background-size: 250% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: zy-shift 7s ease-in-out infinite;
 }
 .page-hero-title em {
-  color: inherit;
+  color: var(--primary);
 }
 
 /* Reveal variants */
@@ -2884,7 +2797,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .zy-letter,
-  .zy-bracket,
+  .zy-letter::after,
   .tech-glyph,
   .stack-track,
   .page-hero-scan {
@@ -2892,8 +2805,6 @@ body {
     opacity: 1;
     transform: none;
   }
-  .zy-cursor,
-  .zy-letter::before,
   .zy-letter::after {
     display: none;
   }
