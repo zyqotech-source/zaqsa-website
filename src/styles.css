@@ -2927,7 +2927,7 @@ body {
 }
 .hv-orbit-track {
   position: absolute;
-  width: 74%;
+  width: 64%;
   aspect-ratio: 1;
   border: 1px dashed rgba(79, 70, 229, 0.3);
   border-radius: 50%;
@@ -2962,13 +2962,15 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: rotate(var(--a)) translateY(-37cqw);
+  transform: rotate(var(--a)) translateY(-32cqw);
 }
 .hv-sat-inner {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin: -0.9rem 0 0 -2.6rem;
+  position: absolute;
+  top: 0;
+  left: 0;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: #fff;
@@ -2987,10 +2989,10 @@ body {
 }
 @keyframes hv-unspin {
   from {
-    transform: rotate(calc(var(--a) * -1));
+    transform: translate(-50%, -50%) rotate(calc(var(--a) * -1));
   }
   to {
-    transform: rotate(calc(var(--a) * -1 - 360deg));
+    transform: translate(-50%, -50%) rotate(calc(var(--a) * -1 - 360deg));
   }
 }
 @keyframes hv-pulse {
@@ -4324,5 +4326,78 @@ body {
   }
   .chat-typing {
     display: none;
+  }
+}
+
+/* Responsive refinements */
+.hv-sat {
+  width: 0;
+  height: 0;
+}
+.hero-journey .journey {
+  margin-bottom: 0;
+  padding-bottom: 1.5rem;
+  box-sizing: content-box;
+}
+@media (max-width: 1023px) {
+  .lab-radar {
+    top: auto;
+    right: -14rem;
+    bottom: -16rem;
+    width: 36rem;
+    transform: none;
+    opacity: 0.55;
+  }
+  .lab-blip {
+    font-size: 0;
+  }
+  .lab-blip i {
+    font-size: 1rem;
+  }
+  .hero {
+    padding-block: 7.2rem 3rem;
+  }
+}
+@media (max-width: 639px) {
+  .hero-title {
+    font-size: clamp(2.2rem, 10.4vw, 3rem);
+  }
+  .hv {
+    width: min(100%, 22rem);
+  }
+  .hv-sat-inner {
+    padding: 0.32rem 0.6rem;
+    font-size: 0.66rem;
+  }
+  .ticker-chip {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.95rem;
+  }
+  .stat-grid {
+    gap: 0.6rem;
+  }
+  .code-terminal-body {
+    min-height: 15rem;
+    padding: 1rem;
+  }
+  .journey-stop i {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-width: 2px;
+  }
+}
+@media (min-width: 1920px) {
+  .container-z {
+    max-width: 1520px;
+  }
+  .site-nav {
+    max-width: 1520px;
+  }
+}
+@media (hover: none) {
+  .stack-chip:hover,
+  .stat-card.in:hover,
+  .service-filter-chip:hover {
+    transform: none;
   }
 }
