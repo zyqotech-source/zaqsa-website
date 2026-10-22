@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { COMPANY } from "@/lib/content";
 import { seo } from "@/lib/seo";
+import { AboutVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/about")({
   head: () =>
@@ -36,6 +37,7 @@ function Page() {
   return (
     <main>
       <PageHero
+        visual={<AboutVisual />}
         eyebrow="About ZYQO"
         title={
           <>

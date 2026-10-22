@@ -3,6 +3,7 @@ import { Timeline } from "@/components/site/IdeaBuilder";
 import { Chip, GlassButton, PageHero, Reveal, SectionHead } from "@/components/site/primitives";
 import { CIVIC, CONSULTING, PRODUCTS } from "@/lib/content";
 import { seo } from "@/lib/seo";
+import { SolutionsVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/solutions")({
   head: () =>
@@ -42,6 +43,7 @@ function Page() {
   return (
     <main>
       <PageHero
+        visual={<SolutionsVisual />}
         eyebrow="Solutions"
         title={
           <>

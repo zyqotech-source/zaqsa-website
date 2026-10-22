@@ -3,6 +3,7 @@ import { FutureMap } from "@/components/site/FutureMap";
 import { PageHero, Reveal, SectionHead } from "@/components/site/primitives";
 import { FUTURE, LAB } from "@/lib/content";
 import { seo } from "@/lib/seo";
+import { LabVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/lab")({
   head: () =>
@@ -19,6 +20,7 @@ function Page() {
   return (
     <main>
       <PageHero
+        visual={<LabVisual />}
         eyebrow="ZYQO Lab · Exploration in progress"
         title={
           <>

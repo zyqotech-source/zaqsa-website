@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { PageHero, Reveal } from "@/components/site/primitives";
 import { COMPANY } from "@/lib/content";
 import { seo } from "@/lib/seo";
+import { ContactVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/contact")({
   head: () =>
@@ -17,6 +18,7 @@ function Page() {
   return (
     <main>
       <PageHero
+        visual={<ContactVisual />}
         eyebrow="Contact"
         title={
           <>

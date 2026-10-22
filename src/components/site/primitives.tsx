@@ -123,16 +123,18 @@ export function PageHero({
   eyebrow,
   title,
   intro,
+  visual,
 }: {
   eyebrow: string;
   title: ReactNode;
   intro: string;
+  visual?: ReactNode;
 }) {
   return (
     <header className="page-hero">
       <TechBackdrop />
       <span className="page-hero-scan" aria-hidden="true" />
-      <div className="container-z">
+      <div className={cn("container-z", visual && "page-hero-split")}>
         <Reveal>
           <p className="eyebrow">
             <span className="page-hero-prompt" aria-hidden="true">
@@ -143,6 +145,11 @@ export function PageHero({
           <h1 className="page-hero-title">{title}</h1>
           <p className="page-hero-intro">{intro}</p>
         </Reveal>
+        {visual && (
+          <Reveal from="right" delay={160} className="page-hero-visual">
+            {visual}
+          </Reveal>
+        )}
       </div>
     </header>
   );

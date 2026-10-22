@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { SERVICES, type Service } from "@/lib/content";
 import { seo } from "@/lib/seo";
+import { ServicesVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/services/")({
   head: () =>
@@ -22,9 +24,12 @@ const CAT_LABEL = {
 };
 
 function Page() {
+  const [active, setActive] = useState<Service["category"] | "All">("All");
+  const visibleCats = active === "All" ? CATS : CATS.filter((cat) => cat === active);
   return (
     <main>
       <PageHero
+        visual={<ServicesVisual />}
         eyebrow="Services"
         title={
           <>
@@ -37,8 +42,30 @@ function Page() {
       />
       <section className="pb-28">
         <div className="container-z space-y-16">
-          {CATS.map((cat, categoryIndex) => (
-            <Reveal key={cat} className="service-category-block" delay={categoryIndex * 140}>
+          <div className="service-filter" role="group" aria-label="Filter services">
+            {(["All", ...CATS] as const).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                aria-pressed={active === cat}
+                onClick={() => setActive(cat)}
+                className="service-filter-chip"
+              >
+                {cat === "All" ? "All services" : CAT_LABEL[cat]}
+                <span>
+                  {cat === "All"
+                    ? SERVICES.length
+                    : SERVICES.filter((service) => service.category === cat).length}
+                </span>
+              </button>
+            ))}
+          </div>
+          {visibleCats.map((cat, categoryIndex) => (
+            <Reveal
+              key={`${active}-${cat}`}
+              className="service-category-block"
+              delay={categoryIndex * 140}
+            >
               <p className="eyebrow text-primary">{CAT_LABEL[cat]}</p>
               <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
                 {SERVICES.filter((s) => s.category === cat).map((s, i) => (

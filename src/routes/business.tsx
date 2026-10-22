@@ -3,6 +3,7 @@ import { Explorer } from "@/components/site/Explorer";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { BUSINESS } from "@/lib/content";
 import { seo } from "@/lib/seo";
+import { BusinessVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/business")({
   head: () =>
@@ -17,6 +18,7 @@ function Page() {
   return (
     <main>
       <PageHero
+        visual={<BusinessVisual />}
         eyebrow="Business"
         title={
           <>
