@@ -21,6 +21,7 @@ import {
 import { COMPANY, INDUSTRIES, JOURNEY_STEPS, LAB, TECHNOLOGY } from "@/lib/content";
 import { GlassButton } from "@/components/site/primitives";
 import { TechBackdrop } from "@/components/site/motion";
+import { Scene3D } from "@/components/site/Scene3D";
 
 const vars = (values: Record<string, string | number>) => values as CSSProperties;
 
@@ -50,6 +51,9 @@ export function TechnologyHero() {
             <b>TypeScript</b>
           </div>
           <div className="editor-grid">
+            <div className="editor-scene" aria-hidden="true">
+              <Scene3D kind="stack" />
+            </div>
             <ol className="editor-gutter" aria-hidden="true">
               {Array.from({ length: 12 }, (_, index) => (
                 <li key={index}>{index + 1}</li>
@@ -108,33 +112,38 @@ export function BusinessHero() {
   return (
     <header className="hero hero-center">
       <TechBackdrop />
-      <div className="container-z">
-        <div className="hero-center-copy">
-          <Eyebrow>Business</Eyebrow>
-          <h1 className="hero-title">
-            Software for the way
-            <br />
-            <em>you actually work.</em>
-          </h1>
-          <p className="hero-lead">
-            CRM, billing, inventory, people, schools, marketing and paperwork — practical systems
-            that remove friction from everyday operations.
-          </p>
+      <div className="container-z hero-2col">
+        <div className="hero-2col-main">
+          <div className="hero-center-copy">
+            <Eyebrow>Business</Eyebrow>
+            <h1 className="hero-title">
+              Software for the way
+              <br />
+              <em>you actually work.</em>
+            </h1>
+            <p className="hero-lead">
+              CRM, billing, inventory, people, schools, marketing and paperwork — practical systems
+              that remove friction from everyday operations.
+            </p>
+          </div>
+          <ol className="pipe" aria-hidden="true">
+            {nodes.map(([Icon, label, state], index) => (
+              <li key={label} style={vars({ "--i": index })}>
+                <span className="pipe-icon">
+                  <Icon size={22} strokeWidth={1.6} />
+                </span>
+                <strong>{label}</strong>
+                <small>{state}</small>
+              </li>
+            ))}
+            <span className="pipe-track">
+              <span className="pipe-run" />
+            </span>
+          </ol>
         </div>
-        <ol className="pipe" aria-hidden="true">
-          {nodes.map(([Icon, label, state], index) => (
-            <li key={label} style={vars({ "--i": index })}>
-              <span className="pipe-icon">
-                <Icon size={22} strokeWidth={1.6} />
-              </span>
-              <strong>{label}</strong>
-              <small>{state}</small>
-            </li>
-          ))}
-          <span className="pipe-track">
-            <span className="pipe-run" />
-          </span>
-        </ol>
+        <div className="hero-3d">
+          <Scene3D kind="bars" />
+        </div>
       </div>
     </header>
   );
@@ -157,17 +166,22 @@ export function SolutionsHero() {
   return (
     <header className="hero hero-journey">
       <TechBackdrop />
-      <div className="container-z">
-        <Eyebrow>Solutions</Eyebrow>
-        <h1 className="hero-title hero-title-wide">
-          Thinking partner.
-          <br />
-          <em>Building partner.</em>
-        </h1>
-        <p className="hero-lead">
-          Before we write code, we help you think clearly. Strategy, planning and an honest journey
-          from idea to launch.
-        </p>
+      <div className="container-z hero-2col">
+        <div className="hero-2col-main">
+          <Eyebrow>Solutions</Eyebrow>
+          <h1 className="hero-title hero-title-wide">
+            Thinking partner.
+            <br />
+            <em>Building partner.</em>
+          </h1>
+          <p className="hero-lead">
+            Before we write code, we help you think clearly. Strategy, planning and an honest
+            journey from idea to launch.
+          </p>
+        </div>
+        <div className="hero-3d">
+          <Scene3D kind="knot" />
+        </div>
       </div>
       <div className="journey" aria-hidden="true">
         <svg viewBox="0 0 1000 220" preserveAspectRatio="xMidYMid meet">
@@ -217,17 +231,22 @@ export function IndustriesHero() {
   return (
     <header className="hero hero-ticker">
       <TechBackdrop />
-      <div className="container-z hero-center-copy">
-        <Eyebrow>Industries</Eyebrow>
-        <h1 className="hero-title">
-          Different industries.
-          <br />
-          <em>Same curiosity.</em>
-        </h1>
-        <p className="hero-lead">
-          Tap any industry to see how we think about it, where we can help, and what the work could
-          look like.
-        </p>
+      <div className="container-z hero-2col">
+        <div className="hero-2col-main hero-center-copy">
+          <Eyebrow>Industries</Eyebrow>
+          <h1 className="hero-title">
+            Different industries.
+            <br />
+            <em>Same curiosity.</em>
+          </h1>
+          <p className="hero-lead">
+            Tap any industry to see how we think about it, where we can help, and what the work
+            could look like.
+          </p>
+        </div>
+        <div className="hero-3d">
+          <Scene3D kind="city" />
+        </div>
       </div>
       <div className="ticker" aria-hidden="true">
         {rows.map((row, rowIndex) => (
@@ -252,33 +271,10 @@ export function IndustriesHero() {
 
 /* ------------------------------------------------------------------------ Lab */
 export function LabHero() {
-  const blips = [
-    ["AI", 34, 30],
-    ["IoT", 70, 36],
-    ["Data", 44, 68],
-    ["Robotics", 76, 70],
-    ["AR/VR", 56, 18],
-  ] as const;
   return (
     <header className="hero hero-lab">
-      <div className="lab-radar" aria-hidden="true">
-        <span className="lab-ring" />
-        <span className="lab-ring lab-ring-2" />
-        <span className="lab-ring lab-ring-3" />
-        <span className="lab-sweep" />
-        {blips.map(([label, x, y], index) => (
-          <span
-            key={label}
-            className="lab-blip"
-            style={vars({ left: `${x}%`, top: `${y}%`, "--i": index })}
-          >
-            <i />
-            {label}
-          </span>
-        ))}
-      </div>
-      <div className="container-z">
-        <div className="lab-copy">
+      <div className="container-z hero-2col">
+        <div className="hero-2col-main lab-copy">
           <Eyebrow>ZYQO Lab · Exploration in progress</Eyebrow>
           <h1 className="hero-title">
             Where ideas get
@@ -298,6 +294,9 @@ export function LabHero() {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="hero-3d">
+          <Scene3D kind="atom" />
         </div>
       </div>
     </header>
@@ -332,6 +331,7 @@ export function AboutHero() {
           </div>
         </div>
         <div className="founder-panel relative grid aspect-[4/4.6] w-full max-w-md place-items-center justify-self-center overflow-hidden border border-border lg:justify-self-end">
+          <Scene3D kind="cluster" className="scene3d-panel" />
           <span className="founder-panel-coordinate founder-coordinate-top">ZYQO / LEADERSHIP</span>
           <div className="founder-monogram" aria-hidden="true">
             CA
@@ -357,35 +357,40 @@ export function ContactHero() {
   return (
     <header className="hero hero-chat">
       <TechBackdrop />
-      <div className="container-z hero-center-copy">
-        <Eyebrow>Contact</Eyebrow>
-        <h1 className="hero-title">
-          What are you thinking
-          <br />
-          <em>of building?</em>
-        </h1>
-        <p className="hero-lead">
-          Tell us about the problem, idea or possibility you have in mind.
-        </p>
-        <div className="chat-window" aria-hidden="true">
-          <div className="chat-head">
-            <span className="chat-avatar">ZQ</span>
-            <span>
-              ZYQO team
-              <small>Start a conversation</small>
-            </span>
+      <div className="container-z hero-2col">
+        <div className="hero-2col-main hero-center-copy">
+          <Eyebrow>Contact</Eyebrow>
+          <h1 className="hero-title">
+            What are you thinking
+            <br />
+            <em>of building?</em>
+          </h1>
+          <p className="hero-lead">
+            Tell us about the problem, idea or possibility you have in mind.
+          </p>
+          <div className="chat-window" aria-hidden="true">
+            <div className="chat-head">
+              <span className="chat-avatar">ZQ</span>
+              <span>
+                ZYQO team
+                <small>Start a conversation</small>
+              </span>
+            </div>
+            <div className="chat-body">
+              <p className="chat-msg chat-you chat-1">I have an idea for an app…</p>
+              <p className="chat-msg chat-us chat-2">Tell us more. What problem does it solve?</p>
+              <p className="chat-msg chat-you chat-3">It needs AI and a simple dashboard.</p>
+              <p className="chat-msg chat-typing">
+                <i />
+                <i />
+                <i />
+              </p>
+              <p className="chat-msg chat-us chat-4">Great. Share the details below.</p>
+            </div>
           </div>
-          <div className="chat-body">
-            <p className="chat-msg chat-you chat-1">I have an idea for an app…</p>
-            <p className="chat-msg chat-us chat-2">Tell us more. What problem does it solve?</p>
-            <p className="chat-msg chat-you chat-3">It needs AI and a simple dashboard.</p>
-            <p className="chat-msg chat-typing">
-              <i />
-              <i />
-              <i />
-            </p>
-            <p className="chat-msg chat-us chat-4">Great. Share the details below.</p>
-          </div>
+        </div>
+        <div className="hero-3d">
+          <Scene3D kind="wave" />
         </div>
       </div>
     </header>
