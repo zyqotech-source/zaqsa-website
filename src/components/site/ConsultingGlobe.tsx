@@ -4,9 +4,9 @@ import { useHydrated } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-const BRASS = "#d6b46a";
+const BRASS = "#22d3ee";
 const IVORY = "#f2f5ef";
-const INK = "#14243e";
+const INK = "#3b37b8";
 
 function GlobeMesh({ reducedMotion }: { reducedMotion: boolean }) {
   const globe = useRef<THREE.Group>(null);

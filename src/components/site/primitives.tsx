@@ -2,17 +2,20 @@ import { useCallback, useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TechBackdrop } from "@/components/site/motion";
 
 export function Reveal({
   children,
   className,
   delay = 0,
   as: Tag = "div",
+  from,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   as?: "div" | "section" | "li" | "article";
+  from?: "left" | "right" | "zoom";
 }) {
   const ref = useRef<HTMLElement>(null);
   const assignRef = useCallback((element: HTMLElement | null) => {
@@ -46,7 +49,7 @@ export function Reveal({
   return (
     <Tag
       ref={assignRef}
-      className={cn("reveal", className)}
+      className={cn("reveal", from && `reveal-${from}`, className)}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -127,9 +130,16 @@ export function PageHero({
 }) {
   return (
     <header className="page-hero">
+      <TechBackdrop />
+      <span className="page-hero-scan" aria-hidden="true" />
       <div className="container-z">
         <Reveal>
-          <p className="eyebrow">{eyebrow}</p>
+          <p className="eyebrow">
+            <span className="page-hero-prompt" aria-hidden="true">
+              &gt;_
+            </span>
+            {eyebrow}
+          </p>
           <h1 className="page-hero-title">{title}</h1>
           <p className="page-hero-intro">{intro}</p>
         </Reveal>

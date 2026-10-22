@@ -284,3 +284,12 @@ export const INDUSTRIES: Industry[] = [
 ];
 
 export const NEEDS = ["Website", "Mobile App", "AI Solution", "Business Software", "CRM", "E-commerce", "Automation", "Data Dashboard", "Education System", "Management System", "Digital Marketing", "Industry Solution", "Something Completely New"];
+
+export const STACK_ROWS = [
+  ["React", "Next.js", "TypeScript", "Tailwind CSS", "Flutter", "React Native", "Android", "iOS", "PWA"],
+  ["Node.js", "Python", "Java", "FastAPI", "Django", "REST APIs", "GraphQL", "PostgreSQL", "MongoDB", "MySQL"],
+  ["AWS", "Azure", "Google Cloud", "Docker", "Kubernetes", "CI/CD", "Linux", "Nginx", "Monitoring"],
+  ["Machine Learning", "Generative AI", "NLP", "Computer Vision", "Power BI", "Data Pipelines", "ESP32", "MQTT", "IoT Dashboards"],
+] as const;
+
+export const TECH_RIBBON = ["Software", "AI & ML", "Cloud", "Mobile", "Data", "DevOps", "IoT", "Automation"] as const;

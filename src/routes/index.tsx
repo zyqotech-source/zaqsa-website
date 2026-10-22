@@ -4,43 +4,71 @@ import strategySession from "@/assets/strategy-session.jpg";
 import transformationOperations from "@/assets/transformation-operations.jpg";
 import { ConsultingGlobe } from "@/components/site/ConsultingGlobe";
 import { GlassButton, Reveal, SectionHead } from "@/components/site/primitives";
-import { COMPANY, CONSULTING_PILLARS, ENGAGEMENT_STEPS, INDUSTRIES, SERVICES } from "@/lib/content";
+import {
+  AnimatedWordmark,
+  CodeTerminal,
+  CountUp,
+  StackRows,
+  TechBackdrop,
+} from "@/components/site/motion";
+import {
+  BUSINESS,
+  COMPANY,
+  CONSULTING_PILLARS,
+  ENGAGEMENT_STEPS,
+  INDUSTRIES,
+  SERVICES,
+  STACK_ROWS,
+  TECHNOLOGY,
+  TECH_RIBBON,
+} from "@/lib/content";
 import { IndustryAccordion } from "@/components/site/IndustryAccordion";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () =>
     seo(
-      "ZYQO — Business & Technology Consulting for Decisive Growth",
-      "ZYQO connects business strategy, AI, data, software and operational transformation to help ambitious organisations move from complexity to measurable progress.",
+      "ZYQO — Software, AI & Digital Engineering for Growing Businesses",
+      "ZYQO is a technology company building custom software, AI, mobile, cloud and data solutions — with the strategy and delivery to take ideas from plan to production.",
     ),
   component: Home,
 });
 
 const PILLAR_ICONS = [Compass, LineChart, Cpu, Workflow];
-const RIBBON_ITEMS = ["Strategy", "AI & data", "Technology", "Operations", "Measurable progress"];
+const RIBBON_ITEMS = TECH_RIBBON;
+const STATS = [
+  { value: SERVICES.length, label: "Service lines" },
+  { value: TECHNOLOGY.length, label: "Technology domains" },
+  {
+    value: [...TECHNOLOGY, ...BUSINESS].reduce((total, group) => total + group.items.length, 0),
+    label: "Capabilities",
+    suffix: "+",
+  },
+  { value: INDUSTRIES.length, label: "Industries served" },
+] as const;
+const HERO_CHIPS = ["</> Web", "AI", "Cloud", "API", "Mobile"] as const;
 
 function Hero() {
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
+      <TechBackdrop />
       <div className="container-z">
         <div className="home-hero-grid">
           <div className="home-hero-copy">
-            <p className="eyebrow home-hero-kicker">Business & technology consulting</p>
-            <p className="home-wordmark" aria-hidden="true">
-              ZYQO
-            </p>
+            <p className="eyebrow home-hero-kicker">Software · AI · Cloud · Digital engineering</p>
+            <AnimatedWordmark className="home-wordmark" />
             <h1 id="home-hero-title" className="home-hero-title">
               <span className="home-hero-line">
-                <span className="home-hero-line-inner">Clarity to decide.</span>
+                <span className="home-hero-line-inner">We engineer ideas</span>
               </span>
               <span className="home-hero-line home-hero-line-accent">
-                <span className="home-hero-line-inner">Capability to deliver.</span>
+                <span className="home-hero-line-inner">into scalable software.</span>
               </span>
             </h1>
             <p className="home-hero-description">
-              {COMPANY.tagline} We connect business strategy, data, AI and technology delivery to
-              help ambitious organisations make better decisions and build durable advantage.
+              {COMPANY.tagline} From custom software and mobile apps to AI, cloud and data
+              platforms, one accountable team plans, builds and runs the technology your business
+              grows on.
             </p>
             <div className="home-hero-actions">
               <GlassButton to="/contact">Start a conversation</GlassButton>
@@ -48,7 +76,7 @@ function Hero() {
                 href="#process-h"
                 className="inline-flex min-h-12 items-center gap-2 border border-border bg-card/55 px-5 text-[.68rem] font-bold tracking-[.13em] text-foreground uppercase transition-colors hover:border-teal/70 hover:text-teal"
               >
-                See our process <ArrowDown size={14} aria-hidden />
+                See how we build <ArrowDown size={14} aria-hidden />
               </a>
             </div>
             <div className="home-hero-utility">
@@ -64,8 +92,13 @@ function Hero() {
             role="group"
             aria-label="Interactive visualization of connected strategy and technology"
           >
-            <span className="hero-art-note hero-art-note-top">Strategy · 28.61°N</span>
+            <span className="hero-art-note hero-art-note-top">Engineering · 28.61°N</span>
             <ConsultingGlobe />
+            {HERO_CHIPS.map((chip, index) => (
+              <span key={chip} className={`hero-chip hero-chip-${index + 1}`} aria-hidden="true">
+                {chip}
+              </span>
+            ))}
             <span className="hero-orbit-node hero-orbit-node-gold" aria-hidden="true" />
             <span className="hero-orbit-node hero-orbit-node-teal" aria-hidden="true" />
             <span className="hero-art-note hero-art-note-bottom">One accountable team</span>
@@ -84,12 +117,11 @@ function Home() {
       <section className="border-b border-border py-8 sm:py-10">
         <div className="container-z grid gap-6 text-sm text-muted-foreground sm:grid-cols-3">
           <p>
-            <span className="mr-3 text-primary">01</span>One accountable team from advisory to
-            execution
+            <span className="mr-3 text-primary">01</span>One accountable team from idea to
+            production
           </p>
           <p>
-            <span className="mr-3 text-primary">02</span>Solutions shaped around outcomes, not
-            trends
+            <span className="mr-3 text-primary">02</span>Software shaped around outcomes, not trends
           </p>
           <p>
             <span className="mr-3 text-primary">03</span>Practical capability built into your
@@ -112,9 +144,9 @@ function Home() {
         <div className="container-z">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <SectionHead
-              eyebrow="Core capabilities"
-              title={<span id="capabilities-h">From boardroom decision to working system.</span>}
-              intro="ZYQO closes the gap between advice and implementation. We define what matters, design the change and help deliver it."
+              eyebrow="01 / What we do"
+              title={<span id="capabilities-h">From idea to a working system.</span>}
+              intro="ZYQO closes the gap between planning and production. We define what matters, design the solution and build it."
             />
             <div className="border-t border-border">
               {CONSULTING_PILLARS.map((pillar, index) => {
@@ -150,7 +182,7 @@ function Home() {
       <section className="border-y border-border py-24 sm:py-32" aria-labelledby="services-h">
         <div className="container-z">
           <SectionHead
-            eyebrow="Services"
+            eyebrow="02 / Services"
             title={<span id="services-h">Every capability, one accountable team.</span>}
             intro="Explore what we deliver across consulting, technology, business and civic work — each service has its own detailed page."
           />
@@ -186,6 +218,64 @@ function Home() {
         </div>
       </section>
 
+      <section className="build-section py-24 sm:py-32" aria-labelledby="build-h">
+        <TechBackdrop />
+        <div className="container-z relative">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <SectionHead
+                eyebrow="03 / Engineering"
+                title={<span id="build-h">From requirement to release, in the open.</span>}
+                intro="Every project follows one disciplined pipeline — analysed, designed, built, deployed and monitored — so you always know what ships next."
+              />
+              <dl className="stat-grid mt-10">
+                {STATS.map((stat, index) => (
+                  <Reveal key={stat.label} delay={index * 90} className="stat-card">
+                    <dt>{stat.label}</dt>
+                    <dd>
+                      <CountUp value={stat.value} suffix={"suffix" in stat ? stat.suffix : ""} />
+                    </dd>
+                  </Reveal>
+                ))}
+              </dl>
+            </div>
+            <Reveal from="right" delay={120}>
+              <CodeTerminal />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 sm:py-32" aria-labelledby="process-h">
+        <div className="container-z">
+          <SectionHead
+            eyebrow="04 / How we work"
+            title={<span id="process-h">A disciplined path from ambiguity to action.</span>}
+            intro="Every engagement is sized around the decision at hand—from a focused advisory sprint to end-to-end transformation delivery."
+          />
+          <ol className="process-timeline mt-16 grid gap-px border border-border bg-border md:grid-cols-4">
+            {ENGAGEMENT_STEPS.map((step, index) => (
+              <Reveal
+                as="li"
+                key={step.title}
+                delay={index * 80}
+                className="group min-h-72 bg-background p-7 transition-colors hover:bg-card"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="text-xs text-primary">{step.number}</span>
+                  <ArrowUpRight
+                    className="text-muted-foreground transition-colors group-hover:text-primary"
+                    size={18}
+                  />
+                </div>
+                <h3 className="mt-20 text-2xl font-semibold">{step.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{step.blurb}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <section className="border-b border-border py-24 sm:py-32" aria-labelledby="practice-h">
         <div className="container-z">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
@@ -206,7 +296,7 @@ function Home() {
               </figure>
             </Reveal>
             <Reveal className="lg:col-span-4" delay={120}>
-              <p className="eyebrow text-primary">Consulting in practice</p>
+              <p className="eyebrow text-primary">05 / In practice</p>
               <h2
                 id="practice-h"
                 className="mt-5 text-[clamp(2.3rem,4vw,4.4rem)] leading-[0.96] font-semibold"
@@ -263,12 +353,44 @@ function Home() {
         </div>
       </section>
 
+      <section className="border-y border-border py-24 sm:py-32" aria-labelledby="stack-h">
+        <div className="container-z">
+          <SectionHead
+            eyebrow="06 / Technology"
+            title={<span id="stack-h">A modern stack, chosen per problem.</span>}
+            intro="We pick tools for fit, not fashion — web, mobile, backend, cloud, AI and IoT."
+          />
+        </div>
+        <div className="mt-12">
+          <StackRows rows={STACK_ROWS} />
+        </div>
+      </section>
+
+      <section
+        className="outcomes-band border-y border-border py-24 sm:py-32"
+        aria-labelledby="industries-h"
+      >
+        <div className="container-z">
+          <SectionHead
+            eyebrow="07 / Industries"
+            title={<span id="industries-h">Context changes. The need for clarity does not.</span>}
+            intro="We combine cross-industry thinking with the practical detail needed to make change work in your environment."
+          />
+          <div className="mt-14">
+            <IndustryAccordion items={INDUSTRIES.slice(0, 6)} />
+          </div>
+          <div className="mt-10">
+            <GlassButton to="/industries">View industry experience</GlassButton>
+          </div>
+        </div>
+      </section>
+
       <section
         className="outcomes-band border-y border-border py-24 sm:py-32"
         aria-labelledby="outcomes-h"
       >
         <div className="container-z">
-          <p className="eyebrow text-primary">What changes</p>
+          <p className="eyebrow text-primary">08 / What changes</p>
           <h2
             id="outcomes-h"
             className="mt-5 max-w-5xl text-[clamp(2.3rem,5vw,5rem)] leading-[0.96] font-semibold"
@@ -308,55 +430,6 @@ function Home() {
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{d}</p>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 sm:py-32" aria-labelledby="process-h">
-        <div className="container-z">
-          <SectionHead
-            eyebrow="How we engage"
-            title={<span id="process-h">A disciplined path from ambiguity to action.</span>}
-            intro="Every engagement is sized around the decision at hand—from a focused advisory sprint to end-to-end transformation delivery."
-          />
-          <ol className="process-timeline mt-16 grid gap-px border border-border bg-border md:grid-cols-4">
-            {ENGAGEMENT_STEPS.map((step, index) => (
-              <Reveal
-                as="li"
-                key={step.title}
-                delay={index * 80}
-                className="group min-h-72 bg-background p-7 transition-colors hover:bg-card"
-              >
-                <div className="flex items-start justify-between">
-                  <span className="text-xs text-primary">{step.number}</span>
-                  <ArrowUpRight
-                    className="text-muted-foreground transition-colors group-hover:text-primary"
-                    size={18}
-                  />
-                </div>
-                <h3 className="mt-20 text-2xl font-semibold">{step.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{step.blurb}</p>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section
-        className="outcomes-band border-y border-border py-24 sm:py-32"
-        aria-labelledby="industries-h"
-      >
-        <div className="container-z">
-          <SectionHead
-            eyebrow="Industry perspective"
-            title={<span id="industries-h">Context changes. The need for clarity does not.</span>}
-            intro="We combine cross-industry thinking with the practical detail needed to make change work in your environment."
-          />
-          <div className="mt-14">
-            <IndustryAccordion items={INDUSTRIES.slice(0, 6)} />
-          </div>
-          <div className="mt-10">
-            <GlassButton to="/industries">View industry experience</GlassButton>
           </div>
         </div>
       </section>

@@ -82,8 +82,8 @@ export function Footer() {
 
           <address className="footer-contact not-italic">
             <h3 className="footer-column-title">Talk to us</h3>
-            <p className="text-white">
-              {COMPANY.founder} <span className="text-white/55">· {COMPANY.role}</span>
+            <p className="text-foreground">
+              {COMPANY.founder} <span className="text-muted-foreground">· {COMPANY.role}</span>
             </p>
             <p className="mt-3">{COMPANY.address}</p>
             <p className="mt-3">
