@@ -14,6 +14,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/site/Nav";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { Footer } from "@/components/site/Footer";
 import { AskZyqo } from "@/components/site/AskZyqo";
 
@@ -184,6 +185,7 @@ function RootComponent() {
           Skip to content
         </a>
         <ScrollProgress />
+        <SmoothScroll />
         <Nav />
         <div id="content" key={pathname} className="route-transition">
           <Outlet />

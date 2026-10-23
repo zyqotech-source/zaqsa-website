@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Reveal } from "@/components/site/primitives";
 import { COMPANY } from "@/lib/content";
+import { Photo } from "@/components/site/Photo";
 import { ContactHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
 
@@ -25,6 +26,9 @@ function Page() {
           </Reveal>
           <Reveal delay={140}>
             <aside className="min-w-0 space-y-6">
+              <div className="contact-photo">
+                <Photo slot="contact-team" ratio="4 / 3" />
+              </div>
               <div className="glass rounded-3xl p-7">
                 <p className="eyebrow text-primary">Direct</p>
                 <p className="mt-4 text-lg">{COMPANY.founder}</p>

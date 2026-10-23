@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, type ReactNode } from "react";
+import { useCallback, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useOnceInView } from "@/lib/motion";
 import { TechBackdrop } from "@/components/site/motion";
 
 export function Reveal({
@@ -21,30 +22,7 @@ export function Reveal({
   const assignRef = useCallback((element: HTMLElement | null) => {
     ref.current = element;
   }, []);
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-    if (!("IntersectionObserver" in window)) {
-      element.classList.add("in");
-      return;
-    }
-    const initialBounds = element.getBoundingClientRect();
-    if (initialBounds.top < window.innerHeight && initialBounds.bottom > 0) {
-      element.classList.add("in");
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          element.classList.add("in");
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+  useOnceInView(ref, (element) => element.classList.add("in"));
 
   return (
     <Tag

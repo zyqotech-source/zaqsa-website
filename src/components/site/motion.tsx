@@ -176,7 +176,7 @@ export function CountUp({ value, suffix = "" }: { value: number; suffix?: string
 
   useEffect(() => {
     if (!inView || prefersReducedMotion()) return;
-    const duration = 1400;
+    const duration = 1500;
     const start = performance.now();
     let frame = 0;
     const tick = (now: number) => {
@@ -197,22 +197,28 @@ export function CountUp({ value, suffix = "" }: { value: number; suffix?: string
   );
 }
 
-/** Two counter-scrolling rows of technologies. */
-export function StackRows({ rows }: { rows: readonly (readonly string[])[] }) {
+/** One marquee row of technologies. Seamless loop, pauses on hover. */
+export function StackRow({
+  tools,
+  reverse = false,
+}: {
+  tools: readonly string[];
+  reverse?: boolean;
+}) {
   return (
-    <div className="stack-rows">
-      {rows.map((row, rowIndex) => (
-        <div key={rowIndex} className={cn("stack-row", rowIndex % 2 === 1 && "is-reverse")}>
-          <div className="stack-track" aria-hidden={rowIndex > 0 ? "true" : undefined}>
-            {[...row, ...row].map((tool, index) => (
-              <span className="stack-chip" key={`${tool}-${index}`}>
-                <i aria-hidden />
-                {tool}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
+    <div className={cn("stack-row", reverse && "is-reverse")}>
+      <div className="stack-track">
+        {[...tools, ...tools].map((tool, index) => (
+          <span
+            className="stack-chip"
+            key={`${tool}-${index}`}
+            aria-hidden={index >= tools.length ? "true" : undefined}
+          >
+            <i aria-hidden />
+            {tool}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

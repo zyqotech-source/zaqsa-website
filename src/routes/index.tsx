@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Compass, Cpu, LineChart, Workflow } from "lucide-react";
 import strategySession from "@/assets/strategy-session.jpg";
@@ -8,14 +9,24 @@ import {
   AnimatedWordmark,
   CodeTerminal,
   CountUp,
-  StackRows,
+  StackRow,
   TechBackdrop,
 } from "@/components/site/motion";
+import { LineReveal, StaggerList, WordReveal } from "@/components/site/Split";
+import {
+  BigText,
+  HeroPhotoCards,
+  ParallaxPhoto,
+  ScaledWordmark,
+  TiltFrame,
+} from "@/components/site/HumanMotion";
+import { Photo } from "@/components/site/Photo";
+import { ProcessSticky } from "@/components/site/ProcessSticky";
+import { useOnceInView } from "@/lib/motion";
 import {
   BUSINESS,
   COMPANY,
   CONSULTING_PILLARS,
-  ENGAGEMENT_STEPS,
   INDUSTRIES,
   SERVICES,
   STACK_ROWS,
@@ -46,7 +57,23 @@ const STATS = [
   },
   { value: INDUSTRIES.length, label: "Industries served" },
 ] as const;
-const HERO_CHIPS = ["</> Web", "AI", "Cloud", "API", "Mobile"] as const;
+const SERVICE_PHOTO = {
+  Consulting: "service-consulting",
+  Technology: "service-technology",
+  Business: "service-business",
+  Civic: "service-civic",
+} as const;
+
+/** The closing button pulses once when it first scrolls into view. */
+function PulseOnce({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useOnceInView(ref, (element) => element.classList.add("is-in"));
+  return (
+    <div ref={ref} className="pulse-once">
+      {children}
+    </div>
+  );
+}
 
 function Hero() {
   return (
@@ -59,10 +86,10 @@ function Hero() {
             <AnimatedWordmark className="home-wordmark" />
             <h1 id="home-hero-title" className="home-hero-title">
               <span className="home-hero-line">
-                <span className="home-hero-line-inner">We engineer ideas</span>
+                <WordReveal text="We engineer ideas" startDelay={0.15} />
               </span>
               <span className="home-hero-line home-hero-line-accent">
-                <span className="home-hero-line-inner">into scalable software.</span>
+                <WordReveal text="into scalable software." startDelay={0.35} />
               </span>
             </h1>
             <p className="home-hero-description">
@@ -71,7 +98,9 @@ function Hero() {
               grows on.
             </p>
             <div className="home-hero-actions">
-              <GlassButton to="/contact">Start a conversation</GlassButton>
+              <GlassButton to="/contact" className="hero-cta">
+                Start a conversation
+              </GlassButton>
               <a
                 href="#process-h"
                 className="inline-flex min-h-12 items-center gap-2 border border-border bg-card/55 px-5 text-[.68rem] font-bold tracking-[.13em] text-foreground uppercase transition-colors hover:border-teal/70 hover:text-teal"
@@ -94,11 +123,7 @@ function Hero() {
           >
             <span className="hero-art-note hero-art-note-top">Engineering · 28.61°N</span>
             <ConsultingGlobe />
-            {HERO_CHIPS.map((chip, index) => (
-              <span key={chip} className={`hero-chip hero-chip-${index + 1}`} aria-hidden="true">
-                {chip}
-              </span>
-            ))}
+            <HeroPhotoCards />
             <span className="hero-orbit-node hero-orbit-node-gold" aria-hidden="true" />
             <span className="hero-orbit-node hero-orbit-node-teal" aria-hidden="true" />
             <span className="hero-art-note hero-art-note-bottom">One accountable team</span>
@@ -181,22 +206,31 @@ function Home() {
 
       <section className="border-y border-border py-24 sm:py-32" aria-labelledby="services-h">
         <div className="container-z">
-          <SectionHead
-            eyebrow="02 / Services"
-            title={<span id="services-h">Every capability, one accountable team.</span>}
-            intro="Explore what we deliver across consulting, technology, business and civic work — each service has its own detailed page."
-          />
+          <div className="max-w-3xl">
+            <p className="eyebrow text-teal">02 / Services</p>
+            <h2 className="mt-4 text-[clamp(2.1rem,4.8vw,4rem)] leading-[1.02] font-medium tracking-[-.055em]">
+              <span id="services-h">
+                <LineReveal lines={["Every capability,", "one accountable team."]} />
+              </span>
+            </h2>
+            <Reveal delay={200}>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Explore what we deliver across consulting, technology, business and civic work —
+                each service has its own detailed page.
+              </p>
+            </Reveal>
+          </div>
           <div className="mt-14 grid gap-10 md:grid-cols-2 xl:grid-cols-4">
             {(["Consulting", "Technology", "Business", "Civic"] as const).map((cat, index) => (
               <Reveal key={cat} className="services-category" delay={index * 120}>
                 <p className="eyebrow text-primary">{cat}</p>
-                <ul className="mt-5 border-t border-border">
+                <StaggerList className="mt-5 border-t border-border">
                   {SERVICES.filter((s) => s.category === cat).map((s, serviceIndex) => (
-                    <li key={s.id} style={{ animationDelay: `${serviceIndex * 55}ms` }}>
+                    <li key={s.id} style={{ "--i": serviceIndex } as React.CSSProperties}>
                       <Link
                         to="/services/$slug"
                         params={{ slug: s.id }}
-                        className="group flex items-center justify-between gap-4 border-b border-border py-4 transition-colors hover:text-primary"
+                        className="svc-link group flex items-center justify-between gap-4 border-b border-border py-4 transition-colors hover:text-primary"
                       >
                         <span>
                           <span className="block font-semibold">{s.title}</span>
@@ -204,14 +238,23 @@ function Home() {
                             {s.blurb}
                           </span>
                         </span>
-                        <ArrowUpRight
-                          size={18}
-                          className="flex-none text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
-                        />
+                        <span className="svc-end">
+                          <Photo
+                            slot={SERVICE_PHOTO[cat]}
+                            round
+                            ratio="1"
+                            settle={false}
+                            className="svc-photo"
+                          />
+                          <ArrowUpRight
+                            size={18}
+                            className="svc-arrow flex-none text-muted-foreground transition-all group-hover:translate-x-1 group-hover:-translate-y-0.5 group-hover:text-primary"
+                          />
+                        </span>
                       </Link>
                     </li>
                   ))}
-                </ul>
+                </StaggerList>
               </Reveal>
             ))}
           </div>
@@ -231,6 +274,12 @@ function Home() {
               <dl className="stat-grid mt-10">
                 {STATS.map((stat, index) => (
                   <Reveal key={stat.label} delay={index * 90} className="stat-card">
+                    <Photo
+                      slot={`stat-${index + 1}` as "stat-1"}
+                      round
+                      ratio="1"
+                      className="stat-photo"
+                    />
                     <dt>{stat.label}</dt>
                     <dd>
                       <CountUp value={stat.value} suffix={"suffix" in stat ? stat.suffix : ""} />
@@ -248,31 +297,7 @@ function Home() {
 
       <section className="py-24 sm:py-32" aria-labelledby="process-h">
         <div className="container-z">
-          <SectionHead
-            eyebrow="04 / How we work"
-            title={<span id="process-h">A disciplined path from ambiguity to action.</span>}
-            intro="Every engagement is sized around the decision at hand—from a focused advisory sprint to end-to-end transformation delivery."
-          />
-          <ol className="process-timeline mt-16 grid gap-px border border-border bg-border md:grid-cols-4">
-            {ENGAGEMENT_STEPS.map((step, index) => (
-              <Reveal
-                as="li"
-                key={step.title}
-                delay={index * 80}
-                className="group min-h-72 bg-background p-7 transition-colors hover:bg-card"
-              >
-                <div className="flex items-start justify-between">
-                  <span className="text-xs text-primary">{step.number}</span>
-                  <ArrowUpRight
-                    className="text-muted-foreground transition-colors group-hover:text-primary"
-                    size={18}
-                  />
-                </div>
-                <h3 className="mt-20 text-2xl font-semibold">{step.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{step.blurb}</p>
-              </Reveal>
-            ))}
-          </ol>
+          <ProcessSticky />
         </div>
       </section>
 
@@ -361,8 +386,12 @@ function Home() {
             intro="We pick tools for fit, not fashion — web, mobile, backend, cloud, AI and IoT."
           />
         </div>
-        <div className="mt-12">
-          <StackRows rows={STACK_ROWS} />
+        <div className="stack-rows mt-12">
+          <StackRow tools={[...STACK_ROWS[0], ...STACK_ROWS[1]]} />
+          <div className="container-z">
+            <ParallaxPhoto slot="stack-team" className="stack-photo" />
+          </div>
+          <StackRow tools={[...STACK_ROWS[2], ...STACK_ROWS[3]]} reverse />
         </div>
       </section>
 
@@ -386,17 +415,18 @@ function Home() {
       </section>
 
       <section
-        className="outcomes-band border-y border-border py-24 sm:py-32"
+        className="outcomes-band big-band border-y border-border py-24 sm:py-32"
         aria-labelledby="outcomes-h"
       >
-        <div className="container-z">
+        <div className="big-bg" aria-hidden="true">
+          <Photo slot="bg-team" settle={false} className="h-full" />
+        </div>
+        <div className="container-z relative">
           <p className="eyebrow text-primary">08 / What changes</p>
-          <h2
+          <BigText
             id="outcomes-h"
-            className="mt-5 max-w-5xl text-[clamp(2.3rem,5vw,5rem)] leading-[0.96] font-semibold"
-          >
-            Clearer decisions. Leaner operations. Stronger digital capability.
-          </h2>
+            lines={["Clearer decisions.", "Leaner operations.", "Stronger digital capability."]}
+          />
           <div className="mt-16 grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
             {[
               [
@@ -434,23 +464,33 @@ function Home() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted py-20 sm:py-24">
-        <div className="container-z">
-          <div className="grid gap-10 border border-border bg-card p-7 shadow-sm sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-14">
-            <Reveal>
-              <p className="eyebrow text-primary">A useful first conversation</p>
-              <h2 className="mt-5 max-w-4xl text-[clamp(2.5rem,5.4vw,4.5rem)] leading-[0.98] font-semibold">
-                Bring us the problem before you know the solution.
-              </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                We will help frame the decision, identify the highest-value next move and explain
-                where ZYQO can contribute.
-              </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <GlassButton to="/contact" variant="ink">
-                Start the conversation
-              </GlassButton>
+      <section className="cta-section border-t border-border bg-muted py-20 sm:py-24">
+        <ScaledWordmark>ZYQO</ScaledWordmark>
+        <div className="container-z relative">
+          <div className="grid gap-10 border border-border bg-card/80 p-7 shadow-sm backdrop-blur-sm sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:p-14">
+            <div>
+              <Reveal>
+                <p className="eyebrow text-primary">A useful first conversation</p>
+                <h2 className="mt-5 max-w-4xl text-[clamp(2.5rem,5.4vw,4.5rem)] leading-[0.98] font-semibold">
+                  Bring us the problem before you know the solution.
+                </h2>
+                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                  We will help frame the decision, identify the highest-value next move and explain
+                  where ZYQO can contribute.
+                </p>
+              </Reveal>
+              <Reveal delay={120} className="mt-8">
+                <PulseOnce>
+                  <GlassButton to="/contact" variant="ink">
+                    Start the conversation
+                  </GlassButton>
+                </PulseOnce>
+              </Reveal>
+            </div>
+            <Reveal delay={160} from="right">
+              <TiltFrame className="cta-photo">
+                <Photo slot="cta-group" ratio="4 / 3" settle={false} />
+              </TiltFrame>
             </Reveal>
           </div>
           <div className="mt-5 flex flex-col items-start justify-between gap-5 border border-border bg-card p-6 sm:flex-row sm:items-center sm:px-8">

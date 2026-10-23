@@ -3,6 +3,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { NAV } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { smooth } from "@/lib/motion";
 
 export function Logo() {
   return (
@@ -17,6 +18,8 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [docked, setDocked] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const openRef = useRef(false);
   const navRef = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
   const listRef = useRef<HTMLUListElement>(null);
@@ -44,10 +47,17 @@ export function Nav() {
 
   useEffect(() => {
     let frame = 0;
+    let lastY = window.scrollY;
     const update = () => {
       frame = 0;
       const y = window.scrollY;
-      setScrolled(y > 24);
+      const delta = y - lastY;
+      if (Math.abs(delta) > 6) {
+        setHidden(delta > 0 && y > 240 && !openRef.current);
+        lastY = y;
+      }
+      if (y < 120) setHidden(false);
+      setScrolled(y > 50);
       setDocked(y > 140);
       const range = document.documentElement.scrollHeight - window.innerHeight;
       navRef.current?.style.setProperty(
@@ -72,6 +82,11 @@ export function Nav() {
   }, [docked, moveIndicator]);
 
   useEffect(() => {
+    openRef.current = open;
+    if (open) setHidden(false);
+    const lenis = smooth.lenis;
+    if (open) lenis?.stop();
+    else lenis?.start();
     const previousOverflow = document.body.style.overflow;
     if (open) document.body.style.overflow = "hidden";
     const onKeyDown = (event: KeyboardEvent) => {
@@ -79,13 +94,19 @@ export function Nav() {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => {
+      smooth.lenis?.start();
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
 
   return (
-    <header className="site-nav-wrap fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+    <header
+      className={cn(
+        "site-nav-wrap fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4",
+        hidden && "is-hidden",
+      )}
+    >
       <nav
         ref={navRef}
         aria-label="Main"
