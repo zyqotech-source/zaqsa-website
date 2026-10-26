@@ -3,7 +3,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowDown,
   ArrowUpRight,
-  BedDouble,
   Compass,
   Cpu,
   GraduationCap,
@@ -50,8 +49,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () =>
     seo(
-      "ZYQO — Hospital, Hotel & School Management Software | Custom Software & AI",
-      "ZYQO builds healthcare, hotel and school management software, plus custom software, AI, mobile, cloud and data solutions — planned, built and run by one accountable team in New Delhi.",
+      "ZYQO — Hospital & School Management Software | Custom Software & AI",
+      "ZYQO builds healthcare and school management software, plus custom software, AI, mobile, cloud and data solutions — planned, built and run by one accountable team in New Delhi.",
     ),
   component: Home,
 });
@@ -70,7 +69,6 @@ const STATS = [
 ] as const;
 const HERO_AUDIENCE = [
   { to: "healthcare", label: "Hospitals", Icon: HeartPulse },
-  { to: "hotel-management", label: "Hotels", Icon: BedDouble },
   { to: "school-management", label: "Schools", Icon: GraduationCap },
 ] as const;
 

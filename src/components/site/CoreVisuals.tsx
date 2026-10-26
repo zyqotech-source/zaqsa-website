@@ -52,59 +52,6 @@ export function HealthcareVisual() {
   );
 }
 
-export function HotelVisual() {
-  const rooms = [
-    ["101", 0, 3],
-    ["102", 2, 4],
-    ["103", 1, 2],
-    ["104", 4, 3],
-    ["105", 0, 5],
-  ] as const;
-  return (
-    <div className="cv cv-hotel" aria-hidden="true">
-      <div className="cv-bar">
-        <span />
-        <span />
-        <span />
-        <em>Bookings · This week</em>
-      </div>
-      <div className="cv-body">
-        <div className="cv-days">
-          {["M", "T", "W", "T", "F", "S", "S"].map((day, index) => (
-            <span key={index}>{day}</span>
-          ))}
-        </div>
-        <div className="cv-grid">
-          {rooms.map(([room, start, span], index) => (
-            <div className="cv-row" key={room}>
-              <small>{room}</small>
-              <div className="cv-track">
-                <i
-                  style={vars({
-                    "--start": start,
-                    "--span": span,
-                    "--i": index,
-                  })}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="cv-stats">
-          <div>
-            <strong>82%</strong>
-            <small>Occupancy</small>
-          </div>
-          <div>
-            <strong>5</strong>
-            <small>Check-ins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function SchoolVisual() {
   const students = ["Aanya", "Ravi", "Meera", "Kabir"];
   return (

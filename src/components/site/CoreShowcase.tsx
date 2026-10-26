@@ -1,20 +1,18 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, BedDouble, GraduationCap, HeartPulse } from "lucide-react";
+import { ArrowUpRight, GraduationCap, HeartPulse } from "lucide-react";
 import { CORE_SERVICES } from "@/lib/content";
 import { getGsap, prefersReducedMotion } from "@/lib/motion";
-import { HealthcareVisual, HotelVisual, SchoolVisual } from "@/components/site/CoreVisuals";
+import { HealthcareVisual, SchoolVisual } from "@/components/site/CoreVisuals";
 import { LineReveal } from "@/components/site/Split";
 
 const ICONS = {
   healthcare: HeartPulse,
-  "hotel-management": BedDouble,
   "school-management": GraduationCap,
 } as const;
 
 const VISUALS: Record<string, ReactNode> = {
   healthcare: <HealthcareVisual />,
-  "hotel-management": <HotelVisual />,
   "school-management": <SchoolVisual />,
 };
 
@@ -75,7 +73,7 @@ export function CoreShowcase() {
           <header className="core-head">
             <p className="eyebrow text-primary">01 / Core solutions</p>
             <h2 id="core-h">
-              <LineReveal lines={["Software that runs your", "hospital, hotel or school."]} />
+              <LineReveal lines={["Software that runs your", "hospital or school."]} />
             </h2>
             <ol className="core-tabs" aria-hidden="true">
               {CORE_SERVICES.map((service) => (

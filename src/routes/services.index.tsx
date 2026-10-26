@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, BedDouble, GraduationCap, HeartPulse } from "lucide-react";
+import { ArrowUpRight, GraduationCap, HeartPulse } from "lucide-react";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { SERVICES, type Service } from "@/lib/content";
 import { seo } from "@/lib/seo";
@@ -18,7 +18,6 @@ export const Route = createFileRoute("/services/")({
 const CATS: Service["category"][] = ["Industry", "Consulting", "Civic", "Technology", "Business"];
 const FEATURE_ICON: Record<string, typeof HeartPulse> = {
   healthcare: HeartPulse,
-  "hotel-management": BedDouble,
   "school-management": GraduationCap,
 };
 const CAT_LABEL = {
@@ -74,7 +73,7 @@ function Page() {
             >
               <p className="eyebrow text-primary">{CAT_LABEL[cat]}</p>
               {cat === "Industry" ? (
-                <div className="mt-6 grid gap-5 md:grid-cols-3">
+                <div className="mt-6 grid gap-5 md:grid-cols-2">
                   {SERVICES.filter((s) => s.category === cat).map((s, i) => {
                     const Icon = FEATURE_ICON[s.id] ?? HeartPulse;
                     return (

@@ -546,23 +546,6 @@ export const INDUSTRY_SOLUTIONS: Group[] = [
     ],
   },
   {
-    id: "hotel-management",
-    title: "Hotel Management Software",
-    blurb: "Every room, booking and guest in one calm control room.",
-    items: [
-      "Room Inventory & Availability Calendar",
-      "Reservations & Direct Booking Website",
-      "Front Desk Check-in / Check-out",
-      "Housekeeping & Maintenance Tasks",
-      "Channel Manager & OTA Integration",
-      "Billing, Guest Folios & Invoices",
-      "Restaurant & Room-service Orders",
-      "Guest Profiles & Feedback",
-      "Staff Rostering",
-      "Occupancy & Revenue Reports",
-    ],
-  },
-  {
     id: "school-management",
     title: "School Management Software",
     blurb: "From admission to report card, one system for the whole school.",
@@ -594,18 +577,8 @@ export const CORE_SERVICES = [
     features: ["Appointments & queues", "Patient records", "Billing & insurance", "Pharmacy & lab stock"],
   },
   {
-    id: "hotel-management",
-    number: "02",
-    label: "Hotel management",
-    title: "Hotels & guest houses",
-    blurb:
-      "Room inventory, bookings, front desk and housekeeping live in one control room — fewer double bookings, happier guests.",
-    builtFor: ["Hotels", "Resorts", "Guest houses"],
-    features: ["Bookings & availability", "Front desk", "Housekeeping", "Revenue reports"],
-  },
-  {
     id: "school-management",
-    number: "03",
+    number: "02",
     label: "School management",
     title: "Schools & institutes",
     blurb:
@@ -643,30 +616,6 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       {
         q: "Does it work for a single clinic as well as a hospital?",
         a: "Yes. We start with the modules you need today — usually appointments, records and billing — and add departments as you grow.",
-      },
-    ],
-  },
-  "hotel-management": {
-    who: "Hotels, resorts, homestays and guest houses that juggle bookings across calls, spreadsheets and booking sites.",
-    engagements: [
-      "Booking engine and direct-booking website",
-      "Front desk, billing and guest folios",
-      "Housekeeping and maintenance task boards",
-      "Channel manager and OTA integration",
-      "Occupancy and revenue dashboards",
-    ],
-    faqs: [
-      {
-        q: "Will it stop double bookings?",
-        a: "Availability is kept in one place and synced with connected channels, so a room booked anywhere is blocked everywhere.",
-      },
-      {
-        q: "Can guests book directly on our website?",
-        a: "Yes. We can build a direct-booking site connected to your live room inventory and payment provider.",
-      },
-      {
-        q: "We run a small property. Is this overkill?",
-        a: "No. We size the system to your property — often just bookings, front desk and billing at first.",
       },
     ],
   },
@@ -1004,8 +953,6 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
 const INTROS: Record<string, string> = {
   healthcare:
     "Healthcare runs on timing, records and trust. We build management software for clinics and hospitals that keeps appointments, patient history, billing and pharmacy in one calm system — simple for front-desk staff, clear for doctors, and organised for administrators.",
-  "hotel-management":
-    "A hotel is a live system: rooms, guests, staff and bills changing every hour. We build hotel management software that brings bookings, front desk, housekeeping and revenue reports into one control room — and a direct-booking website that sells your rooms.",
   "school-management":
     "Schools carry admissions, attendance, fees, exams and parent communication every single day. We build school management software that puts all of it in one place, so teachers teach, parents stay informed and the principal sees the whole school at a glance.",
   "election-campaign":
@@ -1020,12 +967,6 @@ const OUTCOMES: Record<string, string[]> = {
     "Patient history available in seconds",
     "Billing and pharmacy that match",
     "One dashboard for the whole clinic",
-  ],
-  "hotel-management": [
-    "One live view of every room and booking",
-    "Fewer double bookings and faster check-ins",
-    "Housekeeping that knows what to clean next",
-    "Revenue and occupancy reports without spreadsheets",
   ],
   "school-management": [
     "Admissions, fees and attendance in one place",

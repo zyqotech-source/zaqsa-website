@@ -5658,64 +5658,6 @@ html.lenis body {
     stroke-dashoffset: -420;
   }
 }
-.cv-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-left: 2.4rem;
-  color: var(--muted-foreground);
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-align: center;
-}
-.cv-grid {
-  display: grid;
-  gap: 0.4rem;
-}
-.cv-row {
-  display: grid;
-  grid-template-columns: 2.4rem 1fr;
-  align-items: center;
-}
-.cv-row small {
-  color: var(--muted-foreground);
-  font-size: 0.68rem;
-  font-weight: 700;
-}
-.cv-track {
-  position: relative;
-  height: 1.35rem;
-  border-radius: 0.4rem;
-  background: repeating-linear-gradient(
-    90deg,
-    #f1f4fb 0,
-    #f1f4fb calc(100% / 7 - 2px),
-    #fff calc(100% / 7 - 2px),
-    #fff calc(100% / 7)
-  );
-}
-.cv-track i {
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  left: calc(var(--start) * 100% / 7);
-  width: calc(var(--span) * 100% / 7 - 3px);
-  border-radius: 0.35rem;
-  background: linear-gradient(90deg, #6366f1, #06b6d4);
-  transform-origin: left;
-  animation: cv-book 4.5s calc(var(--i) * 0.25s) ease-in-out infinite;
-}
-@keyframes cv-book {
-  0% {
-    transform: scaleX(0);
-  }
-  25%,
-  85% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0);
-  }
-}
 .cv-attendance {
   display: grid;
   gap: 0.4rem;
