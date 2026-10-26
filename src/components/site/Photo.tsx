@@ -1,6 +1,7 @@
 import { useRef, type CSSProperties } from "react";
 import { getPhoto, type PhotoSlot } from "@/lib/photos";
 import { useOnceInView } from "@/lib/motion";
+import { Art } from "@/components/site/Art";
 import { cn } from "@/lib/utils";
 
 /**
@@ -24,7 +25,7 @@ export function Photo({
   settle?: boolean;
   style?: CSSProperties;
 }) {
-  const { src, alt } = getPhoto(slot);
+  const { src, alt, art, initials } = getPhoto(slot);
   const ref = useRef<HTMLDivElement>(null);
   useOnceInView(ref, (element) => element.classList.add("is-in"));
 
@@ -42,6 +43,10 @@ export function Photo({
           decoding="async"
           draggable={false}
         />
+      ) : art ? (
+        <div className="photo-art" role="img" aria-label={alt}>
+          <Art name={art} {...(initials ? { initials } : {})} />
+        </div>
       ) : (
         <div className="photo-empty" role="img" aria-label={alt}>
           <span>Add photo here</span>

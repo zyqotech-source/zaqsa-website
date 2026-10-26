@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { GlassButton, PageHero, Reveal, SectionHead } from "@/components/site/primitives";
 import { ENGAGEMENT_STEPS, SERVICES } from "@/lib/content";
+import { NotFoundPage } from "@/components/site/ErrorPages";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -25,16 +26,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceNotFound() {
-  return (
-    <main className="container-z pt-44 pb-28">
-      <Reveal>
-        <h1 className="text-4xl font-semibold">Service not found</h1>
-      </Reveal>
-      <Reveal delay={140} className="mt-8">
-        <GlassButton to="/services">All services</GlassButton>
-      </Reveal>
-    </main>
-  );
+  return <NotFoundPage what="service" />;
 }
 
 function Page() {

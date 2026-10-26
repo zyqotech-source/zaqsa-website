@@ -1,4 +1,5 @@
 import strategySession from "@/assets/strategy-session.jpg";
+import type { ArtName } from "@/components/site/Art";
 import transformationOperations from "@/assets/transformation-operations.jpg";
 
 export type PhotoSlot =
@@ -91,11 +92,38 @@ const FALLBACK: Partial<Record<string, { src: string; alt: string }>> = {
   },
 };
 
-export function getPhoto(slot: PhotoSlot): { src: string | undefined; alt: string } {
+// Relevant illustrations for slots that have no uploaded photo yet.
+const ART: Partial<Record<string, ArtName>> = {
+  "process-1": "whiteboard",
+  "process-2": "blueprint",
+  "process-3": "code",
+  "process-4": "growth",
+  "hero-client": "meeting",
+  "service-consulting": "icon-compass",
+  "service-technology": "icon-cpu",
+  "service-business": "icon-briefcase",
+  "service-civic": "icon-landmark",
+  "stat-1": "icon-layers",
+  "stat-2": "icon-cpu",
+  "stat-3": "icon-boxes",
+  "stat-4": "icon-building",
+};
+
+const INITIALS: Record<string, string> = { "team-founder": "CA" };
+
+export function getPhoto(slot: PhotoSlot): {
+  src: string | undefined;
+  alt: string;
+  art: ArtName | undefined;
+  initials: string | undefined;
+} {
   const own = byName.get(slot);
   const alt = ALT[slot] ?? "A member of the ZYQO team";
-  if (own) return { src: own, alt };
+  if (own) return { src: own, alt, art: undefined, initials: undefined };
   const fallback = FALLBACK[slot];
-  if (fallback) return fallback;
-  return { src: undefined, alt };
+  if (fallback) return { ...fallback, art: undefined, initials: undefined };
+  if (slot.startsWith("team-")) {
+    return { src: undefined, alt, art: "monogram", initials: INITIALS[slot] ?? "ZQ" };
+  }
+  return { src: undefined, alt, art: ART[slot], initials: undefined };
 }

@@ -5778,3 +5778,317 @@ html.lenis body {
     stroke-dashoffset: 0;
   }
 }
+
+/* ==========================================================================
+   404, error and offline states
+   ========================================================================== */
+.err-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100svh;
+  padding-block: clamp(8rem, 16vh, 11rem) 5rem;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.16), transparent 60%),
+    linear-gradient(180deg, #f7f9ff, #eef2ff);
+}
+.err-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.err-code {
+  display: flex;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 22vw, 14rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+.err-code span {
+  color: var(--primary);
+  animation: err-float 4s ease-in-out infinite;
+}
+.err-code span:nth-child(2) {
+  color: transparent;
+  -webkit-text-stroke: 3px var(--primary);
+  animation-delay: 0.4s;
+}
+.err-code span:nth-child(3) {
+  animation-delay: 0.8s;
+}
+@keyframes err-float {
+  50% {
+    transform: translateY(-0.08em);
+  }
+}
+.err-eyebrow {
+  margin-top: 1.4rem;
+  color: var(--teal);
+}
+.err-title {
+  max-width: 22ch;
+  margin-top: 0.8rem;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+.err-lead {
+  max-width: 38rem;
+  margin-top: 1.1rem;
+  color: var(--muted-foreground);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.err-path {
+  max-width: 100%;
+  margin-top: 1.6rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: #0f172a;
+  padding: 0.7rem 1.1rem;
+  color: #cbd5e1;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.err-path span {
+  color: #22d3ee;
+}
+.err-path b {
+  margin-left: 0.6rem;
+  color: #f87171;
+}
+.err-links {
+  display: grid;
+  width: min(100%, 52rem);
+  gap: 0.8rem;
+  margin-top: 2.4rem;
+  text-align: left;
+}
+@media (min-width: 640px) {
+  .err-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 960px) {
+  .err-links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.err-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 0.9rem 1rem;
+  transition:
+    transform 0.3s var(--ease-out),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.err-links a > span:nth-child(2) {
+  flex: 1;
+}
+.err-links a:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 22px 40px -28px rgba(79, 70, 229, 0.6);
+}
+.err-link-icon {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  flex: none;
+  place-items: center;
+  border-radius: 0.8rem;
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--primary);
+}
+.err-links strong {
+  display: block;
+  font-size: 0.95rem;
+}
+.err-links small {
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+}
+.err-back {
+  margin-top: 1.8rem;
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.err-badge {
+  display: grid;
+  width: 5.5rem;
+  height: 5.5rem;
+  place-items: center;
+  border-radius: 1.6rem;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: #fff;
+  box-shadow: 0 26px 50px -26px rgba(79, 70, 229, 0.8);
+  animation: err-float 4s ease-in-out infinite;
+}
+.err-badge.is-network {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+}
+.err-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+.err-primary,
+.err-secondary {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: 0 1.4rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+.err-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.err-secondary {
+  background: #fff;
+  color: var(--primary);
+}
+.err-primary:hover,
+.err-secondary:hover {
+  transform: translateY(-2px);
+}
+.conn-banner {
+  position: fixed;
+  z-index: 90;
+  bottom: 1.2rem;
+  left: 50%;
+  display: inline-flex;
+  max-width: calc(100vw - 2rem);
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 20px 40px -18px rgba(15, 23, 42, 0.6);
+  animation: conn-in 0.4s var(--ease-out) both;
+  translate: -50% 0;
+}
+.conn-banner.is-offline {
+  background: #b91c1c;
+}
+.conn-banner.is-restored {
+  background: #15803d;
+}
+@keyframes conn-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .err-code span,
+  .err-badge,
+  .conn-banner {
+    animation: none;
+  }
+}
+
+/* Illustrated stand-ins for slots without an uploaded photo */
+.photo-art {
+  width: 100%;
+  height: 100%;
+}
+.photo-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.photo-settle .photo-art {
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+.photo-settle.is-in .photo-art {
+  opacity: 1;
+  transform: none;
+}
+.photo-art:has(.art-icon),
+.photo-art:has(.art-monogram) {
+  display: grid;
+  place-items: center;
+}
+.art-icon,
+.art-monogram {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: #fff;
+}
+.art-icon svg {
+  width: 52%;
+  height: 52%;
+}
+.art-monogram {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 12vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+.art-bob {
+  animation: art-bob 4.5s ease-in-out infinite;
+}
+.art-delay {
+  animation-delay: -2s;
+}
+@keyframes art-bob {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.art-grow {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: hv-bar 3.6s ease-in-out infinite alternate;
+}
+.art-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hv-spin 8s linear infinite;
+}
+.art-line {
+  animation: caret 2.4s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .art-bob,
+  .art-grow,
+  .art-spin,
+  .art-line {
+    animation: none;
+  }
+}
