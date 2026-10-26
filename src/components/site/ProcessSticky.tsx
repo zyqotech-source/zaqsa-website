@@ -55,7 +55,7 @@ export function ProcessSticky() {
     <div className="proc-layout">
       <div className="proc-head">
         <SectionHead
-          eyebrow="04 / How we work"
+          eyebrow="05 / How we work"
           title={<span id="process-h">A disciplined path from ambiguity to action.</span>}
           intro="Every engagement is sized around the decision at hand—from a focused advisory sprint to end-to-end transformation delivery."
         />

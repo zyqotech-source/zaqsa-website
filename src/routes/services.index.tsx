@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BedDouble, GraduationCap, HeartPulse } from "lucide-react";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { SERVICES, type Service } from "@/lib/content";
 import { seo } from "@/lib/seo";
@@ -15,8 +15,14 @@ export const Route = createFileRoute("/services/")({
   component: Page,
 });
 
-const CATS: Service["category"][] = ["Consulting", "Civic", "Technology", "Business"];
+const CATS: Service["category"][] = ["Industry", "Consulting", "Civic", "Technology", "Business"];
+const FEATURE_ICON: Record<string, typeof HeartPulse> = {
+  healthcare: HeartPulse,
+  "hotel-management": BedDouble,
+  "school-management": GraduationCap,
+};
 const CAT_LABEL = {
+  Industry: "Core solutions",
   Consulting: "Consulting",
   Civic: "Election & civic",
   Technology: "Technology",
@@ -67,33 +73,70 @@ function Page() {
               delay={categoryIndex * 140}
             >
               <p className="eyebrow text-primary">{CAT_LABEL[cat]}</p>
-              <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-                {SERVICES.filter((s) => s.category === cat).map((s, i) => (
-                  <Reveal key={s.id} delay={i * 40} className="bg-background">
-                    <Link
-                      to="/services/$slug"
-                      params={{ slug: s.id }}
-                      className="group flex h-full min-h-48 flex-col justify-between p-7 transition-colors hover:bg-card"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <span className="text-xs text-muted-foreground">
-                          {String(s.items.length).padStart(2, "0")} capabilities
-                        </span>
-                        <ArrowUpRight
-                          size={18}
-                          className="text-muted-foreground transition-colors group-hover:text-primary"
-                        />
-                      </div>
-                      <div>
-                        <h2 className="mt-10 text-2xl font-semibold transition-colors group-hover:text-primary">
-                          {s.title}
-                        </h2>
-                        <p className="mt-2 text-sm text-muted-foreground">{s.blurb}</p>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
+              {cat === "Industry" ? (
+                <div className="mt-6 grid gap-5 md:grid-cols-3">
+                  {SERVICES.filter((s) => s.category === cat).map((s, i) => {
+                    const Icon = FEATURE_ICON[s.id] ?? HeartPulse;
+                    return (
+                      <Reveal key={s.id} delay={i * 80}>
+                        <Link
+                          to="/services/$slug"
+                          params={{ slug: s.id }}
+                          className="svc-feature group"
+                        >
+                          <span className="svc-feature-badge">Core service</span>
+                          <span className="svc-feature-icon">
+                            <Icon size={30} strokeWidth={1.5} />
+                          </span>
+                          <h2 className="mt-8 text-2xl font-semibold">{s.title}</h2>
+                          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                            {s.blurb}
+                          </p>
+                          <ul className="mt-6 flex flex-wrap gap-2">
+                            {s.items.slice(0, 4).map((item) => (
+                              <li key={item} className="svc-feature-chip">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                          <span className="svc-feature-cta">
+                            Explore {s.items.length} capabilities
+                            <ArrowUpRight size={16} />
+                          </span>
+                        </Link>
+                      </Reveal>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+                  {SERVICES.filter((s) => s.category === cat).map((s, i) => (
+                    <Reveal key={s.id} delay={i * 40} className="bg-background">
+                      <Link
+                        to="/services/$slug"
+                        params={{ slug: s.id }}
+                        className="group flex h-full min-h-48 flex-col justify-between p-7 transition-colors hover:bg-card"
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <span className="text-xs text-muted-foreground">
+                            {String(s.items.length).padStart(2, "0")} capabilities
+                          </span>
+                          <ArrowUpRight
+                            size={18}
+                            className="text-muted-foreground transition-colors group-hover:text-primary"
+                          />
+                        </div>
+                        <div>
+                          <h2 className="mt-10 text-2xl font-semibold transition-colors group-hover:text-primary">
+                            {s.title}
+                          </h2>
+                          <p className="mt-2 text-sm text-muted-foreground">{s.blurb}</p>
+                        </div>
+                      </Link>
+                    </Reveal>
+                  ))}
+                </div>
+              )}
             </Reveal>
           ))}
           <Reveal delay={160}>

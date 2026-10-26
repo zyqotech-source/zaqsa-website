@@ -1,6 +1,16 @@
 import { useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Compass, Cpu, LineChart, Workflow } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  BedDouble,
+  Compass,
+  Cpu,
+  GraduationCap,
+  HeartPulse,
+  LineChart,
+  Workflow,
+} from "lucide-react";
 import strategySession from "@/assets/strategy-session.jpg";
 import transformationOperations from "@/assets/transformation-operations.jpg";
 import { ConsultingGlobe } from "@/components/site/ConsultingGlobe";
@@ -21,6 +31,7 @@ import {
   TiltFrame,
 } from "@/components/site/HumanMotion";
 import { Photo } from "@/components/site/Photo";
+import { CoreShowcase } from "@/components/site/CoreShowcase";
 import { ProcessSticky } from "@/components/site/ProcessSticky";
 import { useOnceInView } from "@/lib/motion";
 import {
@@ -39,8 +50,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () =>
     seo(
-      "ZYQO — Software, AI & Digital Engineering for Growing Businesses",
-      "ZYQO is a technology company building custom software, AI, mobile, cloud and data solutions — with the strategy and delivery to take ideas from plan to production.",
+      "ZYQO — Hospital, Hotel & School Management Software | Custom Software & AI",
+      "ZYQO builds healthcare, hotel and school management software, plus custom software, AI, mobile, cloud and data solutions — planned, built and run by one accountable team in New Delhi.",
     ),
   component: Home,
 });
@@ -57,6 +68,12 @@ const STATS = [
   },
   { value: INDUSTRIES.length, label: "Industries served" },
 ] as const;
+const HERO_AUDIENCE = [
+  { to: "healthcare", label: "Hospitals", Icon: HeartPulse },
+  { to: "hotel-management", label: "Hotels", Icon: BedDouble },
+  { to: "school-management", label: "Schools", Icon: GraduationCap },
+] as const;
+
 const SERVICE_PHOTO = {
   Consulting: "service-consulting",
   Technology: "service-technology",
@@ -86,26 +103,37 @@ function Hero() {
             <AnimatedWordmark className="home-wordmark" />
             <h1 id="home-hero-title" className="home-hero-title">
               <span className="home-hero-line">
-                <WordReveal text="We engineer ideas" startDelay={0.15} />
+                <WordReveal text="We engineer ideas" startDelay={0.1} />
               </span>
               <span className="home-hero-line home-hero-line-accent">
-                <WordReveal text="into scalable software." startDelay={0.35} />
+                <WordReveal text="into scalable software." startDelay={0.3} />
               </span>
             </h1>
+            <div className="hero-for">
+              <p className="hero-for-label">Management software for</p>
+              <ul className="hero-for-list">
+                {HERO_AUDIENCE.map(({ to, label, Icon }, index) => (
+                  <li key={to} style={{ "--i": index } as React.CSSProperties}>
+                    <Link to="/services/$slug" params={{ slug: to }}>
+                      <Icon size={18} strokeWidth={1.8} aria-hidden />
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p className="home-hero-description">
-              {COMPANY.tagline} From custom software and mobile apps to AI, cloud and data
-              platforms, one accountable team plans, builds and runs the technology your business
-              grows on.
+              Custom software, AI and cloud — planned, built and run by one accountable team.
             </p>
             <div className="home-hero-actions">
               <GlassButton to="/contact" className="hero-cta">
                 Start a conversation
               </GlassButton>
               <a
-                href="#process-h"
+                href="#core-services"
                 className="inline-flex min-h-12 items-center gap-2 border border-border bg-card/55 px-5 text-[.68rem] font-bold tracking-[.13em] text-foreground uppercase transition-colors hover:border-teal/70 hover:text-teal"
               >
-                See how we build <ArrowDown size={14} aria-hidden />
+                See our core services <ArrowDown size={14} aria-hidden />
               </a>
             </div>
             <div className="home-hero-utility">
@@ -121,12 +149,21 @@ function Hero() {
             role="group"
             aria-label="Interactive visualization of connected strategy and technology"
           >
-            <span className="hero-art-note hero-art-note-top">Engineering · 28.61°N</span>
             <ConsultingGlobe />
             <HeroPhotoCards />
             <span className="hero-orbit-node hero-orbit-node-gold" aria-hidden="true" />
             <span className="hero-orbit-node hero-orbit-node-teal" aria-hidden="true" />
-            <span className="hero-art-note hero-art-note-bottom">One accountable team</span>
+            {HERO_AUDIENCE.map(({ to, label, Icon }, index) => (
+              <Link
+                key={to}
+                to="/services/$slug"
+                params={{ slug: to }}
+                className={`hero-pill hero-pill-${index + 1}`}
+              >
+                <Icon size={15} strokeWidth={1.8} aria-hidden />
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -165,11 +202,13 @@ function Home() {
         </div>
       </section>
 
+      <CoreShowcase />
+
       <section className="py-24 sm:py-32" aria-labelledby="capabilities-h">
         <div className="container-z">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <SectionHead
-              eyebrow="01 / What we do"
+              eyebrow="02 / What we do"
               title={<span id="capabilities-h">From idea to a working system.</span>}
               intro="ZYQO closes the gap between planning and production. We define what matters, design the solution and build it."
             />
@@ -207,7 +246,7 @@ function Home() {
       <section className="border-y border-border py-24 sm:py-32" aria-labelledby="services-h">
         <div className="container-z">
           <div className="max-w-3xl">
-            <p className="eyebrow text-teal">02 / Services</p>
+            <p className="eyebrow text-teal">03 / Services</p>
             <h2 className="mt-4 text-[clamp(2.1rem,4.8vw,4rem)] leading-[1.02] font-medium tracking-[-.055em]">
               <span id="services-h">
                 <LineReveal lines={["Every capability,", "one accountable team."]} />
@@ -267,7 +306,7 @@ function Home() {
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
               <SectionHead
-                eyebrow="03 / Engineering"
+                eyebrow="04 / Engineering"
                 title={<span id="build-h">From requirement to release, in the open.</span>}
                 intro="Every project follows one disciplined pipeline — analysed, designed, built, deployed and monitored — so you always know what ships next."
               />
@@ -321,7 +360,7 @@ function Home() {
               </figure>
             </Reveal>
             <Reveal className="lg:col-span-4" delay={120}>
-              <p className="eyebrow text-primary">05 / In practice</p>
+              <p className="eyebrow text-primary">06 / In practice</p>
               <h2
                 id="practice-h"
                 className="mt-5 text-[clamp(2.3rem,4vw,4.4rem)] leading-[0.96] font-semibold"
@@ -381,7 +420,7 @@ function Home() {
       <section className="border-y border-border py-24 sm:py-32" aria-labelledby="stack-h">
         <div className="container-z">
           <SectionHead
-            eyebrow="06 / Technology"
+            eyebrow="07 / Technology"
             title={<span id="stack-h">A modern stack, chosen per problem.</span>}
             intro="We pick tools for fit, not fashion — web, mobile, backend, cloud, AI and IoT."
           />
@@ -401,7 +440,7 @@ function Home() {
       >
         <div className="container-z">
           <SectionHead
-            eyebrow="07 / Industries"
+            eyebrow="08 / Industries"
             title={<span id="industries-h">Context changes. The need for clarity does not.</span>}
             intro="We combine cross-industry thinking with the practical detail needed to make change work in your environment."
           />
@@ -422,7 +461,7 @@ function Home() {
           <Photo slot="bg-team" settle={false} className="h-full" />
         </div>
         <div className="container-z relative">
-          <p className="eyebrow text-primary">08 / What changes</p>
+          <p className="eyebrow text-primary">09 / What changes</p>
           <BigText
             id="outcomes-h"
             lines={["Clearer decisions.", "Leaner operations.", "Stronger digital capability."]}

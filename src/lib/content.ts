@@ -486,7 +486,7 @@ export const FUTURE = [
 ];
 
 export type Service = Group & {
-  category: "Technology" | "Business" | "Consulting" | "Civic";
+  category: "Industry" | "Technology" | "Business" | "Consulting" | "Civic";
   intro: string;
   outcomes: string[];
   detail: ServiceDetail;
@@ -525,6 +525,96 @@ export const ELECTION_CAMPAIGN: Group = {
   ],
 };
 
+
+/** The three flagship, industry-specific products. Shown first and highlighted across the site. */
+export const INDUSTRY_SOLUTIONS: Group[] = [
+  {
+    id: "healthcare",
+    title: "Healthcare Management Software",
+    blurb: "Calmer clinics, faster front desks, records that stay organised.",
+    items: [
+      "Appointment & Queue Management",
+      "Patient Records & Visit History",
+      "Doctor & Staff Scheduling",
+      "Prescriptions & Follow-up Reminders",
+      "Pharmacy & Lab Inventory",
+      "Billing, Invoices & Insurance Tracking",
+      "Patient Reminders (SMS, WhatsApp, Email)",
+      "Teleconsultation Integration",
+      "Clinic & Hospital Dashboards",
+      "Role-based Access & Audit Trails",
+    ],
+  },
+  {
+    id: "hotel-management",
+    title: "Hotel Management Software",
+    blurb: "Every room, booking and guest in one calm control room.",
+    items: [
+      "Room Inventory & Availability Calendar",
+      "Reservations & Direct Booking Website",
+      "Front Desk Check-in / Check-out",
+      "Housekeeping & Maintenance Tasks",
+      "Channel Manager & OTA Integration",
+      "Billing, Guest Folios & Invoices",
+      "Restaurant & Room-service Orders",
+      "Guest Profiles & Feedback",
+      "Staff Rostering",
+      "Occupancy & Revenue Reports",
+    ],
+  },
+  {
+    id: "school-management",
+    title: "School Management Software",
+    blurb: "From admission to report card, one system for the whole school.",
+    items: [
+      "Admissions & Enquiry Tracking",
+      "Student & Parent Records",
+      "Attendance for Students & Staff",
+      "Fee Collection, Receipts & Reminders",
+      "Timetable & Substitution Planning",
+      "Exams, Marks & Report Cards",
+      "Parent Communication & Notices",
+      "Teacher & Staff Portal",
+      "Library & Transport Records",
+      "Principal Dashboards & Reports",
+    ],
+  },
+];
+
+/** Presentation copy for the pinned "core solutions" showcase on the home page. */
+export const CORE_SERVICES = [
+  {
+    id: "healthcare",
+    number: "01",
+    label: "Healthcare management",
+    title: "Hospitals & clinics",
+    blurb:
+      "Appointments, patient records, billing and pharmacy in one calm system — so doctors spend time on patients, not paperwork.",
+    builtFor: ["Clinics", "Hospitals", "Diagnostic labs"],
+    features: ["Appointments & queues", "Patient records", "Billing & insurance", "Pharmacy & lab stock"],
+  },
+  {
+    id: "hotel-management",
+    number: "02",
+    label: "Hotel management",
+    title: "Hotels & guest houses",
+    blurb:
+      "Room inventory, bookings, front desk and housekeeping live in one control room — fewer double bookings, happier guests.",
+    builtFor: ["Hotels", "Resorts", "Guest houses"],
+    features: ["Bookings & availability", "Front desk", "Housekeeping", "Revenue reports"],
+  },
+  {
+    id: "school-management",
+    number: "03",
+    label: "School management",
+    title: "Schools & institutes",
+    blurb:
+      "Admissions, attendance, fees, exams and parent communication from one dashboard — less chasing, more teaching.",
+    builtFor: ["Schools", "Coaching institutes", "Colleges"],
+    features: ["Admissions", "Attendance & timetable", "Fees & receipts", "Report cards & parents"],
+  },
+] as const;
+
 export type ServiceDetail = {
   who: string;
   engagements: string[];
@@ -532,6 +622,78 @@ export type ServiceDetail = {
 };
 
 const SERVICE_DETAILS: Record<string, ServiceDetail> = {
+  healthcare: {
+    who: "Clinics, nursing homes, hospitals and diagnostic labs where queues, paper files and scattered billing slow down care.",
+    engagements: [
+      "Clinic and hospital management systems",
+      "Appointment, queue and reminder workflows",
+      "Patient records and prescription history",
+      "Pharmacy, lab and billing integration",
+      "Dashboards for doctors and administrators",
+    ],
+    faqs: [
+      {
+        q: "Can this replace our paper files and registers?",
+        a: "Yes. We digitise records in stages, keep the screens simple for front-desk and medical staff, and migrate existing registers with you.",
+      },
+      {
+        q: "How do you handle patient privacy?",
+        a: "Access is role-based, actions are logged, and data handling is agreed up front. Legal and statutory compliance is scoped separately for each project.",
+      },
+      {
+        q: "Does it work for a single clinic as well as a hospital?",
+        a: "Yes. We start with the modules you need today — usually appointments, records and billing — and add departments as you grow.",
+      },
+    ],
+  },
+  "hotel-management": {
+    who: "Hotels, resorts, homestays and guest houses that juggle bookings across calls, spreadsheets and booking sites.",
+    engagements: [
+      "Booking engine and direct-booking website",
+      "Front desk, billing and guest folios",
+      "Housekeeping and maintenance task boards",
+      "Channel manager and OTA integration",
+      "Occupancy and revenue dashboards",
+    ],
+    faqs: [
+      {
+        q: "Will it stop double bookings?",
+        a: "Availability is kept in one place and synced with connected channels, so a room booked anywhere is blocked everywhere.",
+      },
+      {
+        q: "Can guests book directly on our website?",
+        a: "Yes. We can build a direct-booking site connected to your live room inventory and payment provider.",
+      },
+      {
+        q: "We run a small property. Is this overkill?",
+        a: "No. We size the system to your property — often just bookings, front desk and billing at first.",
+      },
+    ],
+  },
+  "school-management": {
+    who: "Schools, coaching institutes and colleges running admissions, attendance, fees and exams on registers, receipts and group chats.",
+    engagements: [
+      "School management system, end to end",
+      "Admissions and enquiry tracking",
+      "Fee collection, receipts and reminders",
+      "Exams, marks and report cards",
+      "Parent and teacher portals",
+    ],
+    faqs: [
+      {
+        q: "Our teachers are not very technical. Will they manage?",
+        a: "The system is designed for the least technical user in the room, with short training sessions and support after go-live.",
+      },
+      {
+        q: "Can parents see attendance, fees and results?",
+        a: "Yes. A parent view can show attendance, fee status, notices and report cards, with notifications you control.",
+      },
+      {
+        q: "Can we import our existing student data?",
+        a: "Yes. We clean and import your current records so you do not start from zero.",
+      },
+    ],
+  },
   consulting: {
     who: "Founders, leadership teams and growing organisations facing a decision that is too important to guess — entering a new market, modernising operations, or committing to a technology investment.",
     engagements: [
@@ -840,6 +1002,12 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
 };
 
 const INTROS: Record<string, string> = {
+  healthcare:
+    "Healthcare runs on timing, records and trust. We build management software for clinics and hospitals that keeps appointments, patient history, billing and pharmacy in one calm system — simple for front-desk staff, clear for doctors, and organised for administrators.",
+  "hotel-management":
+    "A hotel is a live system: rooms, guests, staff and bills changing every hour. We build hotel management software that brings bookings, front desk, housekeeping and revenue reports into one control room — and a direct-booking website that sells your rooms.",
+  "school-management":
+    "Schools carry admissions, attendance, fees, exams and parent communication every single day. We build school management software that puts all of it in one place, so teachers teach, parents stay informed and the principal sees the whole school at a glance.",
   "election-campaign":
     "We support candidates, parties and campaign offices with the operational and communication backbone of a campaign — websites, volunteer coordination, event logistics, content and reporting. Every engagement follows election-commission guidelines and our boundaries: no voter manipulation, no deceptive messaging, no discriminatory targeting.",
   consulting:
@@ -847,6 +1015,24 @@ const INTROS: Record<string, string> = {
 };
 
 const OUTCOMES: Record<string, string[]> = {
+  healthcare: [
+    "Shorter queues and fewer missed appointments",
+    "Patient history available in seconds",
+    "Billing and pharmacy that match",
+    "One dashboard for the whole clinic",
+  ],
+  "hotel-management": [
+    "One live view of every room and booking",
+    "Fewer double bookings and faster check-ins",
+    "Housekeeping that knows what to clean next",
+    "Revenue and occupancy reports without spreadsheets",
+  ],
+  "school-management": [
+    "Admissions, fees and attendance in one place",
+    "Report cards without manual calculation",
+    "Parents informed without phone calls",
+    "A principal dashboard for the whole school",
+  ],
   "election-campaign": [
     "One coordinated view of volunteers, events and areas",
     "Consistent, on-schedule public communication",
@@ -885,6 +1071,7 @@ const toService = (g: Group, category: Service["category"]): Service => ({
 });
 
 export const SERVICES: Service[] = [
+  ...INDUSTRY_SOLUTIONS.map((g) => toService(g, "Industry")),
   toService(CONSULTING_GROUP, "Consulting"),
   toService(ELECTION_CAMPAIGN, "Civic"),
   ...TECHNOLOGY.map((g) => toService(g, "Technology")),
