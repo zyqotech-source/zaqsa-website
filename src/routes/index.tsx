@@ -52,7 +52,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     seo(
       "ZYQO — Hospital, School & Election Campaign Software | Websites, Apps & Digital Marketing",
-      "ZYQO builds hospital, school and small-business management software, websites and apps, and runs election campaigns, social media and digital marketing — planned, built and run by one accountable team in New Delhi.",
+      "ZYQO builds hospital, school and small-business management software, websites, apps and AI automation, and runs election campaigns, social media, branding and digital marketing — planned, built and run by one accountable team in New Delhi.",
     ),
   component: Home,
 });

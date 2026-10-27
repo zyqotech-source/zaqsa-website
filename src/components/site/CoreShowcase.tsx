@@ -1,9 +1,21 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Code2, GraduationCap, HeartPulse, Share2, Store, Vote } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bot,
+  Code2,
+  GraduationCap,
+  HeartPulse,
+  Palette,
+  Share2,
+  Store,
+  Vote,
+} from "lucide-react";
 import { CORE_SERVICES } from "@/lib/content";
 import { getGsap, prefersReducedMotion } from "@/lib/motion";
 import {
+  AutomationVisual,
+  DesignVisual,
   ElectionVisual,
   HealthcareVisual,
   SchoolVisual,
@@ -20,6 +32,8 @@ const ICONS = {
   "website-app-development": Code2,
   "small-business-solutions": Store,
   "social-media-management": Share2,
+  "ai-business-automation": Bot,
+  "graphic-design-branding": Palette,
 } as const;
 
 const VISUALS: Record<string, ReactNode> = {
@@ -29,10 +43,12 @@ const VISUALS: Record<string, ReactNode> = {
   "website-app-development": <WebAppVisual />,
   "small-business-solutions": <SmallBusinessVisual />,
   "social-media-management": <SocialVisual />,
+  "ai-business-automation": <AutomationVisual />,
+  "graphic-design-branding": <DesignVisual />,
 };
 
 /**
- * Pinned scroll showcase for the six core services. The heading stays in place
+ * Pinned scroll showcase for the eight core services. The heading stays in place
  * while each service card slides up over the previous one as the visitor scrolls.
  * Without motion (or before hydration) the cards simply stack as a normal list.
  */
@@ -88,7 +104,7 @@ export function CoreShowcase() {
           <header className="core-head">
             <p className="eyebrow text-primary">01 / Core services</p>
             <h2 id="core-h">
-              <LineReveal lines={["Six core services,", "one accountable team."]} />
+              <LineReveal lines={["Eight core services,", "one accountable team."]} />
             </h2>
             <ol className="core-tabs" aria-hidden="true">
               {CORE_SERVICES.map((service) => (

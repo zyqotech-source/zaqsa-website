@@ -6269,3 +6269,171 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* AI & automation and graphic design previews */
+.cv-chat {
+  display: grid;
+  gap: 0.45rem;
+}
+.cv-chat p {
+  max-width: 82%;
+  border-radius: 0.9rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  animation: cv-row-in 0.6s var(--ease-out) both;
+}
+.cv-chat .is-you {
+  justify-self: end;
+  border-bottom-right-radius: 0.2rem;
+  background: var(--primary);
+  color: #fff;
+}
+.cv-chat .is-bot {
+  justify-self: start;
+  border-bottom-left-radius: 0.2rem;
+  border: 1px solid var(--border);
+  background: #f7f9ff;
+  animation-delay: 0.3s;
+}
+.cv-chat .is-typing {
+  display: flex;
+  gap: 0.3rem;
+  justify-self: start;
+  background: #eef2ff;
+  animation-delay: 0.6s;
+}
+.cv-chat .is-typing i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: hv-dot 1s ease-in-out infinite;
+}
+.cv-chat .is-typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.cv-chat .is-typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.cv-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.cv-flow span {
+  position: relative;
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: #fff;
+  padding: 0.4rem 0.2rem;
+  color: var(--primary);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-align: center;
+  animation: pipe-on 6s calc(var(--i) * 1.2s) ease-in-out infinite;
+}
+.cv-flow span:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -0.45rem;
+  width: 0.4rem;
+  height: 2px;
+  background: var(--primary);
+  content: "";
+}
+
+.cv-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.cv-logo {
+  display: grid;
+  width: 3.6rem;
+  height: 3.6rem;
+  flex: none;
+  place-items: center;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  animation: cv-logo 6s ease-in-out infinite;
+}
+@keyframes cv-logo {
+  50% {
+    transform: rotate(-6deg) scale(1.05);
+  }
+}
+.cv-swatches {
+  display: flex;
+  gap: 0.35rem;
+}
+.cv-swatches i {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 6px 12px -6px var(--c);
+  animation: cv-row-in 0.6s calc(var(--i) * 0.12s) var(--ease-out) both;
+}
+.cv-collateral {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr 1fr;
+  align-items: end;
+  gap: 0.5rem;
+}
+.cv-collateral span {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: linear-gradient(160deg, #e0e7ff, #cffafe);
+}
+.cv-collateral .is-poster {
+  height: 4.6rem;
+  background: linear-gradient(160deg, #4f46e5, #7c3aed);
+  animation: art-bob 5s ease-in-out infinite;
+}
+.cv-collateral .is-banner {
+  height: 2.8rem;
+  animation: art-bob 5s -1.5s ease-in-out infinite;
+}
+.cv-collateral .is-card {
+  height: 3.2rem;
+  background: #fff;
+  animation: art-bob 5s -3s ease-in-out infinite;
+}
+.cv-type {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+}
+.cv-type b {
+  color: var(--primary);
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+}
+.cv-type i {
+  height: 0.45rem;
+  flex: 1;
+  border-radius: 999px;
+  background: #c7d2fe;
+}
+.cv-type i + i {
+  flex: 0.6;
+  background: #a5f3fc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-chat p,
+  .cv-flow span,
+  .cv-logo,
+  .cv-swatches i,
+  .cv-collateral span {
+    animation: none;
+  }
+}

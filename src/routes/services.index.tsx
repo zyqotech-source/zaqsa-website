@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Code2, GraduationCap, HeartPulse, Share2, Store, Vote } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bot,
+  Code2,
+  GraduationCap,
+  HeartPulse,
+  Palette,
+  Share2,
+  Store,
+  Vote,
+} from "lucide-react";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { CATEGORY_LABEL, SERVICES, type Service } from "@/lib/content";
 import { seo } from "@/lib/seo";
@@ -23,6 +33,8 @@ const FEATURE_ICON: Record<string, typeof HeartPulse> = {
   "website-app-development": Code2,
   "small-business-solutions": Store,
   "social-media-management": Share2,
+  "ai-business-automation": Bot,
+  "graphic-design-branding": Palette,
 };
 const CAT_LABEL = CATEGORY_LABEL;
 
@@ -71,7 +83,7 @@ function Page() {
             >
               <p className="eyebrow text-primary">{CAT_LABEL[cat]}</p>
               {cat === "Core" ? (
-                <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                   {SERVICES.filter((s) => s.category === cat).map((s, i) => {
                     const Icon = FEATURE_ICON[s.id] ?? HeartPulse;
                     return (

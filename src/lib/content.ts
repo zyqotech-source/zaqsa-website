@@ -612,6 +612,42 @@ export const CORE_GROUPS: Group[] = [
       "Influencer & Collaboration Outreach",
     ],
   },
+  {
+    id: "ai-business-automation",
+    title: "AI & Business Automation",
+    blurb:
+      "AI chatbots, automated customer support, lead management, workflow automation and smart business solutions.",
+    items: [
+      "AI Chatbots (Website & WhatsApp)",
+      "Automated Customer Support",
+      "Lead Capture & Follow-up Automation",
+      "Workflow & Approval Automation",
+      "AI Assistants for Your Team",
+      "Document & Data Extraction",
+      "CRM & Tool Integrations (APIs)",
+      "Email & Message Automation",
+      "Smart Dashboards & AI Insights",
+      "Training & Handover",
+    ],
+  },
+  {
+    id: "graphic-design-branding",
+    title: "Graphic Design & Branding",
+    blurb:
+      "Logo design, brand identity, banners, posters, brochures, social media creatives and promotional designs.",
+    items: [
+      "Logo Design",
+      "Brand Identity & Guidelines",
+      "Banners & Hoardings",
+      "Posters & Flyers",
+      "Brochures & Catalogues",
+      "Social Media Creatives",
+      "Promotional Designs",
+      "Business Cards & Stationery",
+      "Packaging & Labels",
+      "Presentation Decks",
+    ],
+  },
 ];
 
 /** Marketing and media services that sit alongside the core six. */
@@ -634,16 +670,16 @@ export const MARKETING_GROUPS: Group[] = [
   {
     id: "creative-media-production",
     title: "Creative & Media Production",
-    blurb: "Visuals, video and sound that make the brand memorable.",
+    blurb: "Video, motion and sound that make the brand memorable.",
     items: [
-      "Brand Identity & Logo Design",
-      "Graphic & Poster Design",
       "Video Production & Editing",
       "Reels & Short-form Video",
       "Motion Graphics & Animation",
       "Photography Coordination",
       "Audio, Jingles & Voice-overs",
-      "Presentation & Pitch Decks",
+      "Promotional & Explainer Videos",
+      "Event Highlight Videos",
+      "Post-production & Colour Grading",
     ],
   },
   {
@@ -725,6 +761,26 @@ export const CORE_SERVICES = [
     builtFor: ["Brands", "Local businesses", "Creators"],
     features: ["Content creation", "Posts & reels", "Page management", "Branding"],
   },
+  {
+    id: "ai-business-automation",
+    number: "07",
+    label: "AI & business automation",
+    title: "AI chatbots & automation",
+    blurb:
+      "AI chatbots, automated customer support, lead management and workflow automation — smart business solutions that save hours every day.",
+    builtFor: ["Support teams", "Sales teams", "Growing businesses"],
+    features: ["AI chatbots", "Customer support", "Lead management", "Workflow automation"],
+  },
+  {
+    id: "graphic-design-branding",
+    number: "08",
+    label: "Graphic design & branding",
+    title: "Graphic design & branding",
+    blurb:
+      "Logo design, brand identity, banners, posters, brochures, social media creatives and promotional designs that make you look like one company.",
+    builtFor: ["New brands", "Shops & clinics", "Campaigns"],
+    features: ["Logos & identity", "Banners & posters", "Brochures", "Social creatives"],
+  },
 ] as const;
 
 export type ServiceDetail = {
@@ -734,6 +790,54 @@ export type ServiceDetail = {
 };
 
 const SERVICE_DETAILS: Record<string, ServiceDetail> = {
+  "ai-business-automation": {
+    who: "Businesses answering the same customer questions all day, losing leads in inboxes, or moving data between tools by hand.",
+    engagements: [
+      "AI chatbots for your website and WhatsApp",
+      "Automated customer support and ticket routing",
+      "Lead capture, scoring and follow-up automation",
+      "Workflow and approval automation across your tools",
+      "AI assistants and dashboards for your team",
+    ],
+    faqs: [
+      {
+        q: "Will the chatbot give wrong answers?",
+        a: "It answers from your own content, hands over to a person when unsure, and every conversation can be reviewed. We do not deploy black-box automation into important workflows.",
+      },
+      {
+        q: "Do we need to change the tools we already use?",
+        a: "Usually not. We connect what you have (CRM, forms, WhatsApp, email, spreadsheets) and automate the steps between them.",
+      },
+      {
+        q: "How do we know it is worth it?",
+        a: "We start with one measurable workflow, such as response time or leads followed up, and report the change before expanding.",
+      },
+    ],
+  },
+  "graphic-design-branding": {
+    who: "New and growing businesses, clinics, schools, shops and campaigns that need a consistent, professional look across print and digital.",
+    engagements: [
+      "Logo and brand identity with usage guidelines",
+      "Banners, posters, flyers and hoardings",
+      "Brochures, catalogues and company profiles",
+      "Social media creatives and promotional designs",
+      "Stationery, packaging and presentation decks",
+    ],
+    faqs: [
+      {
+        q: "Do we get the source files?",
+        a: "Yes. You receive print-ready and web-ready files, plus editable sources, at handover.",
+      },
+      {
+        q: "Can you redesign our existing logo?",
+        a: "Yes. We can refresh what you have or start from scratch, and show directions before you commit.",
+      },
+      {
+        q: "How many revisions are included?",
+        a: "Revision rounds are agreed up front in the scope, so there are no surprises.",
+      },
+    ],
+  },
   "hospital-management": {
     who: "Hospitals, nursing homes, clinics and diagnostic labs where queues, paper files and scattered billing slow down care.",
     engagements: [
@@ -851,13 +955,13 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
     ],
   },
   "creative-media-production": {
-    who: "Brands and campaigns that need strong visuals, video and audio produced consistently.",
+    who: "Brands and campaigns that need video, motion and audio produced consistently.",
     engagements: [
-      "Brand identity, logos and design systems",
-      "Posters, social creatives and print design",
       "Video production, editing and reels",
       "Motion graphics and animation",
-      "Presentation and pitch decks",
+      "Promotional and explainer videos",
+      "Audio, jingles and voice-overs",
+      "Photography coordination",
     ],
     faqs: [
       {
@@ -1223,6 +1327,10 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
 };
 
 const INTROS: Record<string, string> = {
+  "ai-business-automation":
+    "Most businesses lose hours to repeated questions, missed leads and manual copy-paste. We build AI chatbots, automated customer support, lead management and workflow automation that take that work off your team, with a person always able to step in.",
+  "graphic-design-branding":
+    "People judge a business in seconds. We design logos, brand identity, banners, posters, brochures and social media creatives that look consistent everywhere, so customers recognise and trust you.",
   "hospital-management":
     "Healthcare runs on timing, records and trust. We build hospital management software that keeps patient records, doctor appointments, billing, pharmacy and day-to-day operations in one calm system — simple for front-desk staff, clear for doctors, and organised for administrators.",
   "website-app-development":
@@ -1234,7 +1342,7 @@ const INTROS: Record<string, string> = {
   "seo-geo":
     "Customers now search on Google, Maps and AI assistants. We make your business easy to find and easy to recommend, with technical and local SEO plus Generative Engine Optimisation for AI-driven answers.",
   "creative-media-production":
-    "Strong visuals make a brand memorable. We produce identity, graphics, video, motion and audio in one place, so every campaign looks and sounds like the same company.",
+    "Moving image and sound carry a brand further. We produce video, reels, motion graphics and audio in one place, so every campaign looks and sounds like the same company.",
   "event-offline-marketing":
     "Digital reaches people; events and print make you real to them. We plan and run launches, community drives, activations and offline collateral that connect back to your digital campaigns.",
   "school-management":
@@ -1246,6 +1354,18 @@ const INTROS: Record<string, string> = {
 };
 
 const OUTCOMES: Record<string, string[]> = {
+  "ai-business-automation": [
+    "Customer questions answered around the clock",
+    "No lead left without a follow-up",
+    "Hours of manual work removed every week",
+    "A person can step in at any point",
+  ],
+  "graphic-design-branding": [
+    "A logo and identity you are proud of",
+    "Banners and posters ready for print",
+    "Consistent creatives across every channel",
+    "Editable files that you own",
+  ],
   "hospital-management": [
     "Shorter queues and fewer missed appointments",
     "Patient history available in seconds",

@@ -247,3 +247,77 @@ export function SocialVisual() {
     </div>
   );
 }
+
+export function AutomationVisual() {
+  return (
+    <div className="cv cv-auto" aria-hidden="true">
+      <div className="cv-bar">
+        <span />
+        <span />
+        <span />
+        <em>Assistant · Live</em>
+      </div>
+      <div className="cv-body">
+        <div className="cv-chat">
+          <p className="is-you">Do you have a slot on Friday?</p>
+          <p className="is-bot">Yes — 11:30 or 4:00. Shall I book one?</p>
+          <p className="is-typing">
+            <i />
+            <i />
+            <i />
+          </p>
+        </div>
+        <div className="cv-flow">
+          {["Lead", "Reply", "CRM", "Follow-up"].map((step, index) => (
+            <span key={step} style={vars({ "--i": index })}>
+              {step}
+            </span>
+          ))}
+        </div>
+        <div className="cv-stats">
+          <div>
+            <strong>24/7</strong>
+            <small>Replies</small>
+          </div>
+          <div>
+            <strong>12</strong>
+            <small>Leads today</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function DesignVisual() {
+  return (
+    <div className="cv cv-design" aria-hidden="true">
+      <div className="cv-bar">
+        <span />
+        <span />
+        <span />
+        <em>Brand board</em>
+      </div>
+      <div className="cv-body">
+        <div className="cv-brand">
+          <div className="cv-logo">Z</div>
+          <div className="cv-swatches">
+            {["#4f46e5", "#06b6d4", "#7c3aed", "#fbbf24", "#1e1b4b"].map((color, index) => (
+              <i key={color} style={vars({ "--c": color, "--i": index })} />
+            ))}
+          </div>
+        </div>
+        <div className="cv-collateral">
+          <span className="is-poster" />
+          <span className="is-banner" />
+          <span className="is-card" />
+        </div>
+        <div className="cv-type">
+          <b>Aa</b>
+          <i />
+          <i />
+        </div>
+      </div>
+    </div>
+  );
+}
