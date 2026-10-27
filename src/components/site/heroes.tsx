@@ -68,7 +68,7 @@ export function TechnologyHero() {
                 <span className="ed-op">=</span> {"{"}
               </p>
               <h1 className="ed-title" style={vars({ "--i": 2 })}>
-                Eight disciplines.
+                Many disciplines.
                 <br />
                 <em>One way of thinking.</em>
               </h1>

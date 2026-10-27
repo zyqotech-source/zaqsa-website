@@ -520,7 +520,7 @@ export const ELECTION_CAMPAIGN: Group = {
   ],
 };
 
-/** The six core services. Shown first, highlighted across the site, in the client's order. */
+/** The core services. Shown first, highlighted across the site, in the client's order. */
 export const CORE_GROUPS: Group[] = [
   ELECTION_CAMPAIGN,
   {
@@ -650,7 +650,7 @@ export const CORE_GROUPS: Group[] = [
   },
 ];
 
-/** Marketing and media services that sit alongside the core six. */
+/** Marketing and media services that sit alongside the core services. */
 export const MARKETING_GROUPS: Group[] = [
   {
     id: "seo-geo",

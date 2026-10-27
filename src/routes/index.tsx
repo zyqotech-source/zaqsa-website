@@ -60,14 +60,14 @@ export const Route = createFileRoute("/")({
 const PILLAR_ICONS = [Compass, LineChart, Cpu, Workflow];
 const RIBBON_ITEMS = TECH_RIBBON;
 const STATS = [
-  { value: SERVICES.length, label: "Service lines" },
-  { value: TECHNOLOGY.length, label: "Technology domains" },
+  { value: Math.floor(SERVICES.length / 5) * 5, label: "Service lines", suffix: "+" },
+  { value: TECHNOLOGY.length, label: "Technology domains", suffix: "+" },
   {
     value: [...TECHNOLOGY, ...BUSINESS].reduce((total, group) => total + group.items.length, 0),
     label: "Capabilities",
     suffix: "+",
   },
-  { value: INDUSTRIES.length, label: "Industries served" },
+  { value: INDUSTRIES.length, label: "Industries served", suffix: "+" },
 ] as const;
 const HERO_AUDIENCE = [
   { to: "hospital-management", label: "Hospitals", Icon: HeartPulse },

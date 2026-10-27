@@ -3,7 +3,7 @@ import { Check, Play } from "lucide-react";
 
 const vars = (values: Record<string, string | number>) => values as CSSProperties;
 
-/* Illustrative product previews for the three core services. They are drawn in
+/* Illustrative product previews for the core services. They are drawn in
    code (no photos), so they stay sharp, light and easy to adjust. */
 
 export function HealthcareVisual() {

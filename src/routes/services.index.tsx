@@ -68,11 +68,6 @@ function Page() {
                 className="service-filter-chip"
               >
                 {cat === "All" ? "All services" : CAT_LABEL[cat]}
-                <span>
-                  {cat === "All"
-                    ? SERVICES.length
-                    : SERVICES.filter((service) => service.category === cat).length}
-                </span>
               </button>
             ))}
           </div>

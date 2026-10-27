@@ -48,7 +48,7 @@ const VISUALS: Record<string, ReactNode> = {
 };
 
 /**
- * Pinned scroll showcase for the eight core services. The heading stays in place
+ * Pinned scroll showcase for the core services. The heading stays in place
  * while each service card slides up over the previous one as the visitor scrolls.
  * Without motion (or before hydration) the cards simply stack as a normal list.
  */
@@ -104,12 +104,11 @@ export function CoreShowcase() {
           <header className="core-head">
             <p className="eyebrow text-primary">01 / Core services</p>
             <h2 id="core-h">
-              <LineReveal lines={["Eight core services,", "one accountable team."]} />
+              <LineReveal lines={["Multiple services,", "one accountable team."]} />
             </h2>
             <ol className="core-tabs" aria-hidden="true">
               {CORE_SERVICES.map((service) => (
                 <li key={service.id} className="core-tab">
-                  <span>{service.number}</span>
                   {service.label}
                 </li>
               ))}
@@ -126,7 +125,7 @@ export function CoreShowcase() {
                       <span className="core-icon">
                         <Icon size={18} strokeWidth={1.7} />
                       </span>
-                      {service.number} · {service.label}
+                      {service.label}
                     </p>
                     <h3>{service.title}</h3>
                     <p className="core-blurb">{service.blurb}</p>
