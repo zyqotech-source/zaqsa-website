@@ -69,7 +69,16 @@ export function CoreShowcase() {
         tabs.forEach((tab, i) => tab.classList.toggle("is-active", i === index));
       setActive(0);
       const fill = section.querySelector<HTMLElement>(".core-rail-fill");
-      gsap.set(cards.slice(1), { xPercent: 105, opacity: 0 });
+      // Each card has two halves, text and visual. Upcoming cards wait below with the
+      // halves offset to opposite sides; they rise and cross into place as you scroll.
+      const halves = cards.map((card) => ({
+        copy: card.querySelector<HTMLElement>(".core-copy"),
+        visual: card.querySelector<HTMLElement>(".core-visual"),
+      }));
+      halves.slice(1).forEach(({ copy, visual }) => {
+        gsap.set(visual, { xPercent: 80, yPercent: 100, opacity: 0 });
+        gsap.set(copy, { xPercent: -80, yPercent: 100, opacity: 0 });
+      });
 
       const timeline = gsap.timeline({
         defaults: { ease: "power2.inOut" },
@@ -86,11 +95,16 @@ export function CoreShowcase() {
           },
         },
       });
-      cards.forEach((card, index) => {
+      cards.forEach((_card, index) => {
         if (index === 0) return;
-        const previous = cards[index - 1]!;
-        timeline.to(previous, { xPercent: -28, opacity: 0, duration: 1 }, index - 1);
-        timeline.to(card, { xPercent: 0, opacity: 1, duration: 1 }, index - 1);
+        const before = halves[index - 1]!;
+        const now = halves[index]!;
+        // Leaving card: visual slides left, text slides right, both fade out.
+        timeline.to(before.visual, { xPercent: -80, opacity: 0, duration: 1 }, index - 1);
+        timeline.to(before.copy, { xPercent: 80, opacity: 0, duration: 1 }, index - 1);
+        // Arriving card: visual from the right, text from the left, both rising into place.
+        timeline.to(now.visual, { xPercent: 0, yPercent: 0, opacity: 1, duration: 1 }, index - 1);
+        timeline.to(now.copy, { xPercent: 0, yPercent: 0, opacity: 1, duration: 1 }, index - 1);
       });
       timeline.to({}, { duration: 0.35 });
     }, section);

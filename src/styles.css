@@ -6685,3 +6685,29 @@ html.lenis body {
     width: 6px;
   }
 }
+
+/* One shared panel while pinned: the halves of each card slide inside it */
+.core-pinned .core-stage {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1.6rem;
+  background: #fff;
+  box-shadow: 0 40px 80px -52px rgba(79, 70, 229, 0.55);
+}
+.core-pinned .core-card {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.core-pinned .core-rail {
+  top: 14px;
+  bottom: 14px;
+  left: 12px;
+}
+.core-pinned .core-card {
+  inset: 0 0 0 1.9rem;
+}
+.core-copy,
+.core-visual {
+  will-change: transform, opacity;
+}
