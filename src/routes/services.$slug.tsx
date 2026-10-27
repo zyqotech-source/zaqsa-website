@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { GlassButton, PageHero, Reveal, SectionHead } from "@/components/site/primitives";
 import { CATEGORY_LABEL, ENGAGEMENT_STEPS, SERVICES } from "@/lib/content";
 import { NotFoundPage } from "@/components/site/ErrorPages";
+import { Photo } from "@/components/site/Photo";
+import { getPhoto } from "@/lib/photos";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -31,6 +33,8 @@ function ServiceNotFound() {
 
 function Page() {
   const { service: s } = Route.useLoaderData();
+  const photoSlot = `service-photo-${s.id}` as const;
+  const hasPhoto = Boolean(getPhoto(photoSlot).src);
   const others = SERVICES.filter((x) => x.id !== s.id && x.category === s.category).slice(0, 3);
   return (
     <main>
@@ -39,6 +43,18 @@ function Page() {
         title={s.title}
         intro={s.intro}
       />
+
+      {hasPhoto && (
+        <section className="pt-2 pb-4">
+          <div className="container-z">
+            <Reveal>
+              <div className="service-photo">
+                <Photo slot={photoSlot} />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="py-24">
         <div className="container-z grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">

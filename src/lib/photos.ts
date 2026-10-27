@@ -23,7 +23,8 @@ export type PhotoSlot =
   | "cta-group"
   | "contact-team"
   | "team-founder"
-  | `team-${string}`;
+  | `team-${string}`
+  | `service-photo-${string}`;
 
 // Files dropped into src/assets/photos are matched to slots by file name.
 const uploaded = import.meta.glob("/src/assets/photos/*.{webp,jpg,jpeg,png,avif}", {
@@ -42,25 +43,39 @@ for (const [path, url] of Object.entries(uploaded)) {
 }
 
 const ALT: Record<string, string> = {
-  "hero-team": "Team of engineers working together at their desks",
-  "hero-collab": "Colleagues collaborating over a software plan",
-  "hero-client": "A client meeting where requirements are discussed face to face",
+  "service-photo-election-campaign":
+    "Campaign volunteers in matching T-shirts standing together beside a van",
+  "service-photo-school-management": "A teacher and students in a bright classroom",
+  "service-photo-hospital-management":
+    "A doctor reviewing a tablet with a patient in a hospital room",
+  "service-photo-website-app-development":
+    "Overhead view of a developer working with code on a laptop and monitors",
+  "service-photo-small-business-solutions": "A shop owner behind a counter with a billing terminal",
+  "service-photo-social-media-management":
+    "A smiling content creator speaking to a phone on a ring light stand",
+  "service-photo-ai-business-automation":
+    "Two customer support agents with headsets working on laptops",
+  "service-photo-graphic-design-branding":
+    "A brand positioning diagram on a clipboard on a designer's desk",
+  "hero-team": "A team collaborating around a table with laptops",
+  "hero-collab": "Colleagues brainstorming around a table with sticky notes",
+  "hero-client": "Two professionals shaking hands after agreeing on a project",
   "service-consulting": "Consultants discussing strategy with a client",
   "service-technology": "Engineers reviewing code together",
   "service-business": "Team walking through a business dashboard",
   "service-marketing": "Marketers reviewing campaign results together",
-  "process-1": "Team mapping goals and constraints on a whiteboard",
-  "process-2": "Designers and engineers shaping a delivery roadmap",
-  "process-3": "A developer reviewing code with a teammate",
-  "process-4": "Client and team agreeing on the next release",
-  "stack-team": "The ZAQSA team working through a technical problem together",
-  "bg-team": "The ZAQSA team at work in the office",
+  "process-1": "Two colleagues planning with sticky notes on a whiteboard",
+  "process-2": "A team reviewing documents and laptops around a table",
+  "process-3": "A hand pointing at code on a laptop screen",
+  "process-4": "Colleagues celebrating with raised fists in the office",
+  "stack-team": "A diverse team meeting around a long table in a bright loft office",
+  "bg-team": "People gathered around a table with maps and a laptop",
   "stat-1": "A ZAQSA engineer smiling at their desk",
   "stat-2": "A ZAQSA engineer pairing with a colleague",
   "stat-3": "A client reviewing a finished project",
   "stat-4": "A ZAQSA team member presenting to a client",
-  "cta-group": "The ZAQSA team standing together in the office",
-  "contact-team": "Friendly ZAQSA team members ready to talk about your project",
+  "cta-group": "A group of colleagues standing together by office windows",
+  "contact-team": "Four smiling colleagues posing together",
   "team-founder": "Chinmay Anand, founder and director of ZAQSA",
 };
 

@@ -6443,3 +6443,52 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* Real photography on service cards and service pages */
+.svc-feature {
+  padding: 0 0 1.6rem;
+}
+.svc-feature > :not(.svc-feature-media) {
+  margin-inline: 1.5rem;
+}
+.svc-feature-media {
+  position: relative;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.svc-feature-media .photo {
+  border-radius: 1.3rem 1.3rem 0 0;
+}
+.svc-feature-media .svc-feature-badge {
+  position: absolute;
+  z-index: 2;
+  top: 0.9rem;
+  left: 0.9rem;
+}
+.svc-feature-media .svc-feature-icon {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 1.5rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0;
+  border: 3px solid #fff;
+  transform: translateY(50%);
+}
+.svc-feature:hover .photo img {
+  transform: scale(1.04);
+}
+.svc-feature .photo img {
+  transition: transform 0.8s var(--ease-out);
+}
+.service-photo .photo {
+  aspect-ratio: 16 / 9;
+  border-radius: 1.4rem;
+  box-shadow: 0 40px 70px -46px rgba(22, 38, 64, 0.5);
+}
+@media (min-width: 900px) {
+  .service-photo .photo {
+    aspect-ratio: 21 / 9;
+  }
+}

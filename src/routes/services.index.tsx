@@ -12,6 +12,7 @@ import {
   Vote,
 } from "lucide-react";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
+import { Photo } from "@/components/site/Photo";
 import { CATEGORY_LABEL, SERVICES, type Service } from "@/lib/content";
 import { seo } from "@/lib/seo";
 import { ServicesVisual } from "@/components/site/hero-visuals";
@@ -93,11 +94,14 @@ function Page() {
                           params={{ slug: s.id }}
                           className="svc-feature group"
                         >
-                          <span className="svc-feature-badge">Core service</span>
-                          <span className="svc-feature-icon">
-                            <Icon size={30} strokeWidth={1.5} />
+                          <span className="svc-feature-media">
+                            <Photo slot={`service-photo-${s.id}`} ratio="16 / 10" />
+                            <span className="svc-feature-badge">Core service</span>
+                            <span className="svc-feature-icon">
+                              <Icon size={24} strokeWidth={1.6} />
+                            </span>
                           </span>
-                          <h2 className="mt-8 text-2xl font-semibold">{s.title}</h2>
+                          <h2 className="mt-10 text-2xl font-semibold">{s.title}</h2>
                           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                             {s.blurb}
                           </p>
