@@ -6092,3 +6092,180 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* ==========================================================================
+   Six core services: extra previews, tab row, fourth hero tag
+   ========================================================================== */
+.hero-pill-4 {
+  top: 28%;
+  left: 0;
+  animation-delay: 2.4s;
+}
+.hero-for-list {
+  gap: 0.5rem;
+}
+.hero-for-list a {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.86rem;
+}
+
+/* Tabs: six labels never wrap into a wall of text */
+.core-tabs {
+  flex-wrap: nowrap;
+  margin-inline: -0.25rem;
+  overflow-x: auto;
+  padding: 0.25rem;
+  scrollbar-width: none;
+}
+.core-tabs::-webkit-scrollbar {
+  display: none;
+}
+.core-tab {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Shared small pieces inside the previews */
+.cv-marks {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 3.2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
+}
+.cv-marks i {
+  flex: 1;
+  height: var(--h);
+  border-radius: 0.3rem 0.3rem 0 0;
+  background: linear-gradient(180deg, #6366f1, #06b6d4);
+  transform-origin: bottom;
+  animation: hv-bar 3.6s calc(var(--i) * 0.15s) ease-in-out infinite alternate;
+}
+
+/* Website & app */
+.cv-web .cv-body {
+  position: relative;
+}
+.cv-hero-block {
+  display: grid;
+  gap: 0.4rem;
+  border-radius: 0.8rem;
+  background: linear-gradient(135deg, #e0e7ff, #cffafe);
+  padding: 1rem;
+}
+.cv-hero-block i {
+  display: block;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #4f46e5;
+  opacity: 0.85;
+}
+.cv-hero-block i:nth-child(2) {
+  width: 62%;
+  opacity: 0.45;
+}
+.cv-hero-block b {
+  width: 5rem;
+  height: 1.5rem;
+  margin-top: 0.4rem;
+  border-radius: 999px;
+  background: #4f46e5;
+}
+.cv-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.cv-tiles span {
+  height: 3.2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: #f7f9ff;
+  animation: cv-row-in 0.6s calc(var(--i) * 0.15s) var(--ease-out) both;
+}
+.cv-phone {
+  position: absolute;
+  right: 0.7rem;
+  bottom: -1.2rem;
+  display: grid;
+  width: 4.6rem;
+  height: 7.4rem;
+  gap: 0.35rem;
+  align-content: start;
+  border: 3px solid #1e1b4b;
+  border-radius: 1rem;
+  background: #fff;
+  padding: 0.7rem 0.45rem;
+  box-shadow: 0 18px 30px -16px rgba(30, 27, 75, 0.6);
+  animation: card-float 6s ease-in-out infinite;
+  --rot: 0deg;
+}
+.cv-phone i {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+}
+.cv-phone i:nth-child(2) {
+  width: 70%;
+  opacity: 0.55;
+}
+.cv-phone i:nth-child(3) {
+  width: 85%;
+  opacity: 0.3;
+}
+
+/* Small business invoice */
+.cv-invoice {
+  display: grid;
+  gap: 0.35rem;
+}
+.cv-invoice li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--border);
+  padding: 0.35rem 0.2rem;
+  font-size: 0.82rem;
+  animation: cv-row-in 0.6s calc(var(--i) * 0.15s) var(--ease-out) both;
+}
+.cv-invoice li.is-total {
+  border-bottom: 0;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Social media grid */
+.cv-posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+.cv-posts span {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.6rem;
+  background: linear-gradient(135deg, #c7d2fe, #a5f3fc);
+  animation: cv-row-in 0.6s calc(var(--i) * 0.12s) var(--ease-out) both;
+}
+.cv-posts span:nth-child(2n) {
+  background: linear-gradient(135deg, #ddd6fe, #bae6fd);
+}
+.cv-posts .is-reel {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #fff;
+}
+@media (max-width: 899px) {
+  .cv-phone {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cv-phone,
+  .cv-marks i,
+  .cv-tiles span,
+  .cv-invoice li,
+  .cv-posts span {
+    animation: none;
+  }
+}

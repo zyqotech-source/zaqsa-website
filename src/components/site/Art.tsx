@@ -6,6 +6,7 @@ import {
   Compass,
   Cpu,
   Landmark,
+  Megaphone,
   Layers,
   type LucideIcon,
 } from "lucide-react";
@@ -20,6 +21,7 @@ export type ArtName =
   | "icon-cpu"
   | "icon-briefcase"
   | "icon-landmark"
+  | "icon-megaphone"
   | "icon-layers"
   | "icon-boxes"
   | "icon-building"
@@ -292,6 +294,7 @@ const ICONS: Record<string, LucideIcon> = {
   "icon-cpu": Cpu,
   "icon-briefcase": Briefcase,
   "icon-landmark": Landmark,
+  "icon-megaphone": Megaphone,
   "icon-layers": Layers,
   "icon-boxes": Boxes,
   "icon-building": Building2,

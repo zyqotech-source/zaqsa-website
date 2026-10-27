@@ -1,23 +1,38 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, GraduationCap, HeartPulse } from "lucide-react";
+import { ArrowUpRight, Code2, GraduationCap, HeartPulse, Share2, Store, Vote } from "lucide-react";
 import { CORE_SERVICES } from "@/lib/content";
 import { getGsap, prefersReducedMotion } from "@/lib/motion";
-import { HealthcareVisual, SchoolVisual } from "@/components/site/CoreVisuals";
+import {
+  ElectionVisual,
+  HealthcareVisual,
+  SchoolVisual,
+  SmallBusinessVisual,
+  SocialVisual,
+  WebAppVisual,
+} from "@/components/site/CoreVisuals";
 import { LineReveal } from "@/components/site/Split";
 
 const ICONS = {
-  healthcare: HeartPulse,
+  "election-campaign": Vote,
   "school-management": GraduationCap,
+  "hospital-management": HeartPulse,
+  "website-app-development": Code2,
+  "small-business-solutions": Store,
+  "social-media-management": Share2,
 } as const;
 
 const VISUALS: Record<string, ReactNode> = {
-  healthcare: <HealthcareVisual />,
+  "election-campaign": <ElectionVisual />,
   "school-management": <SchoolVisual />,
+  "hospital-management": <HealthcareVisual />,
+  "website-app-development": <WebAppVisual />,
+  "small-business-solutions": <SmallBusinessVisual />,
+  "social-media-management": <SocialVisual />,
 };
 
 /**
- * Pinned scroll showcase for the three core services. The heading stays in place
+ * Pinned scroll showcase for the six core services. The heading stays in place
  * while each service card slides up over the previous one as the visitor scrolls.
  * Without motion (or before hydration) the cards simply stack as a normal list.
  */
@@ -71,9 +86,9 @@ export function CoreShowcase() {
       <div className="core-pin">
         <div className="container-z">
           <header className="core-head">
-            <p className="eyebrow text-primary">01 / Core solutions</p>
+            <p className="eyebrow text-primary">01 / Core services</p>
             <h2 id="core-h">
-              <LineReveal lines={["Software that runs your", "hospital or school."]} />
+              <LineReveal lines={["Six core services,", "one accountable team."]} />
             </h2>
             <ol className="core-tabs" aria-hidden="true">
               {CORE_SERVICES.map((service) => (

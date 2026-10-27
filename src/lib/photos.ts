@@ -9,7 +9,7 @@ export type PhotoSlot =
   | "service-consulting"
   | "service-technology"
   | "service-business"
-  | "service-civic"
+  | "service-marketing"
   | "process-1"
   | "process-2"
   | "process-3"
@@ -48,7 +48,7 @@ const ALT: Record<string, string> = {
   "service-consulting": "Consultants discussing strategy with a client",
   "service-technology": "Engineers reviewing code together",
   "service-business": "Team walking through a business dashboard",
-  "service-civic": "Coordinators planning a public information campaign",
+  "service-marketing": "Marketers reviewing campaign results together",
   "process-1": "Team mapping goals and constraints on a whiteboard",
   "process-2": "Designers and engineers shaping a delivery roadmap",
   "process-3": "A developer reviewing code with a teammate",
@@ -102,7 +102,7 @@ const ART: Partial<Record<string, ArtName>> = {
   "service-consulting": "icon-compass",
   "service-technology": "icon-cpu",
   "service-business": "icon-briefcase",
-  "service-civic": "icon-landmark",
+  "service-marketing": "icon-megaphone",
   "stat-1": "icon-layers",
   "stat-2": "icon-cpu",
   "stat-3": "icon-boxes",

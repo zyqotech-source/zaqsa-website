@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { GlassButton, PageHero, Reveal, SectionHead } from "@/components/site/primitives";
-import { ENGAGEMENT_STEPS, SERVICES } from "@/lib/content";
+import { CATEGORY_LABEL, ENGAGEMENT_STEPS, SERVICES } from "@/lib/content";
 import { NotFoundPage } from "@/components/site/ErrorPages";
 import { seo } from "@/lib/seo";
 
@@ -34,7 +34,11 @@ function Page() {
   const others = SERVICES.filter((x) => x.id !== s.id && x.category === s.category).slice(0, 3);
   return (
     <main>
-      <PageHero eyebrow={`Services · ${s.category}`} title={s.title} intro={s.intro} />
+      <PageHero
+        eyebrow={`Services · ${CATEGORY_LABEL[s.category]}`}
+        title={s.title}
+        intro={s.intro}
+      />
 
       <section className="py-24">
         <div className="container-z grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">

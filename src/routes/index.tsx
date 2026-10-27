@@ -3,11 +3,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowDown,
   ArrowUpRight,
+  Briefcase,
   Compass,
   Cpu,
   GraduationCap,
   HeartPulse,
   LineChart,
+  Vote,
   Workflow,
 } from "lucide-react";
 import strategySession from "@/assets/strategy-session.jpg";
@@ -49,8 +51,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () =>
     seo(
-      "ZYQO — Hospital & School Management Software | Custom Software & AI",
-      "ZYQO builds healthcare and school management software, plus custom software, AI, mobile, cloud and data solutions — planned, built and run by one accountable team in New Delhi.",
+      "ZYQO — Hospital, School & Election Campaign Software | Websites, Apps & Digital Marketing",
+      "ZYQO builds hospital, school and small-business management software, websites and apps, and runs election campaigns, social media and digital marketing — planned, built and run by one accountable team in New Delhi.",
     ),
   component: Home,
 });
@@ -68,15 +70,17 @@ const STATS = [
   { value: INDUSTRIES.length, label: "Industries served" },
 ] as const;
 const HERO_AUDIENCE = [
-  { to: "healthcare", label: "Hospitals", Icon: HeartPulse },
+  { to: "hospital-management", label: "Hospitals", Icon: HeartPulse },
   { to: "school-management", label: "Schools", Icon: GraduationCap },
+  { to: "election-campaign", label: "Campaigns", Icon: Vote },
+  { to: "small-business-solutions", label: "Businesses", Icon: Briefcase },
 ] as const;
 
 const SERVICE_PHOTO = {
   Consulting: "service-consulting",
   Technology: "service-technology",
   Business: "service-business",
-  Civic: "service-civic",
+  Marketing: "service-marketing",
 } as const;
 
 /** The closing button pulses once when it first scrolls into view. */
@@ -108,7 +112,7 @@ function Hero() {
               </span>
             </h1>
             <div className="hero-for">
-              <p className="hero-for-label">Management software for</p>
+              <p className="hero-for-label">Software & digital growth for</p>
               <ul className="hero-for-list">
                 {HERO_AUDIENCE.map(({ to, label, Icon }, index) => (
                   <li key={to} style={{ "--i": index } as React.CSSProperties}>
@@ -121,7 +125,8 @@ function Hero() {
               </ul>
             </div>
             <p className="home-hero-description">
-              Custom software, AI and cloud — planned, built and run by one accountable team.
+              Software, websites, apps and digital marketing — planned, built and run by one
+              accountable team.
             </p>
             <div className="home-hero-actions">
               <GlassButton to="/contact" className="hero-cta">
@@ -258,7 +263,7 @@ function Home() {
             </Reveal>
           </div>
           <div className="mt-14 grid gap-10 md:grid-cols-2 xl:grid-cols-4">
-            {(["Consulting", "Technology", "Business", "Civic"] as const).map((cat, index) => (
+            {(["Consulting", "Technology", "Business", "Marketing"] as const).map((cat, index) => (
               <Reveal key={cat} className="services-category" delay={index * 120}>
                 <p className="eyebrow text-primary">{cat}</p>
                 <StaggerList className="mt-5 border-t border-border">

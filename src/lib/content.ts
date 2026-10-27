@@ -368,29 +368,20 @@ export const BUSINESS: Group[] = [
   },
   {
     id: "marketing",
-    title: "Digital Marketing",
-    blurb: "Clear stories, told consistently.",
+    title: "Digital & Performance Marketing",
+    blurb: "Campaigns that bring measurable leads and sales.",
     items: [
-      "Digital Marketing",
-      "Social Media Management",
-      "Social Media Strategy",
-      "Content Planning",
-      "Content Creation",
-      "Graphic Design",
-      "Poster Design",
-      "Video Editing",
-      "Reels / Short Videos",
-      "Content Calendars",
-      "Digital Branding",
-      "SEO",
-      "Local SEO",
-      "Search Visibility",
-      "Social Media Optimization",
-      "Online Advertising",
-      "Campaign Management",
-      "Analytics",
-      "Reporting",
-      "Digital Communication",
+      "Digital Marketing Strategy",
+      "Online Advertising & Promotion",
+      "Meta Ads Management",
+      "Performance Marketing (Google & Meta Ads)",
+      "Lead Generation Campaigns",
+      "Landing Pages & Sales Funnels",
+      "Conversion Tracking & Analytics",
+      "Remarketing",
+      "Email & WhatsApp Marketing",
+      "Budget Optimisation",
+      "Campaign Reporting",
     ],
   },
   {
@@ -486,7 +477,7 @@ export const FUTURE = [
 ];
 
 export type Service = Group & {
-  category: "Industry" | "Technology" | "Business" | "Consulting" | "Civic";
+  category: "Core" | "Marketing" | "Technology" | "Business" | "Consulting";
   intro: string;
   outcomes: string[];
   detail: ServiceDetail;
@@ -501,9 +492,14 @@ const CONSULTING_GROUP: Group = {
 
 export const ELECTION_CAMPAIGN: Group = {
   id: "election-campaign",
-  title: "Election Campaign Services",
-  blurb: "Organised, transparent and compliant campaign operations.",
+  title: "Election & Political Campaign Management",
+  blurb:
+    "Digital campaigns, social media management, promotional content and campaign coordination.",
   items: [
+    "Campaign Strategy & Planning",
+    "Social Media Management for Campaigns",
+    "Campaign Content Creation & Editing",
+    "Campaign Promotion",
     "Campaign Websites",
     "Candidate Profile Pages",
     "Campaign Operations Planning",
@@ -512,7 +508,6 @@ export const ELECTION_CAMPAIGN: Group = {
     "Booth / Area Records",
     "Election-Day Information Systems",
     "Campaign Dashboards",
-    "Social Media Management",
     "Content Calendars",
     "Poster & Graphic Design",
     "Video Editing & Reels",
@@ -525,66 +520,210 @@ export const ELECTION_CAMPAIGN: Group = {
   ],
 };
 
-
-/** The three flagship, industry-specific products. Shown first and highlighted across the site. */
-export const INDUSTRY_SOLUTIONS: Group[] = [
+/** The six core services. Shown first, highlighted across the site, in the client's order. */
+export const CORE_GROUPS: Group[] = [
+  ELECTION_CAMPAIGN,
   {
-    id: "healthcare",
-    title: "Healthcare Management Software",
-    blurb: "Calmer clinics, faster front desks, records that stay organised.",
+    id: "school-management",
+    title: "School Management Software",
+    blurb: "Student records, attendance, fee management, examinations and school administration.",
     items: [
-      "Appointment & Queue Management",
+      "Student & Parent Records",
+      "Attendance for Students & Staff",
+      "Fee Collection, Receipts & Reminders",
+      "Exams, Marks & Report Cards",
+      "Admissions & Enquiry Tracking",
+      "Coaching Institute Management",
+      "Small Office Management (Attendance & Fees)",
+      "Library Management (Daily Records & Books)",
+      "Timetable & Substitution Planning",
+      "Parent Communication & Notices",
+      "Teacher & Staff Portal",
+      "Principal Dashboards & Reports",
+    ],
+  },
+  {
+    id: "hospital-management",
+    title: "Hospital Management Software",
+    blurb: "Patient records, doctor appointments, billing, pharmacy and hospital operations.",
+    items: [
       "Patient Records & Visit History",
+      "Doctor Appointments & Queue Management",
+      "Billing, Invoices & Insurance Tracking",
+      "Pharmacy & Lab Inventory",
+      "OPD / IPD & Ward Management",
       "Doctor & Staff Scheduling",
       "Prescriptions & Follow-up Reminders",
-      "Pharmacy & Lab Inventory",
-      "Billing, Invoices & Insurance Tracking",
       "Patient Reminders (SMS, WhatsApp, Email)",
-      "Teleconsultation Integration",
-      "Clinic & Hospital Dashboards",
+      "Hospital Dashboards & Reports",
       "Role-based Access & Audit Trails",
     ],
   },
   {
-    id: "school-management",
-    title: "School Management Software",
-    blurb: "From admission to report card, one system for the whole school.",
+    id: "website-app-development",
+    title: "Website & App Development",
+    blurb: "Professional websites, Android and iOS apps, e-commerce websites and custom software.",
     items: [
-      "Admissions & Enquiry Tracking",
-      "Student & Parent Records",
-      "Attendance for Students & Staff",
-      "Fee Collection, Receipts & Reminders",
-      "Timetable & Substitution Planning",
-      "Exams, Marks & Report Cards",
-      "Parent Communication & Notices",
-      "Teacher & Staff Portal",
-      "Library & Transport Records",
-      "Principal Dashboards & Reports",
+      "Professional Business Websites",
+      "E-commerce Websites & Online Stores",
+      "Android Apps",
+      "iOS Apps",
+      "Cross-platform Apps",
+      "Custom Software Development",
+      "Web Portals & Dashboards",
+      "Landing Pages",
+      "Payment & Third-party Integrations",
+      "Website Maintenance & Updates",
+      "SEO & GEO Set-up",
+    ],
+  },
+  {
+    id: "small-business-solutions",
+    title: "Small Business Management Solutions",
+    blurb: "Billing, inventory, customer management and business automation.",
+    items: [
+      "Billing & Invoicing",
+      "Inventory & Stock Management",
+      "Customer Management (CRM)",
+      "Business Process Automation",
+      "Purchase & Supplier Records",
+      "Staff & Attendance Records",
+      "Sales & Profit Reports",
+      "Owner Dashboards",
+      "Reminders & Notifications",
+      "Data Migration from Excel & Registers",
+    ],
+  },
+  {
+    id: "social-media-management",
+    title: "Social Media Management",
+    blurb: "Content creation, posts, reels, page management, branding and digital marketing.",
+    items: [
+      "Content Creation, Editing & Promotion",
+      "Post & Creative Design",
+      "Reels & Short Videos",
+      "Page Management & Community Replies",
+      "Branding & Brand Voice",
+      "Digital Marketing Campaigns",
+      "Hashtag & Trend Research",
+      "Monthly Analytics Reports",
+      "Profile Setup & Optimisation",
+      "Meta Ads Management",
+      "Influencer & Collaboration Outreach",
     ],
   },
 ];
 
-/** Presentation copy for the pinned "core solutions" showcase on the home page. */
+/** Marketing and media services that sit alongside the core six. */
+export const MARKETING_GROUPS: Group[] = [
+  {
+    id: "seo-geo",
+    title: "SEO & GEO",
+    blurb: "Be found in Google and in AI answers.",
+    items: [
+      "Technical SEO Audit",
+      "On-page & Content SEO",
+      "Local SEO & Google Business Profile",
+      "Keyword & Competitor Research",
+      "Link Building & Citations",
+      "Generative Engine Optimisation (GEO)",
+      "Structured Data & Schema",
+      "Search Performance Reporting",
+    ],
+  },
+  {
+    id: "creative-media-production",
+    title: "Creative & Media Production",
+    blurb: "Visuals, video and sound that make the brand memorable.",
+    items: [
+      "Brand Identity & Logo Design",
+      "Graphic & Poster Design",
+      "Video Production & Editing",
+      "Reels & Short-form Video",
+      "Motion Graphics & Animation",
+      "Photography Coordination",
+      "Audio, Jingles & Voice-overs",
+      "Presentation & Pitch Decks",
+    ],
+  },
+  {
+    id: "event-offline-marketing",
+    title: "Event & Offline Marketing",
+    blurb: "Ground-level activity that works with your digital presence.",
+    items: [
+      "Event Planning & Coordination",
+      "Launch & Promotional Events",
+      "Rallies, Meetups & Community Drives",
+      "Hoardings, Banners & Print Collateral",
+      "Brand Activations & Stalls",
+      "Vendor & Venue Coordination",
+      "Lead Capture at Events",
+      "Event Reporting & Follow-up",
+    ],
+  },
+];
+
+/** Presentation copy for the pinned "core services" showcase on the home page. */
 export const CORE_SERVICES = [
   {
-    id: "healthcare",
+    id: "election-campaign",
     number: "01",
-    label: "Healthcare management",
-    title: "Hospitals & clinics",
+    label: "Election & political campaigns",
+    title: "Election & campaign management",
     blurb:
-      "Appointments, patient records, billing and pharmacy in one calm system — so doctors spend time on patients, not paperwork.",
-    builtFor: ["Clinics", "Hospitals", "Diagnostic labs"],
-    features: ["Appointments & queues", "Patient records", "Billing & insurance", "Pharmacy & lab stock"],
+      "Digital campaigns, social media management, promotional content and campaign coordination — organised, transparent and compliant.",
+    builtFor: ["Candidates", "Parties", "Campaign offices"],
+    features: ["Digital campaigns", "Social media", "Promotional content", "Campaign coordination"],
   },
   {
     id: "school-management",
     number: "02",
     label: "School management",
-    title: "Schools & institutes",
+    title: "School management software",
     blurb:
-      "Admissions, attendance, fees, exams and parent communication from one dashboard — less chasing, more teaching.",
+      "Student records, attendance, fee management, examinations and school administration from one dashboard.",
     builtFor: ["Schools", "Coaching institutes", "Colleges"],
-    features: ["Admissions", "Attendance & timetable", "Fees & receipts", "Report cards & parents"],
+    features: ["Student records", "Attendance", "Fee management", "Exams & report cards"],
+  },
+  {
+    id: "hospital-management",
+    number: "03",
+    label: "Hospital management",
+    title: "Hospital management software",
+    blurb:
+      "Patient records, doctor appointments, billing, pharmacy and hospital operations in one calm system.",
+    builtFor: ["Hospitals", "Clinics", "Diagnostic labs"],
+    features: ["Patient records", "Appointments", "Billing", "Pharmacy"],
+  },
+  {
+    id: "website-app-development",
+    number: "04",
+    label: "Website & app development",
+    title: "Websites, apps & custom software",
+    blurb:
+      "Professional websites, Android and iOS apps, e-commerce websites and custom software built to last.",
+    builtFor: ["Businesses", "Startups", "Retailers"],
+    features: ["Websites", "Android & iOS apps", "E-commerce", "Custom software"],
+  },
+  {
+    id: "small-business-solutions",
+    number: "05",
+    label: "Small business solutions",
+    title: "Small business management",
+    blurb:
+      "Billing, inventory, customer management and business automation, so the owner runs the business instead of the paperwork.",
+    builtFor: ["Shops", "Traders", "Service businesses"],
+    features: ["Billing", "Inventory", "Customers", "Automation"],
+  },
+  {
+    id: "social-media-management",
+    number: "06",
+    label: "Social media management",
+    title: "Social media management",
+    blurb:
+      "Content creation, posts, reels, page management, branding and digital marketing that keep your pages active and your brand consistent.",
+    builtFor: ["Brands", "Local businesses", "Creators"],
+    features: ["Content creation", "Posts & reels", "Page management", "Branding"],
   },
 ] as const;
 
@@ -595,13 +734,13 @@ export type ServiceDetail = {
 };
 
 const SERVICE_DETAILS: Record<string, ServiceDetail> = {
-  healthcare: {
-    who: "Clinics, nursing homes, hospitals and diagnostic labs where queues, paper files and scattered billing slow down care.",
+  "hospital-management": {
+    who: "Hospitals, nursing homes, clinics and diagnostic labs where queues, paper files and scattered billing slow down care.",
     engagements: [
-      "Clinic and hospital management systems",
-      "Appointment, queue and reminder workflows",
+      "Hospital and clinic management systems",
+      "Doctor appointment, queue and reminder workflows",
       "Patient records and prescription history",
-      "Pharmacy, lab and billing integration",
+      "Billing, pharmacy and lab integration",
       "Dashboards for doctors and administrators",
     ],
     faqs: [
@@ -616,6 +755,138 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       {
         q: "Does it work for a single clinic as well as a hospital?",
         a: "Yes. We start with the modules you need today — usually appointments, records and billing — and add departments as you grow.",
+      },
+    ],
+  },
+  "website-app-development": {
+    who: "Businesses, startups and institutions that need a professional website, a mobile app or custom software built properly and maintained afterwards.",
+    engagements: [
+      "Business, portfolio and corporate websites",
+      "E-commerce websites with payments and order management",
+      "Android, iOS and cross-platform apps",
+      "Custom software, portals and dashboards",
+      "Maintenance, hosting and ongoing improvements",
+    ],
+    faqs: [
+      {
+        q: "Do I need separate Android and iOS apps?",
+        a: "Usually not. A cross-platform build covers both from one codebase, which keeps cost and maintenance down.",
+      },
+      {
+        q: "How long does a website take?",
+        a: "A focused business website typically takes weeks, not months. Scope is agreed up front so timelines hold.",
+      },
+      {
+        q: "Can we update the content ourselves?",
+        a: "Yes. Sites are built with editing in mind, and we walk your team through it at handover.",
+      },
+    ],
+  },
+  "small-business-solutions": {
+    who: "Shops, traders, clinics and service businesses whose billing, stock and customer details live in notebooks, spreadsheets and phone contacts.",
+    engagements: [
+      "Billing and invoicing systems",
+      "Inventory and stock tracking",
+      "Customer records and follow-up reminders",
+      "Everyday workflow automation",
+      "Owner dashboards and sales reports",
+    ],
+    faqs: [
+      {
+        q: "We use Excel today. Can you move our data?",
+        a: "Yes. We clean and import your existing sheets and registers so you do not start from zero.",
+      },
+      {
+        q: "Is this affordable for a small shop?",
+        a: "We size the system to the business. Many owners start with just billing and stock and add more later.",
+      },
+      {
+        q: "Will my staff manage it?",
+        a: "The screens are built for the least technical person on the team, with training and support after go-live.",
+      },
+    ],
+  },
+  "social-media-management": {
+    who: "Brands, local businesses and professionals with a good product but irregular posting, inconsistent branding and no clear view of what works.",
+    engagements: [
+      "Monthly content calendars and creatives",
+      "Posts, reels and short videos",
+      "Page management and community replies",
+      "Branding and brand-voice guidelines",
+      "Monthly performance reports",
+    ],
+    faqs: [
+      {
+        q: "Do you create the content as well as post it?",
+        a: "Yes. We plan, design, write and edit the content, then publish and manage the pages.",
+      },
+      {
+        q: "Which platforms do you manage?",
+        a: "Instagram, Facebook, LinkedIn, YouTube and X, chosen by where your customers actually are.",
+      },
+      {
+        q: "How do we see results?",
+        a: "You get a monthly report covering reach, engagement, follower growth and what to do next.",
+      },
+    ],
+  },
+  "seo-geo": {
+    who: "Businesses that want to be found when customers search on Google, Maps and AI assistants.",
+    engagements: [
+      "Technical and on-page SEO audits",
+      "Local SEO and Google Business Profile",
+      "Content and keyword strategy",
+      "Generative Engine Optimisation (GEO) for AI answers",
+      "Monthly search performance reports",
+    ],
+    faqs: [
+      {
+        q: "What is GEO?",
+        a: "Generative Engine Optimisation: structuring your content and brand signals so AI assistants and AI search results can understand and recommend you.",
+      },
+      {
+        q: "How soon does SEO show results?",
+        a: "Honest answer: months, not weeks. We pair it with faster channels so you see progress while search builds.",
+      },
+    ],
+  },
+  "creative-media-production": {
+    who: "Brands and campaigns that need strong visuals, video and audio produced consistently.",
+    engagements: [
+      "Brand identity, logos and design systems",
+      "Posters, social creatives and print design",
+      "Video production, editing and reels",
+      "Motion graphics and animation",
+      "Presentation and pitch decks",
+    ],
+    faqs: [
+      {
+        q: "Can you work from our existing brand?",
+        a: "Yes. We follow your guidelines, or help you create them if they do not exist yet.",
+      },
+      {
+        q: "Do you handle shoots?",
+        a: "We coordinate photographers, videographers and locations, and handle editing and post-production.",
+      },
+    ],
+  },
+  "event-offline-marketing": {
+    who: "Businesses, institutions and campaigns that need ground-level visibility that supports their digital presence.",
+    engagements: [
+      "Launch, promotional and community events",
+      "Hoardings, banners and print collateral",
+      "Brand activations and stalls",
+      "Vendor and venue coordination",
+      "Lead capture and follow-up",
+    ],
+    faqs: [
+      {
+        q: "Can offline activity connect to our digital campaigns?",
+        a: "Yes. We use QR codes, tracked links and lead forms so event activity shows up in your reports.",
+      },
+      {
+        q: "Do you handle vendors and permissions?",
+        a: "We coordinate vendors and venues. Permissions are scoped per event and agreed up front.",
       },
     ],
   },
@@ -919,17 +1190,18 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
     ],
   },
   marketing: {
-    who: "Businesses with a good product and an inconsistent story — posting irregularly, invisible in search, unsure what is working.",
+    who: "Businesses that want measurable leads and sales from digital channels, not just impressions.",
     engagements: [
-      "Social media management & content calendars",
-      "SEO & local search visibility",
-      "Design, video & content production",
-      "Campaign management & reporting",
+      "Performance campaigns on Google and Meta",
+      "Lead generation funnels and landing pages",
+      "Conversion tracking and analytics",
+      "Remarketing and email / WhatsApp campaigns",
+      "Budget optimisation and monthly reporting",
     ],
     faqs: [
       {
-        q: "How soon does SEO show results?",
-        a: "Honest answer: months, not weeks. We pair it with channels that move faster so you see progress while search builds.",
+        q: "How do you measure performance marketing?",
+        a: "Every campaign is tracked to leads, calls or sales, and reported monthly with cost per result and what to change next.",
       },
     ],
   },
@@ -951,8 +1223,20 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
 };
 
 const INTROS: Record<string, string> = {
-  healthcare:
-    "Healthcare runs on timing, records and trust. We build management software for clinics and hospitals that keeps appointments, patient history, billing and pharmacy in one calm system — simple for front-desk staff, clear for doctors, and organised for administrators.",
+  "hospital-management":
+    "Healthcare runs on timing, records and trust. We build hospital management software that keeps patient records, doctor appointments, billing, pharmacy and day-to-day operations in one calm system — simple for front-desk staff, clear for doctors, and organised for administrators.",
+  "website-app-development":
+    "Your website and app are often the first thing a customer meets. We design and build professional websites, e-commerce stores, Android and iOS apps and custom software that look credible, load fast and are easy to keep updated.",
+  "small-business-solutions":
+    "Small businesses run on billing, stock and customer relationships. We build simple management software that puts invoices, inventory, customer records and routine automation in one place, so the owner spends time growing the business instead of chasing paperwork.",
+  "social-media-management":
+    "A consistent presence builds trust. We handle content creation, posts, reels, page management, branding and digital marketing, so your social media stays active, on-brand and measured every month.",
+  "seo-geo":
+    "Customers now search on Google, Maps and AI assistants. We make your business easy to find and easy to recommend, with technical and local SEO plus Generative Engine Optimisation for AI-driven answers.",
+  "creative-media-production":
+    "Strong visuals make a brand memorable. We produce identity, graphics, video, motion and audio in one place, so every campaign looks and sounds like the same company.",
+  "event-offline-marketing":
+    "Digital reaches people; events and print make you real to them. We plan and run launches, community drives, activations and offline collateral that connect back to your digital campaigns.",
   "school-management":
     "Schools carry admissions, attendance, fees, exams and parent communication every single day. We build school management software that puts all of it in one place, so teachers teach, parents stay informed and the principal sees the whole school at a glance.",
   "election-campaign":
@@ -962,11 +1246,29 @@ const INTROS: Record<string, string> = {
 };
 
 const OUTCOMES: Record<string, string[]> = {
-  healthcare: [
+  "hospital-management": [
     "Shorter queues and fewer missed appointments",
     "Patient history available in seconds",
     "Billing and pharmacy that match",
-    "One dashboard for the whole clinic",
+    "One dashboard for the whole hospital",
+  ],
+  "website-app-development": [
+    "A credible, fast website customers trust",
+    "Apps that work on Android and iOS",
+    "Orders and payments handled online",
+    "Software shaped around how you work",
+  ],
+  "small-business-solutions": [
+    "Bills and stock always up to date",
+    "Customers followed up on time",
+    "Daily reports without spreadsheets",
+    "Routine tasks automated",
+  ],
+  "social-media-management": [
+    "Regular, on-brand posting",
+    "Reels and creatives made for you",
+    "Pages managed and replied to",
+    "A clear monthly performance report",
   ],
   "school-management": [
     "Admissions, fees and attendance in one place",
@@ -1011,12 +1313,20 @@ const toService = (g: Group, category: Service["category"]): Service => ({
   },
 });
 
+export const CATEGORY_LABEL: Record<Service["category"], string> = {
+  Core: "Core services",
+  Consulting: "Consulting",
+  Technology: "Technology",
+  Business: "Business",
+  Marketing: "Marketing & media",
+};
+
 export const SERVICES: Service[] = [
-  ...INDUSTRY_SOLUTIONS.map((g) => toService(g, "Industry")),
+  ...CORE_GROUPS.map((g) => toService(g, "Core")),
   toService(CONSULTING_GROUP, "Consulting"),
-  toService(ELECTION_CAMPAIGN, "Civic"),
   ...TECHNOLOGY.map((g) => toService(g, "Technology")),
-  ...BUSINESS.map((g) => toService(g, "Business")),
+  ...BUSINESS.map((g) => toService(g, g.id === "marketing" ? "Marketing" : "Business")),
+  ...MARKETING_GROUPS.map((g) => toService(g, "Marketing")),
 ];
 
 export type Industry = {

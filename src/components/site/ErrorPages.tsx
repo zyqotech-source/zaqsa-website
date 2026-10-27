@@ -18,8 +18,8 @@ const POPULAR = [
   { to: "/services", label: "Services", note: "Everything we build", Icon: Compass },
   {
     to: "/services/$slug",
-    slug: "healthcare",
-    label: "Healthcare software",
+    slug: "hospital-management",
+    label: "Hospital software",
     note: "Hospitals & clinics",
     Icon: HeartPulse,
   },

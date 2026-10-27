@@ -1,32 +1,30 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, GraduationCap, HeartPulse } from "lucide-react";
+import { ArrowUpRight, Code2, GraduationCap, HeartPulse, Share2, Store, Vote } from "lucide-react";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
-import { SERVICES, type Service } from "@/lib/content";
+import { CATEGORY_LABEL, SERVICES, type Service } from "@/lib/content";
 import { seo } from "@/lib/seo";
 import { ServicesVisual } from "@/components/site/hero-visuals";
 
 export const Route = createFileRoute("/services/")({
   head: () =>
     seo(
-      "Services — Consulting, Technology, Business & Election Campaigns | ZYQO",
-      "Every ZYQO service in one place: consulting, AI, software, web, mobile, cloud, CRM, e-commerce, digital marketing and election campaign services.",
+      "Services — Election Campaigns, School & Hospital Software, Websites, Apps & Social Media | ZYQO",
+      "Every ZYQO service in one place: election campaign management, school and hospital management software, websites and apps, small business solutions, social media, SEO, digital and performance marketing, creative production and events.",
     ),
   component: Page,
 });
 
-const CATS: Service["category"][] = ["Industry", "Consulting", "Civic", "Technology", "Business"];
+const CATS: Service["category"][] = ["Core", "Consulting", "Technology", "Business", "Marketing"];
 const FEATURE_ICON: Record<string, typeof HeartPulse> = {
-  healthcare: HeartPulse,
+  "election-campaign": Vote,
   "school-management": GraduationCap,
+  "hospital-management": HeartPulse,
+  "website-app-development": Code2,
+  "small-business-solutions": Store,
+  "social-media-management": Share2,
 };
-const CAT_LABEL = {
-  Industry: "Core solutions",
-  Consulting: "Consulting",
-  Civic: "Election & civic",
-  Technology: "Technology",
-  Business: "Business",
-};
+const CAT_LABEL = CATEGORY_LABEL;
 
 function Page() {
   const [active, setActive] = useState<Service["category"] | "All">("All");
@@ -72,8 +70,8 @@ function Page() {
               delay={categoryIndex * 140}
             >
               <p className="eyebrow text-primary">{CAT_LABEL[cat]}</p>
-              {cat === "Industry" ? (
-                <div className="mt-6 grid gap-5 md:grid-cols-2">
+              {cat === "Core" ? (
+                <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                   {SERVICES.filter((s) => s.category === cat).map((s, i) => {
                     const Icon = FEATURE_ICON[s.id] ?? HeartPulse;
                     return (

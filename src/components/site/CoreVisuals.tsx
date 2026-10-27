@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Check } from "lucide-react";
+import { Check, Play } from "lucide-react";
 
 const vars = (values: Record<string, string | number>) => values as CSSProperties;
 
@@ -84,6 +84,163 @@ export function SchoolVisual() {
           <div>
             <strong>8</strong>
             <small>Fees pending</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ElectionVisual() {
+  const events = [
+    ["Sat", "Ward rally", "is-live"],
+    ["Sun", "Volunteer meet", ""],
+    ["Tue", "Door-to-door", ""],
+  ] as const;
+  return (
+    <div className="cv cv-election" aria-hidden="true">
+      <div className="cv-bar">
+        <span />
+        <span />
+        <span />
+        <em>Campaign · This week</em>
+      </div>
+      <div className="cv-body">
+        <ul className="cv-list">
+          {events.map(([day, name, live], index) => (
+            <li key={name} style={vars({ "--i": index })}>
+              <b>{day}</b>
+              <span>{name}</span>
+              <i className={live}>{live ? "Today" : "Planned"}</i>
+            </li>
+          ))}
+        </ul>
+        <div className="cv-marks">
+          {[40, 58, 52, 74, 88, 96].map((height, index) => (
+            <i key={index} style={vars({ "--h": `${height}%`, "--i": index })} />
+          ))}
+        </div>
+        <div className="cv-stats">
+          <div>
+            <strong>248</strong>
+            <small>Volunteers</small>
+          </div>
+          <div>
+            <strong>6</strong>
+            <small>Events</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function WebAppVisual() {
+  return (
+    <div className="cv cv-web" aria-hidden="true">
+      <div className="cv-bar">
+        <span />
+        <span />
+        <span />
+        <em>yourbusiness.in</em>
+      </div>
+      <div className="cv-body">
+        <div className="cv-hero-block">
+          <i />
+          <i />
+          <b />
+        </div>
+        <div className="cv-tiles">
+          {[0, 1, 2].map((index) => (
+            <span key={index} style={vars({ "--i": index })} />
+          ))}
+        </div>
+        <div className="cv-phone">
+          <i />
+          <i />
+          <i />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function SmallBusinessVisual() {
+  const lines = [
+    ["Item A", "₹1,200"],
+    ["Item B", "₹850"],
+    ["Item C", "₹2,400"],
+  ] as const;
+  return (
+    <div className="cv cv-shop" aria-hidden="true">
+      <div className="cv-bar">
+        <span />
+        <span />
+        <span />
+        <em>Invoice #1042</em>
+      </div>
+      <div className="cv-body">
+        <ul className="cv-invoice">
+          {lines.map(([name, price], index) => (
+            <li key={name} style={vars({ "--i": index })}>
+              <span>{name}</span>
+              <b>{price}</b>
+            </li>
+          ))}
+          <li className="is-total">
+            <span>Total</span>
+            <b>₹4,450</b>
+          </li>
+        </ul>
+        <div className="cv-marks">
+          {[80, 62, 44, 70, 30].map((height, index) => (
+            <i key={index} style={vars({ "--h": `${height}%`, "--i": index })} />
+          ))}
+        </div>
+        <div className="cv-stats">
+          <div>
+            <strong>3</strong>
+            <small>Low stock</small>
+          </div>
+          <div>
+            <strong>12</strong>
+            <small>Follow-ups</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function SocialVisual() {
+  return (
+    <div className="cv cv-social" aria-hidden="true">
+      <div className="cv-bar">
+        <span />
+        <span />
+        <span />
+        <em>Content calendar</em>
+      </div>
+      <div className="cv-body">
+        <div className="cv-posts">
+          {Array.from({ length: 6 }, (_, index) => (
+            <span
+              key={index}
+              className={index === 1 ? "is-reel" : ""}
+              style={vars({ "--i": index })}
+            >
+              {index === 1 ? <Play size={16} fill="currentColor" /> : null}
+            </span>
+          ))}
+        </div>
+        <div className="cv-stats">
+          <div>
+            <strong>24</strong>
+            <small>Posts / month</small>
+          </div>
+          <div>
+            <strong>8</strong>
+            <small>Reels</small>
           </div>
         </div>
       </div>
