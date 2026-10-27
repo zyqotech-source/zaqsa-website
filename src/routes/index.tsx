@@ -4,6 +4,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   Briefcase,
+  Code2,
   Compass,
   Cpu,
   GraduationCap,
@@ -70,10 +71,12 @@ const STATS = [
   { value: INDUSTRIES.length, label: "Industries served", suffix: "+" },
 ] as const;
 const HERO_AUDIENCE = [
-  { to: "hospital-management", label: "Hospitals", Icon: HeartPulse },
-  { to: "school-management", label: "Schools", Icon: GraduationCap },
-  { to: "election-campaign", label: "Campaigns", Icon: Vote },
-  { to: "small-business-solutions", label: "Businesses", Icon: Briefcase },
+  // Highlighted: website and app development is the service most visitors ask for first.
+  { to: "website-app-development", label: "Apps & Websites", Icon: Code2, featured: true },
+  { to: "hospital-management", label: "Hospitals", Icon: HeartPulse, featured: false },
+  { to: "school-management", label: "Schools", Icon: GraduationCap, featured: false },
+  { to: "election-campaign", label: "Campaigns", Icon: Vote, featured: false },
+  { to: "small-business-solutions", label: "Businesses", Icon: Briefcase, featured: false },
 ] as const;
 
 const SERVICE_PHOTO = {
@@ -114,9 +117,13 @@ function Hero() {
             <div className="hero-for">
               <p className="hero-for-label">Software & digital growth for</p>
               <ul className="hero-for-list">
-                {HERO_AUDIENCE.map(({ to, label, Icon }, index) => (
+                {HERO_AUDIENCE.map(({ to, label, Icon, featured }, index) => (
                   <li key={to} style={{ "--i": index } as React.CSSProperties}>
-                    <Link to="/services/$slug" params={{ slug: to }}>
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: to }}
+                      className={featured ? "is-featured" : undefined}
+                    >
                       <Icon size={18} strokeWidth={1.8} aria-hidden />
                       {label}
                     </Link>
@@ -156,12 +163,12 @@ function Hero() {
             <HeroPhotoCards />
             <span className="hero-orbit-node hero-orbit-node-gold" aria-hidden="true" />
             <span className="hero-orbit-node hero-orbit-node-teal" aria-hidden="true" />
-            {HERO_AUDIENCE.map(({ to, label, Icon }, index) => (
+            {HERO_AUDIENCE.map(({ to, label, Icon, featured }, index) => (
               <Link
                 key={to}
                 to="/services/$slug"
                 params={{ slug: to }}
-                className={`hero-pill hero-pill-${index + 1}`}
+                className={`hero-pill hero-pill-${index + 1}${featured ? " is-featured" : ""}`}
               >
                 <Icon size={15} strokeWidth={1.8} aria-hidden />
                 {label}
