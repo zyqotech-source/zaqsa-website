@@ -6548,6 +6548,10 @@ html.lenis body {
 .zy-letter:nth-child(n) {
   color: var(--secondary);
 }
+.zy-letter[data-char="Q"],
+.brand-q {
+  color: var(--primary);
+}
 
 /* Large background wordmarks follow the same face */
 .footer-wordmark {

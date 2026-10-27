@@ -10,7 +10,9 @@ export function Logo() {
   return (
     <span className="brand-logo">
       <LogoMark className="brand-mark" />
-      <span className="brand-name">ZAQSA</span>
+      <span className="brand-name">
+        ZA<span className="brand-q">Q</span>SA
+      </span>
     </span>
   );
 }
