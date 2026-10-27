@@ -80,7 +80,7 @@ export function SectionHead({
   return (
     <Reveal className={cn("section-heading-reveal max-w-3xl", center && "mx-auto text-center")}>
       <p className={cn("eyebrow", light ? "text-paper-muted" : "text-teal")}>{eyebrow}</p>
-      <h2 className="mt-4 text-[clamp(2.1rem,4.8vw,4rem)] leading-[1.02] font-medium tracking-[-.055em]">
+      <h2 className="mt-4 text-[clamp(2.1rem,4.8vw,4rem)] leading-[1.02] font-medium tracking-[-.02em]">
         {title}
       </h2>
       {intro && (

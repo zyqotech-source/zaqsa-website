@@ -53,15 +53,15 @@ const ALT: Record<string, string> = {
   "process-2": "Designers and engineers shaping a delivery roadmap",
   "process-3": "A developer reviewing code with a teammate",
   "process-4": "Client and team agreeing on the next release",
-  "stack-team": "The ZYQO team working through a technical problem together",
-  "bg-team": "The ZYQO team at work in the office",
-  "stat-1": "A ZYQO engineer smiling at their desk",
-  "stat-2": "A ZYQO engineer pairing with a colleague",
+  "stack-team": "The ZAQSA team working through a technical problem together",
+  "bg-team": "The ZAQSA team at work in the office",
+  "stat-1": "A ZAQSA engineer smiling at their desk",
+  "stat-2": "A ZAQSA engineer pairing with a colleague",
   "stat-3": "A client reviewing a finished project",
-  "stat-4": "A ZYQO team member presenting to a client",
-  "cta-group": "The ZYQO team standing together in the office",
-  "contact-team": "Friendly ZYQO team members ready to talk about your project",
-  "team-founder": "Chinmay Anand, founder and director of ZYQO",
+  "stat-4": "A ZAQSA team member presenting to a client",
+  "cta-group": "The ZAQSA team standing together in the office",
+  "contact-team": "Friendly ZAQSA team members ready to talk about your project",
+  "team-founder": "Chinmay Anand, founder and director of ZAQSA",
 };
 
 // Stand-ins for large slots until real team photos are uploaded.
@@ -118,7 +118,7 @@ export function getPhoto(slot: PhotoSlot): {
   initials: string | undefined;
 } {
   const own = byName.get(slot);
-  const alt = ALT[slot] ?? "A member of the ZYQO team";
+  const alt = ALT[slot] ?? "A member of the ZAQSA team";
   if (own) return { src: own, alt, art: undefined, initials: undefined };
   const fallback = FALLBACK[slot];
   if (fallback) return { ...fallback, art: undefined, initials: undefined };

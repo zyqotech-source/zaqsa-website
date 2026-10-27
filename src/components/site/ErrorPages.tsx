@@ -37,7 +37,7 @@ const POPULAR = [
 export function NotFoundPage({ what = "page" }: { what?: string }) {
   const { pathname } = useLocation();
   useEffect(() => {
-    document.title = "Page not found | ZYQO";
+    document.title = "Page not found | ZAQSA";
   }, []);
   return (
     <main className="err-page">
@@ -107,7 +107,7 @@ export function ErrorPage({ error, reset }: { error: unknown; reset: () => void 
   useEffect(() => setOnline(navigator.onLine), []);
   const network = !online || isNetworkError(error);
   useEffect(() => {
-    document.title = network ? "Connection problem | ZYQO" : "Something went wrong | ZYQO";
+    document.title = network ? "Connection problem | ZAQSA" : "Something went wrong | ZAQSA";
   }, [network]);
 
   return (

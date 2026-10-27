@@ -51,8 +51,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () =>
     seo(
-      "ZYQO — Hospital, School & Election Campaign Software | Websites, Apps & Digital Marketing",
-      "ZYQO builds hospital, school and small-business management software, websites, apps and AI automation, and runs election campaigns, social media, branding and digital marketing — planned, built and run by one accountable team in New Delhi.",
+      "ZAQSA — Hospital, School & Election Campaign Software | Websites, Apps & Digital Marketing",
+      "ZAQSA builds hospital, school and small-business management software, websites, apps and AI automation, and runs election campaigns, social media, branding and digital marketing — planned, built and run by one accountable team in New Delhi.",
     ),
   component: Home,
 });
@@ -213,7 +213,7 @@ function Home() {
             <SectionHead
               eyebrow="02 / What we do"
               title={<span id="capabilities-h">From idea to a working system.</span>}
-              intro="ZYQO closes the gap between planning and production. We define what matters, design the solution and build it."
+              intro="ZAQSA closes the gap between planning and production. We define what matters, design the solution and build it."
             />
             <div className="border-t border-border">
               {CONSULTING_PILLARS.map((pillar, index) => {
@@ -250,7 +250,7 @@ function Home() {
         <div className="container-z">
           <div className="max-w-3xl">
             <p className="eyebrow text-teal">03 / Services</p>
-            <h2 className="mt-4 text-[clamp(2.1rem,4.8vw,4rem)] leading-[1.02] font-medium tracking-[-.055em]">
+            <h2 className="mt-4 text-[clamp(2.1rem,4.8vw,4rem)] leading-[1.02] font-medium tracking-[-.02em]">
               <span id="services-h">
                 <LineReveal lines={["Every capability,", "one accountable team."]} />
               </span>
@@ -507,7 +507,7 @@ function Home() {
       </section>
 
       <section className="cta-section border-t border-border bg-muted py-20 sm:py-24">
-        <ScaledWordmark>ZYQO</ScaledWordmark>
+        <ScaledWordmark>ZAQSA</ScaledWordmark>
         <div className="container-z relative">
           <div className="grid gap-10 border border-border bg-card/80 p-7 shadow-sm backdrop-blur-sm sm:p-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:p-14">
             <div>
@@ -518,7 +518,7 @@ function Home() {
                 </h2>
                 <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                   We will help frame the decision, identify the highest-value next move and explain
-                  where ZYQO can contribute.
+                  where ZAQSA can contribute.
                 </p>
               </Reveal>
               <Reveal delay={120} className="mt-8">

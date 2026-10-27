@@ -5,9 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-hand: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: "Fraunces", Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -136,7 +137,12 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.035em;
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+  .font-hand {
+    font-style: italic;
+    font-weight: 400;
   }
   p {
     text-wrap: pretty;
@@ -482,7 +488,7 @@
   font-size: clamp(3.1rem, 7vw, 6.75rem);
   font-weight: 500;
   line-height: 0.97;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 .home-hero-line-accent .home-hero-line-inner {
@@ -860,7 +866,7 @@
   font-size: clamp(3rem, 7vw, 6.6rem);
   font-weight: 500;
   line-height: 0.98;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 .page-hero-title em {
@@ -1208,7 +1214,7 @@ section[aria-labelledby] {
   font-size: clamp(2.15rem, 4.5vw, 4.5rem);
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.02em;
 }
 .footer-cta .eyebrow {
   color: #818cf8;
@@ -1364,10 +1370,10 @@ section[aria-labelledby] {
   background-clip: text;
   -webkit-background-clip: text;
   font-family: var(--font-display);
-  font-size: clamp(9rem, 31vw, 27rem);
+  font-size: clamp(6.5rem, 24.5vw, 21rem);
   font-weight: 600;
   line-height: 0.98;
-  letter-spacing: -0.095em;
+  letter-spacing: -0.03em;
   white-space: nowrap;
   filter: drop-shadow(0 14px 32px rgba(99, 102, 241, 0.1));
   animation:
@@ -1815,7 +1821,7 @@ section[aria-labelledby] {
   font-family: var(--font-display);
   font-size: clamp(6rem, 17vw, 12rem);
   font-weight: 500;
-  letter-spacing: -0.12em;
+  letter-spacing: -0.02em;
   line-height: 0.8;
 }
 .founder-panel-caption {
@@ -2111,34 +2117,34 @@ section[aria-labelledby] {
     filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.22));
   }
 }
-.ask-zyqo-panel {
+.ask-zaqsa-panel {
   transform-origin: bottom right;
   animation: assistant-panel-enter 500ms cubic-bezier(0.16, 0.78, 0.2, 1) both;
 }
-.ask-zyqo-topic {
+.ask-zaqsa-topic {
   animation: assistant-topic-enter 480ms cubic-bezier(0.16, 0.78, 0.2, 1) both;
   transition:
     transform 220ms ease,
     background-color 220ms ease,
     border-color 220ms ease;
 }
-.ask-zyqo-topic:hover {
+.ask-zaqsa-topic:hover {
   transform: translateY(-3px) scale(1.04);
   background: color-mix(in oklab, var(--card) 85%, var(--glow));
 }
-.ask-zyqo-answer {
+.ask-zaqsa-answer {
   animation: explorer-panel-enter 460ms cubic-bezier(0.16, 0.78, 0.2, 1) both;
 }
-.ask-zyqo-trigger {
+.ask-zaqsa-trigger {
   animation: ask-button-breathe 3.2s ease-in-out infinite;
   transition:
     transform 220ms ease,
     box-shadow 220ms ease;
 }
-.ask-zyqo-trigger:hover {
+.ask-zaqsa-trigger:hover {
   transform: translateY(-4px) scale(1.06);
 }
-.ask-zyqo-icon {
+.ask-zaqsa-icon {
   animation: ask-icon-wiggle 4s ease-in-out infinite;
 }
 @keyframes assistant-panel-enter {
@@ -2212,8 +2218,8 @@ section[aria-labelledby] {
   .explorer-tab[aria-selected="true"],
   .explorer-tab:hover,
   .form-control:focus,
-  .ask-zyqo-trigger:hover,
-  .ask-zyqo-topic:hover,
+  .ask-zaqsa-trigger:hover,
+  .ask-zaqsa-topic:hover,
   .future-topic:hover,
   .service-category-block .reveal.group.in:hover,
   .related-service-card.in:hover,
@@ -2252,7 +2258,7 @@ body {
 .zy-wordmark.home-wordmark {
   margin-top: clamp(0.9rem, 2vw, 1.5rem);
   font-size: clamp(3.4rem, 10vw, 7.6rem);
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
 }
 .zy-letter {
   position: relative;
@@ -2346,7 +2352,7 @@ body {
   max-width: 16ch;
   font-size: clamp(2.2rem, 4.5vw, 4.2rem);
   font-weight: 600;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.02em;
   line-height: 1.02;
 }
 .home-hero-line-accent .home-hero-line-inner {
@@ -2361,7 +2367,7 @@ body {
   background: rgba(255, 255, 255, 0.82);
   padding: 0.38rem 0.8rem;
   color: var(--primary);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;
   backdrop-filter: blur(8px);
@@ -2409,7 +2415,7 @@ body {
 .tech-glyph {
   position: absolute;
   color: rgba(79, 70, 229, 0.16);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: clamp(1rem, 2vw, 1.7rem);
   font-weight: 700;
   animation: glyph-float 11s ease-in-out infinite;
@@ -2459,7 +2465,7 @@ body {
 }
 .page-hero-prompt {
   color: var(--accent-2);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   animation: caret 1.2s steps(1) infinite;
 }
 .page-hero-title {
@@ -2487,7 +2493,7 @@ body {
 
 /* Tech ribbon: monospace labels */
 .motion-ribbon-item {
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   letter-spacing: 0.12em;
 }
 
@@ -2567,14 +2573,14 @@ body {
 .code-terminal-bar em {
   margin-left: 0.8rem;
   color: #94a3b8;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-style: normal;
 }
 .code-terminal-body {
   min-height: 17rem;
   padding: 1.2rem 1.3rem 1.5rem;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: clamp(0.74rem, 1.6vw, 0.88rem);
   line-height: 2;
 }
@@ -3300,7 +3306,7 @@ body {
   gap: 0.4rem;
   transform: translate(-50%, -50%);
   color: var(--foreground);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
 }
@@ -3651,7 +3657,7 @@ body {
   font-size: clamp(2.6rem, 6.2vw, 5.6rem);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   animation: hero-detail-in 800ms 80ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
@@ -3716,7 +3722,7 @@ body {
   border-bottom: 2px solid var(--primary);
   padding-bottom: 0.2rem;
   color: var(--foreground);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 600;
@@ -3724,7 +3730,7 @@ body {
 .editor-bar b {
   margin-left: auto;
   color: var(--muted-foreground);
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 500;
 }
@@ -3737,7 +3743,7 @@ body {
   background: #f7f9ff;
   padding: 1.4rem 0.9rem;
   color: #a3aed0;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   line-height: 2.1;
   text-align: right;
@@ -3746,7 +3752,7 @@ body {
 .editor-code {
   min-width: 0;
   padding: 1.4rem clamp(1rem, 3vw, 2.2rem) 1.8rem;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: clamp(0.78rem, 1.5vw, 0.95rem);
 }
 .ed-line {
@@ -3784,7 +3790,7 @@ body {
   font-size: clamp(2.3rem, 5.6vw, 5rem);
   font-weight: 600;
   line-height: 1.02;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.02em;
   animation: ed-in 700ms 480ms ease-out both;
 }
 .ed-title em {
@@ -4037,7 +4043,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -4056,7 +4062,7 @@ body {
   gap: 0.5rem;
   max-width: 28rem;
   margin-top: 2rem;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
 }
 .lab-log li {
@@ -5085,7 +5091,7 @@ html.lenis body {
   font-size: clamp(2.3rem, 5.4vw, 5.4rem);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.02em;
 }
 .big-line {
   display: block;
@@ -5104,9 +5110,9 @@ html.lenis body {
   translate: -50% -50%;
   color: rgba(79, 70, 229, 0.06);
   font-family: var(--font-display);
-  font-size: clamp(10rem, 32vw, 30rem);
+  font-size: clamp(8rem, 26vw, 24rem);
   font-weight: 700;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.02em;
   line-height: 0.8;
   pointer-events: none;
   user-select: none;
@@ -5366,7 +5372,7 @@ html.lenis body {
   font-size: clamp(1.9rem, 4.2vw, 3.4rem);
   font-weight: 600;
   line-height: 1.05;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.02em;
 }
 .core-tabs {
   display: flex;
@@ -5454,7 +5460,7 @@ html.lenis body {
   font-size: clamp(1.8rem, 3.6vw, 3rem);
   font-weight: 600;
   line-height: 1.02;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.02em;
 }
 .core-blurb {
   max-width: 30rem;
@@ -5805,7 +5811,7 @@ html.lenis body {
   font-size: clamp(6rem, 22vw, 14rem);
   font-weight: 700;
   line-height: 0.9;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.02em;
 }
 .err-code span {
   color: var(--primary);
@@ -5834,7 +5840,7 @@ html.lenis body {
   font-size: clamp(2rem, 5vw, 3.6rem);
   font-weight: 600;
   line-height: 1.05;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 .err-lead {
@@ -5853,7 +5859,7 @@ html.lenis body {
   background: #0f172a;
   padding: 0.7rem 1.1rem;
   color: #cbd5e1;
-  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.82rem;
   white-space: nowrap;
 }
@@ -6058,7 +6064,7 @@ html.lenis body {
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 12vw, 5rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 .art-bob {
   animation: art-bob 4.5s ease-in-out infinite;

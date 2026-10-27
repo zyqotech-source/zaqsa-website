@@ -32,13 +32,13 @@ function prefersReducedMotion() {
   );
 }
 
-/** Animated ZYQO wordmark: letters rise out of a mask, with a soft light sweep. */
+/** Animated ZAQSA wordmark: letters rise out of a mask, with a soft light sweep. */
 export function AnimatedWordmark({ className }: { className?: string }) {
   return (
     <span className={cn("zy-wordmark", className)} aria-hidden="true">
-      {"ZYQO".split("").map((char, index) => (
+      {"ZAQSA".split("").map((char, index) => (
         <span
-          key={char}
+          key={`${char}-${index}`}
           className="zy-letter"
           data-char={char}
           style={{ "--i": index } as CSSProperties}
@@ -83,12 +83,12 @@ export function TechBackdrop({ className }: { className?: string }) {
 }
 
 const TERMINAL_LINES = [
-  { kind: "cmd", text: "zyqo init --project your-idea" },
+  { kind: "cmd", text: "zaqsa init --project your-idea" },
   { kind: "ok", text: "Requirements analysed" },
   { kind: "ok", text: "Architecture & roadmap designed" },
-  { kind: "cmd", text: "zyqo build --web --mobile --ai" },
+  { kind: "cmd", text: "zaqsa build --web --mobile --ai" },
   { kind: "ok", text: "App · API · dashboard compiled" },
-  { kind: "cmd", text: "zyqo deploy --production" },
+  { kind: "cmd", text: "zaqsa deploy --production" },
   { kind: "live", text: "Live, monitored and supported" },
 ] as const;
 
@@ -135,13 +135,13 @@ export function CodeTerminal() {
       ref={ref}
       className="code-terminal"
       role="img"
-      aria-label="Animated ZYQO delivery pipeline"
+      aria-label="Animated ZAQSA delivery pipeline"
     >
       <div className="code-terminal-bar" aria-hidden="true">
         <span />
         <span />
         <span />
-        <em>zyqo — ship.sh</em>
+        <em>zaqsa — ship.sh</em>
       </div>
       <div className="code-terminal-body" aria-hidden="true">
         {TERMINAL_LINES.map((item, index) => {

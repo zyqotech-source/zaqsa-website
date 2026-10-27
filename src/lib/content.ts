@@ -13,7 +13,7 @@ import smallBusinessImg from "@/assets/industries/small-business.jpg";
 import technologyBusinessImg from "@/assets/industries/technology-business.jpg";
 
 export const COMPANY = {
-  name: "ZYQO",
+  name: "ZAQSA",
   founder: "Chinmay Anand",
   role: "Founder & Director",
   address: "Mahavir Enclave, New Delhi – 110045, India",
@@ -1034,7 +1034,7 @@ const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       },
       {
         q: "Do you only advise, or also execute?",
-        a: "Both. ZYQO pairs advisory with in-house technology delivery, so the strategy we recommend is one we can actually build and support.",
+        a: "Both. ZAQSA pairs advisory with in-house technology delivery, so the strategy we recommend is one we can actually build and support.",
       },
       {
         q: "What size of organisation do you work with?",
@@ -1415,7 +1415,7 @@ const toService = (g: Group, category: Service["category"]): Service => ({
   category,
   intro:
     INTROS[g.id] ??
-    `${g.blurb} ZYQO plans, builds and supports ${g.title.toLowerCase()} work end to end — starting with your goals and constraints, then delivering in focused, measurable releases.`,
+    `${g.blurb} ZAQSA plans, builds and supports ${g.title.toLowerCase()} work end to end — starting with your goals and constraints, then delivering in focused, measurable releases.`,
   outcomes: OUTCOMES[g.id] ?? DEFAULT_OUTCOMES,
   detail: SERVICE_DETAILS[g.id] ?? {
     who: `Teams and businesses that need ${g.title.toLowerCase()} done properly — shaped around how they work, supported after go-live.`,

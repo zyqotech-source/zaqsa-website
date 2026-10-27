@@ -61,7 +61,7 @@ export function TechnologyHero() {
             </ol>
             <div className="editor-code">
               <p className="ed-line ed-comment" style={vars({ "--i": 0 })}>
-                // ZYQO · Technology universe
+                // ZAQSA · Technology universe
               </p>
               <p className="ed-line" style={vars({ "--i": 1 })}>
                 <span className="ed-kw">export const</span> approach{" "}
@@ -275,7 +275,7 @@ export function LabHero() {
     <header className="hero hero-lab">
       <div className="container-z hero-2col">
         <div className="hero-2col-main lab-copy">
-          <Eyebrow>ZYQO Lab · Exploration in progress</Eyebrow>
+          <Eyebrow>ZAQSA Lab · Exploration in progress</Eyebrow>
           <h1 className="hero-title">
             Where ideas get
             <br />
@@ -310,7 +310,7 @@ export function AboutHero() {
       <TechBackdrop />
       <div className="container-z hero-portrait-grid">
         <div>
-          <Eyebrow>About ZYQO</Eyebrow>
+          <Eyebrow>About ZAQSA</Eyebrow>
           <h1 className="hero-title">
             Meet the
             <br />
@@ -318,8 +318,8 @@ export function AboutHero() {
           </h1>
           <p className="hero-lead">{COMPANY.support}</p>
           <blockquote className="portrait-quote">
-            “ZYQO begins with a simple belief: technology becomes meaningful when it solves
-            something real. I want ZYQO to grow beyond a single technology or a single industry —
+            “ZAQSA begins with a simple belief: technology becomes meaningful when it solves
+            something real. I want ZAQSA to grow beyond a single technology or a single industry —
             into a place where different ideas, disciplines and people can come together to build
             useful things.”
             <footer>
@@ -327,12 +327,14 @@ export function AboutHero() {
             </footer>
           </blockquote>
           <div className="mt-8">
-            <GlassButton to="/contact">Talk to ZYQO</GlassButton>
+            <GlassButton to="/contact">Talk to ZAQSA</GlassButton>
           </div>
         </div>
         <div className="founder-panel relative grid aspect-[4/4.6] w-full max-w-md place-items-center justify-self-center overflow-hidden border border-border lg:justify-self-end">
           <Scene3D kind="cluster" className="scene3d-panel" />
-          <span className="founder-panel-coordinate founder-coordinate-top">ZYQO / LEADERSHIP</span>
+          <span className="founder-panel-coordinate founder-coordinate-top">
+            ZAQSA / LEADERSHIP
+          </span>
           <div className="founder-monogram" aria-hidden="true">
             CA
           </div>
@@ -372,7 +374,7 @@ export function ContactHero() {
             <div className="chat-head">
               <span className="chat-avatar">ZQ</span>
               <span>
-                ZYQO team
+                ZAQSA team
                 <small>Start a conversation</small>
               </span>
             </div>

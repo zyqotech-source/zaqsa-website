@@ -8,8 +8,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/about")({
   head: () =>
     seo(
-      "About ZYQO — Meet Founder Chinmay Anand",
-      "ZYQO is a New Delhi technology and business solutions company founded by Chinmay Anand. Learn what we believe and where we're going.",
+      "About ZAQSA — Meet Founder Chinmay Anand",
+      "ZAQSA is a New Delhi technology and business solutions company founded by Chinmay Anand. Learn what we believe and where we're going.",
     ),
   component: Page,
 });
@@ -41,10 +41,10 @@ function Page() {
       <section className="py-20 sm:py-24" aria-labelledby="team-h">
         <div className="container-z">
           <Reveal>
-            <p className="eyebrow text-teal">The people behind ZYQO</p>
+            <p className="eyebrow text-teal">The people behind ZAQSA</p>
             <h2
               id="team-h"
-              className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-medium tracking-[-.05em]"
+              className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-medium tracking-[-.02em]"
             >
               Real engineers. Real conversations.
             </h2>
@@ -89,7 +89,7 @@ function Page() {
           </ul>
           <Reveal delay={220} className="mt-8">
             <GlassButton to="/contact" variant="ink">
-              Talk to ZYQO
+              Talk to ZAQSA
             </GlassButton>
           </Reveal>
         </div>

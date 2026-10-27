@@ -70,7 +70,7 @@ export function Explorer({ groups }: { groups: Group[] }) {
           <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-5">
             <div>
               <p className="eyebrow text-teal">Capability area</p>
-              <h3 className="mt-2 text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-.05em]">
+              <h3 className="mt-2 text-[clamp(2rem,4vw,3rem)] font-medium tracking-[-.02em]">
                 {group.title}
               </h3>
             </div>

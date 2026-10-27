@@ -8,8 +8,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/lab")({
   head: () =>
     seo(
-      "ZYQO Lab — Experiments & Future Exploration",
-      "Inside ZYQO Lab: AI experiments, software and IoT prototypes, and research into robotics, spatial computing and other emerging technologies.",
+      "ZAQSA Lab — Experiments & Future Exploration",
+      "Inside ZAQSA Lab: AI experiments, software and IoT prototypes, and research into robotics, spatial computing and other emerging technologies.",
     ),
   component: Page,
 });

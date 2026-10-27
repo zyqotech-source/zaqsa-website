@@ -14,7 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/site/Nav";
 import { SmoothScroll } from "@/components/site/SmoothScroll";
 import { Footer } from "@/components/site/Footer";
-import { AskZyqo } from "@/components/site/AskZyqo";
+import { AskZaqsa } from "@/components/site/AskZaqsa";
 import { ConnectionBanner, ErrorPage, NotFoundPage } from "@/components/site/ErrorPages";
 
 function NotFoundComponent() {
@@ -61,13 +61,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ZYQO — Business & Technology Consulting" },
+      { title: "ZAQSA — Business & Technology Consulting" },
       {
         name: "description",
         content:
           "Business intelligence, technology execution and measurable progress from one accountable team in New Delhi.",
       },
-      { name: "author", content: "ZYQO" },
+      { name: "author", content: "ZAQSA" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#f6f8ff" },
@@ -77,10 +77,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Hanken+Grotesk:wght@300..800&family=Geist+Mono:wght@400..600&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
     ],
     scripts: [
       {
@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "ZYQO",
+          name: "ZAQSA",
           email: "zyqotech@gmail.com",
           telephone: "+91 9570752983",
           founder: { "@type": "Person", name: "Chinmay Anand" },
@@ -143,7 +143,7 @@ function RootComponent() {
           <Outlet />
         </div>
         <Footer />
-        <AskZyqo />
+        <AskZaqsa />
         <ConnectionBanner />
       </div>
     </QueryClientProvider>

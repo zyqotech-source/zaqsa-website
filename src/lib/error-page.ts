@@ -5,7 +5,7 @@ export function renderErrorPage(): string {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>This page didn't load | ZYQO</title>
+    <title>This page didn't load | ZAQSA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <style>
@@ -25,7 +25,7 @@ export function renderErrorPage(): string {
   <body>
     <div class="card">
       <div class="badge" aria-hidden="true">!</div>
-      <div class="brand">ZYQO</div>
+      <div class="brand">ZAQSA</div>
       <h1>This page didn't load.</h1>
       <p>Something went wrong on our side, or your connection dropped. Please try again in a moment.</p>
       <div class="actions">

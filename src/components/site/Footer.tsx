@@ -29,7 +29,7 @@ export function Footer() {
 
         <div className="footer-grid">
           <div className="footer-brand-column">
-            <Link to="/" aria-label="ZYQO home">
+            <Link to="/" aria-label="ZAQSA home">
               <Logo />
             </Link>
             <p className="footer-brand-copy">
@@ -97,12 +97,12 @@ export function Footer() {
       </div>
 
       <div className="footer-wordmark-wrap" aria-hidden="true">
-        <span className="footer-wordmark">ZYQO</span>
+        <span className="footer-wordmark">ZAQSA</span>
       </div>
 
       <div className="container-z footer-bottom">
         <p>
-          © {new Date().getFullYear()} ZYQO. {COMPANY.support}
+          © {new Date().getFullYear()} ZAQSA. {COMPANY.support}
         </p>
         <div className="footer-bottom-links">
           <Link to="/privacy">Privacy</Link>

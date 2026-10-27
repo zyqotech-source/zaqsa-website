@@ -8,8 +8,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/solutions")({
   head: () =>
     seo(
-      "Solutions — Consulting, Civic Technology & Products | ZYQO",
-      "Technology and business consulting, neutral civic technology, the ZYQO customer journey and our upcoming product ecosystem.",
+      "Solutions — Consulting, Civic Technology & Products | ZAQSA",
+      "Technology and business consulting, neutral civic technology, the ZAQSA customer journey and our upcoming product ecosystem.",
     ),
   component: Page,
 });

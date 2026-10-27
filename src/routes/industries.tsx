@@ -8,8 +8,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/industries")({
   head: () =>
     seo(
-      "Industries — Agriculture to Technology | ZYQO",
-      "Industries ZYQO can explore and build for: agriculture, healthcare, education, finance, retail, logistics, manufacturing, real estate and more.",
+      "Industries — Agriculture to Technology | ZAQSA",
+      "Industries ZAQSA can explore and build for: agriculture, healthcare, education, finance, retail, logistics, manufacturing, real estate and more.",
     ),
   component: Page,
 });

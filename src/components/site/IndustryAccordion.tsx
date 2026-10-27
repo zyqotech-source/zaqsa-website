@@ -68,7 +68,7 @@ export function IndustryAccordion({
                   <figure className="group/img overflow-hidden border border-border">
                     <img
                       src={ind.image}
-                      alt={`${ind.name} — ZYQO industry perspective`}
+                      alt={`${ind.name} — ZAQSA industry perspective`}
                       width={1024}
                       height={768}
                       loading="lazy"

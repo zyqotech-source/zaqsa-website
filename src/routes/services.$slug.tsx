@@ -13,12 +13,12 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData)
       return {
-        meta: [{ title: "Service not found | ZYQO" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Service not found | ZAQSA" }, { name: "robots", content: "noindex" }],
       };
     const s = loaderData.service;
     return seo(
-      `${s.title} | ZYQO Services`,
-      `${s.blurb} ${s.items.slice(0, 5).join(", ")} and more from ZYQO, New Delhi.`,
+      `${s.title} | ZAQSA Services`,
+      `${s.blurb} ${s.items.slice(0, 5).join(", ")} and more from ZAQSA, New Delhi.`,
     );
   },
   notFoundComponent: ServiceNotFound,

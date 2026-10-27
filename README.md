@@ -1,6 +1,6 @@
-# ZYQO
+# ZAQSA
 
-ZYQO is a digital transformation consultancy website. The application is built with TanStack Start, React, TypeScript, Vite, and Nitro.
+ZAQSA is a digital transformation consultancy website. The application is built with TanStack Start, React, TypeScript, Vite, and Nitro.
 
 ## Local development
 

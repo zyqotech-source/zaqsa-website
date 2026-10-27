@@ -4,7 +4,7 @@ import { COMPANY } from "@/lib/content";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => seo("Privacy | ZYQO", "How ZYQO handles the information you share with us."),
+  head: () => seo("Privacy | ZAQSA", "How ZAQSA handles the information you share with us."),
   component: () => (
     <main>
       <PageHero

@@ -9,7 +9,7 @@ export function Logo() {
   return (
     <span className="brand-logo">
       <span aria-hidden className="brand-symbol" />
-      <span className="brand-name">ZYQO</span>
+      <span className="brand-name">ZAQSA</span>
     </span>
   );
 }
@@ -118,7 +118,7 @@ export function Nav() {
         )}
       >
         <span className="nav-progress" aria-hidden="true" />
-        <Link to="/" aria-label="ZYQO home" className="shrink-0" onClick={() => setOpen(false)}>
+        <Link to="/" aria-label="ZAQSA home" className="shrink-0" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
@@ -180,7 +180,7 @@ export function Nav() {
           id="mobile-navigation"
           className="site-mobile-panel fixed inset-x-3 top-[5.5rem] bottom-3 z-40 overflow-y-auto border border-border bg-background/95 p-5 shadow-2xl backdrop-blur-xl sm:inset-x-5 sm:p-7 xl:hidden"
         >
-          <p className="eyebrow mb-3 text-teal">Explore ZYQO</p>
+          <p className="eyebrow mb-3 text-teal">Explore ZAQSA</p>
           <ul className="flex flex-col">
             {NAV.map((item, index) => (
               <li key={item.to} className="border-b border-border/75 last:border-0">

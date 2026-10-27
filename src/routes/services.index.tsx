@@ -19,8 +19,8 @@ import { ServicesVisual } from "@/components/site/hero-visuals";
 export const Route = createFileRoute("/services/")({
   head: () =>
     seo(
-      "Services — Election Campaigns, School & Hospital Software, Websites, Apps & Social Media | ZYQO",
-      "Every ZYQO service in one place: election campaign management, school and hospital management software, websites and apps, small business solutions, social media, SEO, digital and performance marketing, creative production and events.",
+      "Services — Election Campaigns, School & Hospital Software, Websites, Apps & Social Media | ZAQSA",
+      "Every ZAQSA service in one place: election campaign management, school and hospital management software, websites and apps, small business solutions, social media, SEO, digital and performance marketing, creative production and events.",
     ),
   component: Page,
 });

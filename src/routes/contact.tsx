@@ -9,8 +9,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/contact")({
   head: () =>
     seo(
-      "Contact ZYQO — Start the Conversation",
-      "Tell ZYQO about the problem, idea or possibility you have in mind. Based in Mahavir Enclave, New Delhi.",
+      "Contact ZAQSA — Start the Conversation",
+      "Tell ZAQSA about the problem, idea or possibility you have in mind. Based in Mahavir Enclave, New Delhi.",
     ),
   component: Page,
 });

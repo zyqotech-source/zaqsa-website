@@ -8,8 +8,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/business")({
   head: () =>
     seo(
-      "Business Solutions — CRM, E-commerce, HR & Education | ZYQO",
-      "Business software by ZYQO: CRM, billing, inventory, e-commerce, HR, education management, digital marketing and workflow automation.",
+      "Business Solutions — CRM, E-commerce, HR & Education | ZAQSA",
+      "Business software by ZAQSA: CRM, billing, inventory, e-commerce, HR, education management, digital marketing and workflow automation.",
     ),
   component: Page,
 });
