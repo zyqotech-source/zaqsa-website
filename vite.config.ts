@@ -7,7 +7,22 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  nitro: { preset: process.env.VERCEL ? "vercel" : "node-server" },
+  nitro: {
+    preset: process.env.VERCEL ? "vercel" : "node-server",
+    // Baseline security headers for every response, pages and static assets alike.
+    routeRules: {
+      "/**": {
+        headers: {
+          "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "SAMEORIGIN",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
+          "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+          "Cross-Origin-Opener-Policy": "same-origin",
+        },
+      },
+    },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
