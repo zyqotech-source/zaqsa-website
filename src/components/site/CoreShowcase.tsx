@@ -48,8 +48,9 @@ const VISUALS: Record<string, ReactNode> = {
 };
 
 /**
- * Pinned scroll showcase for the core services. The heading stays in place
- * while each service card slides up over the previous one as the visitor scrolls.
+ * Pinned scroll showcase for the core services. The section pins in place, one service
+ * is shown at a time and the next slides in from the side as the visitor scrolls, while a
+ * thin rail on the left fills to show progress.
  * Without motion (or before hydration) the cards simply stack as a normal list.
  */
 export function CoreShowcase() {
@@ -67,7 +68,8 @@ export function CoreShowcase() {
       const setActive = (index: number) =>
         tabs.forEach((tab, i) => tab.classList.toggle("is-active", i === index));
       setActive(0);
-      gsap.set(cards.slice(1), { yPercent: 118 });
+      const fill = section.querySelector<HTMLElement>(".core-rail-fill");
+      gsap.set(cards.slice(1), { xPercent: 105, opacity: 0 });
 
       const timeline = gsap.timeline({
         defaults: { ease: "power2.inOut" },
@@ -78,15 +80,17 @@ export function CoreShowcase() {
           pin: true,
           scrub: 0.7,
           anticipatePin: 1,
-          onUpdate: (self) =>
-            setActive(Math.min(cards.length - 1, Math.round(self.progress * (cards.length - 1)))),
+          onUpdate: (self) => {
+            setActive(Math.min(cards.length - 1, Math.round(self.progress * (cards.length - 1))));
+            if (fill) fill.style.transform = `scaleY(${self.progress})`;
+          },
         },
       });
       cards.forEach((card, index) => {
         if (index === 0) return;
         const previous = cards[index - 1]!;
-        timeline.to(previous, { scale: 0.94, opacity: 0.3, yPercent: -4, duration: 1 }, index - 1);
-        timeline.to(card, { yPercent: 0, duration: 1 }, index - 1);
+        timeline.to(previous, { xPercent: -28, opacity: 0, duration: 1 }, index - 1);
+        timeline.to(card, { xPercent: 0, opacity: 1, duration: 1 }, index - 1);
       });
       timeline.to({}, { duration: 0.35 });
     }, section);
@@ -116,6 +120,9 @@ export function CoreShowcase() {
           </header>
 
           <div className="core-stage">
+            <span className="core-rail" aria-hidden="true">
+              <span className="core-rail-fill" />
+            </span>
             {CORE_SERVICES.map((service) => {
               const Icon = ICONS[service.id];
               return (
