@@ -1,10 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZAQSA">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4f46e5" />
-      <stop offset="1" stop-color="#06b6d4" />
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="url(#g)" />
-  <path d="M18 19h28v6.5L27.5 45H46v7H18v-6.5L36.5 26H18z" fill="#fff" />
+  <rect width="64" height="64" rx="14" fill="#14243e" />
+  <rect x="14.00" y="15.00" width="35.98" height="9.69" fill="#fff" />
+  <rect x="14.00" y="38.53" width="35.98" height="9.69" fill="#fff" />
+  <polygon points="14.00,36.45 34.76,26.76 49.98,26.76 29.22,36.45" fill="#22d3ee" />
 </svg>

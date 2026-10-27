@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { cn } from "@/lib/utils";
+import { LogoMark } from "@/components/site/LogoMark";
 
 function useInView<T extends HTMLElement>(threshold = 0.3) {
   const ref = useRef<T>(null);
@@ -36,6 +37,7 @@ function prefersReducedMotion() {
 export function AnimatedWordmark({ className }: { className?: string }) {
   return (
     <span className={cn("zy-wordmark", className)} aria-hidden="true">
+      <LogoMark className="zy-mark" />
       {"ZAQSA".split("").map((char, index) => (
         <span
           key={`${char}-${index}`}

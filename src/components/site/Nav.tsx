@@ -4,11 +4,12 @@ import { Menu, X } from "lucide-react";
 import { NAV } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { smooth } from "@/lib/motion";
+import { LogoMark } from "@/components/site/LogoMark";
 
 export function Logo() {
   return (
     <span className="brand-logo">
-      <span aria-hidden className="brand-symbol" />
+      <LogoMark className="brand-mark" />
       <span className="brand-name">ZAQSA</span>
     </span>
   );

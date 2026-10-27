@@ -6492,3 +6492,81 @@ html.lenis body {
     aspect-ratio: 21 / 9;
   }
 }
+
+/* ==========================================================================
+   ZAQSA identity: the "Fold" mark with a tracked, calm sans wordmark
+   ========================================================================== */
+.brand-logo {
+  gap: 0.7rem;
+}
+.brand-mark {
+  display: block;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: none;
+}
+.logo-fold {
+  transform-box: fill-box;
+  transition: transform 0.4s var(--ease-out);
+}
+.brand-logo:hover .logo-fold {
+  transform: translateX(2.5px);
+}
+.brand-name {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--secondary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  animation: none;
+}
+.site-nav .brand-name {
+  max-width: 8rem;
+}
+
+/* Hero wordmark: mark + tracked letters, all in one calm colour */
+.zy-wordmark {
+  align-items: center;
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+.zy-wordmark.home-wordmark {
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  letter-spacing: 0.14em;
+}
+.zy-mark {
+  display: block;
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.38em;
+  flex: none;
+  animation: zy-rise 0.9s 0.1s var(--ease-out) both;
+}
+.zy-letter:nth-child(n) {
+  color: var(--secondary);
+}
+
+/* Large background wordmarks follow the same face */
+.footer-wordmark {
+  font-family: var(--font-sans);
+  font-size: clamp(5rem, 20vw, 17rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.cta-wordmark {
+  font-family: var(--font-sans);
+  font-size: clamp(7rem, 22vw, 20rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zy-mark,
+  .logo-fold {
+    animation: none;
+    transition: none;
+  }
+}
