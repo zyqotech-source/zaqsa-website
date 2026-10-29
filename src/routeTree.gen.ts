@@ -20,7 +20,6 @@ import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
-import { Route as ApiContactRouteImport } from './routes/api.contact'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
@@ -79,11 +78,6 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiContactRoute = ApiContactRouteImport.update({
-  id: '/api/contact',
-  path: '/api/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -107,7 +101,6 @@ export interface FileRoutesByFullPath {
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/api/contact': typeof ApiContactRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -123,7 +116,6 @@ export interface FileRoutesByTo {
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/api/contact': typeof ApiContactRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -140,7 +132,6 @@ export interface FileRoutesById {
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/api/contact': typeof ApiContactRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -158,7 +149,6 @@ export interface FileRouteTypes {
     | '/technology'
     | '/terms'
     | '/thank-you'
-    | '/api/contact'
     | '/services/$slug'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -174,7 +164,6 @@ export interface FileRouteTypes {
     | '/technology'
     | '/terms'
     | '/thank-you'
-    | '/api/contact'
     | '/services/$slug'
     | '/services'
   id:
@@ -190,7 +179,6 @@ export interface FileRouteTypes {
     | '/technology'
     | '/terms'
     | '/thank-you'
-    | '/api/contact'
     | '/services/$slug'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -207,7 +195,6 @@ export interface RootRouteChildren {
   TechnologyRoute: typeof TechnologyRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
-  ApiContactRoute: typeof ApiContactRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -291,13 +278,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/contact': {
-      id: '/api/contact'
-      path: '/api/contact'
-      fullPath: '/api/contact'
-      preLoaderRoute: typeof ApiContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -327,7 +307,6 @@ const rootRouteChildren: RootRouteChildren = {
   TechnologyRoute: TechnologyRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
-  ApiContactRoute: ApiContactRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
