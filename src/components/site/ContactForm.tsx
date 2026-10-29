@@ -1,25 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { z } from "zod";
 import { COMPANY, INDUSTRIES, NEEDS } from "@/lib/content";
+import { contactSchema as schema } from "@/lib/contact-schema";
 
 /** Session key the thank-you page reads, so no personal details travel in the address. */
 export const THANK_YOU_KEY = "zaqsa-thank-you";
-
-const schema = z.object({
-  name: z.string().trim().min(2, "Please enter your name").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  phone: z
-    .string()
-    .trim()
-    .max(20)
-    .regex(/^[+\d\s()-]*$/, "Use digits only")
-    .optional(),
-  company: z.string().trim().max(120).optional(),
-  need: z.string().min(1, "Choose what you need").default(""),
-  industry: z.string().optional(),
-  message: z.string().trim().min(10, "Tell us a little more (10+ characters)").max(2000),
-});
 
 function FieldError({ field, message }: { field: string; message: string | undefined }) {
   if (!message) return null;
@@ -28,6 +13,21 @@ function FieldError({ field, message }: { field: string; message: string | undef
       {message}
     </p>
   );
+}
+
+/** Sends JSON to one endpoint and reports whether it was accepted. Never throws. */
+async function post(url: string, body: unknown) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(body),
+    });
+    const reply = (await response.json().catch(() => ({}))) as { success?: unknown };
+    return response.ok && String(reply.success) !== "false";
+  } catch {
+    return false;
+  }
 }
 
 export function ContactForm() {
@@ -70,24 +70,26 @@ export function ContactForm() {
     }
     setStatus("sending");
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${COMPANY.email}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
+      const payload = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone ?? "",
+        company: values.company ?? "",
+        need: values.need,
+        industry: values.industry ?? "",
+        message: values.message,
+      };
+      // Our own server route first. If it is not set up or is down, a hosted form service
+      // is tried before the visitor is asked to use their email app.
+      const delivered =
+        (await post("/api/contact", payload)) ||
+        (await post(`https://formsubmit.co/ajax/${COMPANY.email}`, {
+          ...payload,
           _subject: subject,
           _template: "table",
           _captcha: "false",
-          name: values.name,
-          email: values.email,
-          phone: values.phone ?? "",
-          company: values.company ?? "",
-          need: values.need,
-          industry: values.industry ?? "",
-          message: values.message,
-        }),
-      });
-      const reply = (await response.json().catch(() => ({}))) as { success?: unknown };
-      if (!response.ok || String(reply.success) === "false") throw new Error("Delivery failed");
+        }));
+      if (!delivered) throw new Error("Delivery failed");
     } catch {
       // Network or service problem: keep what they typed and offer the email app instead.
       setStatus("failed");

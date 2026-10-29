@@ -92,7 +92,7 @@ Fonts: Fraunces, Hanken Grotesk, Geist Mono.
 
 ## Notes
 
-- Consultation requests are emailed straight to the address in `COMPANY.email` (`src/lib/content.ts`) through FormSubmit, a free form-delivery service. **First-time setup:** after the site is live, send one test request. FormSubmit emails a confirmation link to that inbox; click it once and every later request is delivered. If sending ever fails, the visitor is offered their email app instead.
+- Consultation requests are emailed to `COMPANY.email` by our own server route (`src/routes/api.contact.ts`) through Resend. **Setup:** create a free Resend account, make an API key, and add it in Vercel under *Settings > Environment Variables* as `RESEND_API_KEY`. Optional: `CONTACT_TO` (where requests go) and `CONTACT_FROM` (a sender on your verified domain). Until the key is added, the form falls back to FormSubmit and then to the visitor's email app, so nothing is lost.
 - Team and service photos are stock images. Replace them with your own whenever you have them.
 
 ---
