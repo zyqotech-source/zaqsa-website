@@ -25,6 +25,7 @@ import {
   WebAppVisual,
 } from "@/components/site/CoreVisuals";
 import { LineReveal } from "@/components/site/Split";
+import { Photo } from "@/components/site/Photo";
 
 const ICONS = {
   "election-campaign": Vote,
@@ -246,7 +247,14 @@ export function CoreShowcase() {
                     aria-label={`Open ${service.label}`}
                     tabIndex={-1}
                   >
-                    {VISUALS[service.id]}
+                    <span className="core-scene">
+                      <Photo
+                        slot={`service-photo-${service.id}`}
+                        className="core-photo"
+                        settle={false}
+                      />
+                      <span className="core-float">{VISUALS[service.id]}</span>
+                    </span>
                   </Link>
                 </article>
               );

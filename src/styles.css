@@ -6974,3 +6974,53 @@ a.core-visual:hover {
   gap: 0.5rem;
   white-space: nowrap;
 }
+
+/* Real photo behind each service, with the product preview floating over it */
+.core-scene {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 31rem;
+  margin-inline: auto;
+  aspect-ratio: 5 / 4;
+}
+.core-scene .core-photo {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.4rem;
+  box-shadow: 0 30px 60px -36px rgba(22, 38, 64, 0.55);
+}
+.core-scene .core-photo::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(30, 27, 75, 0) 45%, rgba(30, 27, 75, 0.35));
+  content: "";
+}
+.core-float {
+  position: absolute;
+  right: -0.6rem;
+  bottom: -0.2rem;
+  display: block;
+  width: 72%;
+  transition: transform 0.5s ease;
+}
+.core-float .cv {
+  max-width: none;
+  box-shadow: 0 30px 60px -22px rgba(22, 38, 64, 0.6);
+}
+a.core-visual:hover .core-float {
+  transform: translateY(-6px);
+}
+@media (max-width: 899px) {
+  .core-scene {
+    height: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+  }
+  .core-scene .core-photo {
+    border-radius: 1rem;
+  }
+  .core-float {
+    display: none;
+  }
+}
