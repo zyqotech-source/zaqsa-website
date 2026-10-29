@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
+import type { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowUpRight,
   Bot,
@@ -12,7 +13,7 @@ import {
   Vote,
 } from "lucide-react";
 import { CORE_SERVICES } from "@/lib/content";
-import { getGsap, prefersReducedMotion } from "@/lib/motion";
+import { getGsap, prefersReducedMotion, smooth } from "@/lib/motion";
 import {
   AutomationVisual,
   DesignVisual,
@@ -55,6 +56,24 @@ const VISUALS: Record<string, ReactNode> = {
  */
 export function CoreShowcase() {
   const root = useRef<HTMLElement>(null);
+  const scene = useRef<{ trigger: ScrollTrigger; total: number } | null>(null);
+
+  /** Jumps to one service: scrolls to its spot in the pinned scene, or to the card when not pinned. */
+  const goTo = (index: number) => {
+    const section = root.current;
+    if (!section) return;
+    const pinned = scene.current;
+    if (!pinned) {
+      section
+        .querySelectorAll<HTMLElement>(".core-card")
+        [index]?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    const { start, end } = pinned.trigger;
+    const top = start + (end - start) * (index / pinned.total);
+    if (smooth.lenis) smooth.lenis.scrollTo(top, { duration: 1.2 });
+    else window.scrollTo({ top, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const section = root.current;
@@ -65,8 +84,29 @@ export function CoreShowcase() {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>(".core-card", section);
       const tabs = gsap.utils.toArray<HTMLElement>(".core-tab", section);
-      const setActive = (index: number) =>
-        tabs.forEach((tab, i) => tab.classList.toggle("is-active", i === index));
+      const dots = gsap.utils.toArray<HTMLElement>(".core-dot", section);
+      const strip = section.querySelector<HTMLElement>(".core-tabs");
+      let current = -1;
+      const setActive = (index: number) => {
+        if (index === current) return;
+        current = index;
+        tabs.forEach((tab, i) => {
+          tab.classList.toggle("is-active", i === index);
+          if (i === index) tab.setAttribute("aria-current", "true");
+          else tab.removeAttribute("aria-current");
+        });
+        dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+        // Only the visible card takes clicks, the others wait off to the side.
+        cards.forEach((card, i) => card.classList.toggle("is-current", i === index));
+        // Keep the active tab in view inside the strip without moving the page.
+        const tab = tabs[index];
+        if (strip && tab) {
+          strip.scrollTo({
+            left: tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2,
+            behavior: "smooth",
+          });
+        }
+      };
       setActive(0);
       const fill = section.querySelector<HTMLElement>(".core-rail-fill");
       // Each card has two halves, text and visual. Upcoming cards wait below with the
@@ -76,22 +116,32 @@ export function CoreShowcase() {
         visual: card.querySelector<HTMLElement>(".core-visual"),
       }));
       halves.slice(1).forEach(({ copy, visual }) => {
-        gsap.set(visual, { xPercent: 80, yPercent: 100, opacity: 0 });
+        gsap.set(visual, { xPercent: 80, yPercent: 100, opacity: 0, scale: 0.92 });
         gsap.set(copy, { xPercent: -80, yPercent: 100, opacity: 0 });
       });
 
+      const total = cards.length - 1 + 0.35;
       const timeline = gsap.timeline({
-        defaults: { ease: "power2.inOut" },
+        defaults: { ease: "power3.inOut" },
         scrollTrigger: {
           trigger: section.querySelector(".core-pin"),
           start: "top top",
           end: `+=${cards.length * 80}%`,
           pin: true,
-          scrub: 0.7,
+          scrub: 0.8,
           anticipatePin: 1,
+          // Settle on a whole service when the visitor stops scrolling.
+          snap: {
+            snapTo: (value: number) =>
+              Math.min(cards.length - 1, Math.round(value * total)) / total,
+            duration: { min: 0.25, max: 0.7 },
+            delay: 0.12,
+            ease: "power2.out",
+          },
           onUpdate: (self) => {
-            setActive(Math.min(cards.length - 1, Math.round(self.progress * (cards.length - 1))));
-            if (fill) fill.style.transform = `scaleY(${self.progress})`;
+            setActive(Math.min(cards.length - 1, Math.round(self.progress * total)));
+            if (fill)
+              fill.style.transform = `scaleY(${Math.min(1, self.progress * (total / (cards.length - 1)))})`;
           },
         },
       });
@@ -100,16 +150,26 @@ export function CoreShowcase() {
         const before = halves[index - 1]!;
         const now = halves[index]!;
         // Leaving card: visual slides left, text slides right, both fade out.
-        timeline.to(before.visual, { xPercent: -80, opacity: 0, duration: 1 }, index - 1);
+        timeline.to(
+          before.visual,
+          { xPercent: -80, opacity: 0, scale: 0.92, duration: 1 },
+          index - 1,
+        );
         timeline.to(before.copy, { xPercent: 80, opacity: 0, duration: 1 }, index - 1);
         // Arriving card: visual from the right, text from the left, both rising into place.
-        timeline.to(now.visual, { xPercent: 0, yPercent: 0, opacity: 1, duration: 1 }, index - 1);
+        timeline.to(
+          now.visual,
+          { xPercent: 0, yPercent: 0, opacity: 1, scale: 1, duration: 1 },
+          index - 1,
+        );
         timeline.to(now.copy, { xPercent: 0, yPercent: 0, opacity: 1, duration: 1 }, index - 1);
       });
       timeline.to({}, { duration: 0.35 });
+      if (timeline.scrollTrigger) scene.current = { trigger: timeline.scrollTrigger, total };
     }, section);
 
     return () => {
+      scene.current = null;
       ctx.revert();
       section.classList.remove("core-pinned");
     };
@@ -124,18 +184,34 @@ export function CoreShowcase() {
             <h2 id="core-h">
               <LineReveal lines={["Multiple services,", "one accountable team."]} />
             </h2>
-            <ol className="core-tabs" aria-hidden="true">
-              {CORE_SERVICES.map((service) => (
-                <li key={service.id} className="core-tab">
+            <nav className="core-tabs" aria-label="Choose a service">
+              {CORE_SERVICES.map((service, index) => (
+                <button
+                  key={service.id}
+                  type="button"
+                  className="core-tab"
+                  onClick={() => goTo(index)}
+                >
                   {service.label}
-                </li>
+                </button>
               ))}
-            </ol>
+            </nav>
           </header>
 
           <div className="core-stage">
             <span className="core-rail" aria-hidden="true">
               <span className="core-rail-fill" />
+            </span>
+            <span className="core-dots">
+              {CORE_SERVICES.map((service, index) => (
+                <button
+                  key={service.id}
+                  type="button"
+                  className="core-dot"
+                  aria-label={`Show ${service.label}`}
+                  onClick={() => goTo(index)}
+                />
+              ))}
             </span>
             {CORE_SERVICES.map((service) => {
               const Icon = ICONS[service.id];
@@ -163,7 +239,15 @@ export function CoreShowcase() {
                       Explore {service.label.toLowerCase()} <ArrowUpRight size={16} />
                     </Link>
                   </div>
-                  <div className="core-visual">{VISUALS[service.id]}</div>
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: service.id }}
+                    className="core-visual"
+                    aria-label={`Open ${service.label}`}
+                    tabIndex={-1}
+                  >
+                    {VISUALS[service.id]}
+                  </Link>
                 </article>
               );
             })}

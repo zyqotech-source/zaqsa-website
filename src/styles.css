@@ -6711,3 +6711,74 @@ html.lenis body {
 .core-visual {
   will-change: transform, opacity;
 }
+
+/* Clickable showcase: tabs and rail dots jump between services, the visual opens the page */
+button.core-tab {
+  cursor: pointer;
+  font-family: inherit;
+}
+button.core-tab:hover:not(.is-active) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+button.core-tab:focus-visible,
+.core-dot:focus-visible,
+a.core-visual:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.core-dots {
+  display: none;
+}
+.core-pinned .core-dots {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 9px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.core-dot {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #c7d2fe;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+.core-dot:hover {
+  transform: scale(1.25);
+  border-color: var(--primary);
+}
+.core-dot.is-active {
+  transform: scale(1.2);
+  border-color: var(--primary);
+  background: var(--primary);
+}
+a.core-visual {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+a.core-visual:hover {
+  filter: saturate(1.15) brightness(1.02);
+}
+.core-pinned .core-card {
+  pointer-events: none;
+}
+.core-pinned .core-card.is-current {
+  pointer-events: auto;
+}
+.core-pinned .core-card:not(.is-current) a,
+.core-pinned .core-card:not(.is-current) button {
+  visibility: hidden;
+}
