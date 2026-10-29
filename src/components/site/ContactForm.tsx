@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
-import { COMPANY, INDUSTRIES, NEEDS } from "@/lib/content";
+import { COMPANY, CONTACT_NEEDS, INDUSTRIES, NEED_EVENT } from "@/lib/content";
 
 /** Session key the thank-you page reads, so no personal details travel in the address. */
 export const THANK_YOU_KEY = "zaqsa-thank-you";
@@ -35,6 +35,20 @@ export function ContactForm() {
   const [fallback, setFallback] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "failed">("idle");
   const navigate = useNavigate();
+  const needField = useRef<HTMLSelectElement>(null);
+
+  // A quick pick elsewhere on the page fills in the choice and moves focus to the form.
+  useEffect(() => {
+    const onPick = (event: Event) => {
+      const need = (event as CustomEvent<string>).detail;
+      if (needField.current && CONTACT_NEEDS.some((item) => item === need)) {
+        needField.current.value = need;
+        setErrors((current) => ({ ...current, need: "" }));
+      }
+    };
+    window.addEventListener(NEED_EVENT, onPick);
+    return () => window.removeEventListener(NEED_EVENT, onPick);
+  }, []);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -113,6 +127,7 @@ export function ContactForm() {
 
   return (
     <form
+      id="contact-form"
       onSubmit={onSubmit}
       noValidate
       className="contact-form glass grid gap-x-5 gap-y-4 sm:grid-cols-2"
@@ -197,6 +212,7 @@ export function ContactForm() {
         </span>
         <select
           id="contact-need"
+          ref={needField}
           name="need"
           defaultValue=""
           required
@@ -206,7 +222,7 @@ export function ContactForm() {
           <option value="" disabled>
             Choose one
           </option>
-          {NEEDS.map((need) => (
+          {CONTACT_NEEDS.map((need) => (
             <option key={need}>{need}</option>
           ))}
         </select>

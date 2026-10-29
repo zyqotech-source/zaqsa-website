@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Reveal } from "@/components/site/primitives";
-import { COMPANY } from "@/lib/content";
+import { Check } from "lucide-react";
 import { Photo } from "@/components/site/Photo";
 import { ContactHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
@@ -15,45 +15,56 @@ export const Route = createFileRoute("/contact")({
   component: Page,
 });
 
+const NEXT = [
+  ["Tell us what you need", "Fill the short form. The more you share, the better the first call."],
+  [
+    "We read it carefully",
+    "Someone from the team reads your request. No ticket numbers, no scripts.",
+  ],
+  ["We get back to you", "A reply by email or phone to fix a time for your consultation."],
+] as const;
+
 function Page() {
   return (
     <main>
       <ContactHero />
-      <section className="pb-28">
-        <div className="container-z grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.7fr)]">
-          <Reveal className="contact-form-reveal">
-            <ContactForm />
-          </Reveal>
-          <Reveal delay={140}>
-            <aside className="min-w-0 space-y-6">
+      <section className="cx-body">
+        <div className="container-z grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start">
+          <Reveal>
+            <aside className="cx-side">
+              <p className="eyebrow text-primary">What happens next</p>
+              <ol className="cx-steps">
+                {NEXT.map(([title, text], index) => (
+                  <li key={title}>
+                    <span className="cx-step-no">{index + 1}</span>
+                    <span>
+                      <strong>{title}</strong>
+                      {text}
+                    </span>
+                  </li>
+                ))}
+              </ol>
               <div className="contact-photo">
                 <Photo slot="contact-team" ratio="4 / 3" />
               </div>
-              <div className="glass rounded-3xl p-7">
-                <p className="eyebrow text-primary">Direct</p>
-                <p className="mt-4 text-lg">{COMPANY.founder}</p>
-                <p className="text-sm text-muted-foreground">{COMPANY.role}</p>
-                <div className="mt-6 space-y-3 text-sm">
-                  <p>
-                    <a
-                      className="hover:text-primary"
-                      href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
-                    >
-                      {COMPANY.phone}
-                    </a>
-                  </p>
-                  <p className="break-all">
-                    <a className="hover:text-primary" href={`mailto:${COMPANY.email}`}>
-                      {COMPANY.email}
-                    </a>
-                  </p>
-                  <p className="text-muted-foreground">{COMPANY.address}</p>
-                </div>
-              </div>
+              <ul className="cx-promises">
+                <li>
+                  <Check size={16} /> Free first consultation
+                </li>
+                <li>
+                  <Check size={16} /> Plain language, no jargon
+                </li>
+                <li>
+                  <Check size={16} /> Your details are used only to reply
+                </li>
+              </ul>
               <p className="font-hand text-3xl text-primary">
                 Every good thing starts as a conversation.
               </p>
             </aside>
+          </Reveal>
+          <Reveal delay={120} className="contact-form-reveal">
+            <ContactForm />
           </Reveal>
         </div>
       </section>

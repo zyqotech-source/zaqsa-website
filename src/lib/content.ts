@@ -1642,6 +1642,16 @@ export const INDUSTRIES: Industry[] = [
   },
 ];
 
+/** Choices in the contact form: the core services first, then the catch-all. */
+export const CONTACT_NEEDS = [
+  ...CORE_SERVICES.map((service) => service.label),
+  "Marketing & media",
+  "Something completely new",
+] as const;
+
+/** Lets other parts of the contact page fill in the form's "what do you need" choice. */
+export const NEED_EVENT = "zaqsa:need";
+
 export const NEEDS = [
   "Website",
   "Mobile App",

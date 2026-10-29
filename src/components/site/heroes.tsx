@@ -1,6 +1,9 @@
 import type { CSSProperties, ReactNode } from "react";
 import {
   Briefcase,
+  Mail,
+  MapPin,
+  Phone,
   Building2,
   Cpu,
   Factory,
@@ -18,7 +21,17 @@ import {
   UserPlus,
   Wheat,
 } from "lucide-react";
-import { COMPANY, INDUSTRIES, JOURNEY_STEPS, LAB, TECHNOLOGY } from "@/lib/content";
+import {
+  COMPANY,
+  CORE_SERVICES,
+  INDUSTRIES,
+  JOURNEY_STEPS,
+  LAB,
+  NEED_EVENT,
+  TEAM,
+  TECHNOLOGY,
+} from "@/lib/content";
+import { smooth } from "@/lib/motion";
 import { GlassButton } from "@/components/site/primitives";
 import { FounderDeck } from "@/components/site/FounderDeck";
 import { TechBackdrop } from "@/components/site/motion";
@@ -339,44 +352,101 @@ export function AboutHero() {
 
 /* -------------------------------------------------------------------- Contact */
 export function ContactHero() {
+  const pick = (label: string) => {
+    window.dispatchEvent(new CustomEvent(NEED_EVENT, { detail: label }));
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+    if (smooth.lenis) smooth.lenis.scrollTo(form, { offset: -110 });
+    else form.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(
+      () => document.getElementById("contact-name")?.focus({ preventScroll: true }),
+      700,
+    );
+  };
+  const founders = TEAM.filter((person) => person.group === "founder");
+
   return (
-    <header className="hero hero-chat">
+    <header className="hero cx-hero">
       <TechBackdrop />
-      <div className="container-z hero-2col">
-        <div className="hero-2col-main hero-center-copy">
-          <Eyebrow>Contact</Eyebrow>
-          <h1 className="hero-title">
-            What are you thinking
-            <br />
-            <em>of building?</em>
-          </h1>
-          <p className="hero-lead">
-            Tell us about the problem, idea or possibility you have in mind.
+      <div className="container-z cx-grid">
+        <div className="cx-copy">
+          <p className="cx-live">
+            <i aria-hidden="true" />
+            We reply by email or phone
           </p>
-          <div className="chat-window" aria-hidden="true">
-            <div className="chat-head">
-              <span className="chat-avatar">ZQ</span>
-              <span>
-                ZAQSA team
-                <small>Start a conversation</small>
+          <h1 className="cx-title">
+            What are you thinking <em>of building?</em>
+          </h1>
+          <p className="cx-lead">
+            Tell us about the problem, idea or possibility you have in mind. Pick what fits best and
+            we will take it from there.
+          </p>
+          <p className="cx-pick-label">I need help with</p>
+          <ul className="cx-picks">
+            {CORE_SERVICES.map((service) => (
+              <li key={service.id}>
+                <button type="button" onClick={() => pick(service.label)}>
+                  {service.label}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button type="button" onClick={() => pick("Something completely new")}>
+                Something else
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <aside className="cx-card" aria-label="Contact details">
+          <p className="eyebrow text-primary">Talk to us directly</p>
+          <ul className="cx-lines">
+            <li>
+              <span className="cx-icon">
+                <Phone size={18} />
               </span>
-            </div>
-            <div className="chat-body">
-              <p className="chat-msg chat-you chat-1">I have an idea for an app…</p>
-              <p className="chat-msg chat-us chat-2">Tell us more. What problem does it solve?</p>
-              <p className="chat-msg chat-you chat-3">It needs AI and a simple dashboard.</p>
-              <p className="chat-msg chat-typing">
-                <i />
-                <i />
-                <i />
-              </p>
-              <p className="chat-msg chat-us chat-4">Great. Share the details below.</p>
-            </div>
+              <span>
+                <small>Phone</small>
+                <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}>{COMPANY.phone}</a>
+              </span>
+            </li>
+            <li>
+              <span className="cx-icon">
+                <Mail size={18} />
+              </span>
+              <span>
+                <small>Email</small>
+                <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+              </span>
+            </li>
+            <li>
+              <span className="cx-icon">
+                <MapPin size={18} />
+              </span>
+              <span>
+                <small>Office</small>
+                {COMPANY.address}
+              </span>
+            </li>
+          </ul>
+          <div className="cx-people">
+            <span className="cx-avatars" aria-hidden="true">
+              {founders.map((person) => (
+                <b key={person.slot}>
+                  {person.name
+                    .split(" ")
+                    .map((part) => part[0])
+                    .slice(0, 2)
+                    .join("")}
+                </b>
+              ))}
+            </span>
+            <span>
+              You will talk to the people who build it
+              <small>{founders.map((person) => person.name).join(" & ")}</small>
+            </span>
           </div>
-        </div>
-        <div className="hero-3d">
-          <Scene3D kind="wave" />
-        </div>
+        </aside>
       </div>
     </header>
   );
