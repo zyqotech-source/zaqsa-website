@@ -92,7 +92,7 @@ Fonts: Fraunces, Hanken Grotesk, Geist Mono.
 
 ## Notes
 
-- The contact form opens the visitor's email app with the message filled in. It does not store or send anything from a server. A hosted form service can be added later if you want enquiries delivered directly.
+- Consultation requests are emailed straight to the address in `COMPANY.email` (`src/lib/content.ts`) through FormSubmit, a free form-delivery service. **First-time setup:** after the site is live, send one test request. FormSubmit emails a confirmation link to that inbox; click it once and every later request is delivered. If sending ever fails, the visitor is offered their email app instead.
 - Team and service photos are stock images. Replace them with your own whenever you have them.
 
 ---

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/thank-you")({
   head: () => ({
     meta: [
       { title: "Thank you | ZAQSA" },
-      { name: "description", content: "Your consultation request is on its way to ZAQSA." },
+      { name: "description", content: "Your consultation request has reached ZAQSA." },
       // A confirmation page is not something people should land on from search.
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -20,8 +20,8 @@ export const Route = createFileRoute("/thank-you")({
 const STEPS = [
   {
     Icon: Mail,
-    title: "Send the email",
-    text: "Your email app opened with your message ready. Press Send if you have not yet.",
+    title: "Request received",
+    text: "Your request has reached our team. A copy of what you wrote is with us.",
   },
   {
     Icon: MessageSquareText,
@@ -70,11 +70,10 @@ function Page() {
         <p className="thanks-lead">
           {details?.need ? (
             <>
-              Your request about <strong>{details.need.toLowerCase()}</strong> is ready to go.{" "}
+              Your request about <strong>{details.need.toLowerCase()}</strong> has reached us.{" "}
             </>
           ) : null}
-          Press <strong>Send</strong> in your email app and it reaches our team. We will come back
-          to you to set up your consultation.
+          We will come back to you by email or phone to set up your consultation.
         </p>
 
         <ol className="thanks-steps">
@@ -99,7 +98,7 @@ function Page() {
         </div>
 
         <p className="thanks-note">
-          Email app did not open? Write to <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>{" "}
+          Want to reach us sooner? Write to <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>{" "}
           or call <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}>{COMPANY.phone}</a>.
         </p>
       </div>

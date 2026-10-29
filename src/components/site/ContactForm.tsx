@@ -32,18 +32,19 @@ function FieldError({ field, message }: { field: string; message: string | undef
 
 export function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [sent, setSent] = useState(false);
+  const [fallback, setFallback] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "failed">("idle");
   const navigate = useNavigate();
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "sending") return;
     const data = Object.fromEntries(new FormData(event.currentTarget)) as Record<string, string>;
     const result = schema.safeParse(data);
     if (!result.success) {
       const nextErrors: Record<string, string> = {};
       result.error.issues.forEach((issue) => (nextErrors[String(issue.path[0])] = issue.message));
       setErrors(nextErrors);
-      setSent(false);
       return;
     }
 
@@ -59,8 +60,43 @@ export function ContactForm() {
       "",
       values.message,
     ].join("\n");
-    window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(`New idea: ${values.need} — ${values.name}`)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const subject = `New consultation request: ${values.need} — ${values.name}`;
+
+    // Requests are delivered straight to the company inbox, no email app needed.
+    // A hidden field that only bots fill in is dropped silently.
+    if (data["website"]) {
+      void navigate({ to: "/thank-you" });
+      return;
+    }
+    setStatus("sending");
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${COMPANY.email}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: subject,
+          _template: "table",
+          _captcha: "false",
+          name: values.name,
+          email: values.email,
+          phone: values.phone ?? "",
+          company: values.company ?? "",
+          need: values.need,
+          industry: values.industry ?? "",
+          message: values.message,
+        }),
+      });
+      const reply = (await response.json().catch(() => ({}))) as { success?: unknown };
+      if (!response.ok || String(reply.success) === "false") throw new Error("Delivery failed");
+    } catch {
+      // Network or service problem: keep what they typed and offer the email app instead.
+      setStatus("failed");
+      setFallback(
+        `mailto:${COMPANY.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      );
+      return;
+    }
+    setStatus("idle");
     try {
       window.sessionStorage.setItem(
         THANK_YOU_KEY,
@@ -81,13 +117,22 @@ export function ContactForm() {
       noValidate
       className="contact-form glass grid gap-x-5 gap-y-4 sm:grid-cols-2"
     >
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
       <div className="sm:col-span-2">
         <p className="eyebrow text-teal">Tell us what you have in mind</p>
         <h2 className="mt-2 font-display text-2xl font-medium tracking-tight sm:text-3xl">
           A clear next step starts here.
         </h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Share a little context. Your email app will open with your message ready to send.
+          Share a little context. Your request goes straight to our team and we reply by email or
+          phone.
         </p>
       </div>
 
@@ -195,12 +240,16 @@ export function ContactForm() {
       </label>
 
       <div className="flex flex-wrap items-center gap-4 pt-1 sm:col-span-2">
-        <button type="submit" className="form-submit">
-          Start the conversation <span aria-hidden>↗</span>
+        <button type="submit" className="form-submit" disabled={status === "sending"}>
+          {status === "sending" ? "Sending…" : "Request a consultation"} <span aria-hidden>↗</span>
         </button>
-        {sent && (
-          <p className="text-sm text-muted-foreground" role="status">
-            Your email app should open with the message ready to send.
+        {status === "failed" && (
+          <p className="text-sm text-destructive" role="alert">
+            We could not send this just now. Your details are still here, so please try again, or{" "}
+            <a className="underline" href={fallback}>
+              send it from your email app
+            </a>
+            .
           </p>
         )}
       </div>

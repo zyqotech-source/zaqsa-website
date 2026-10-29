@@ -10,13 +10,14 @@ export const Route = createFileRoute("/privacy")({
       <PageHero
         eyebrow="Privacy"
         title="Privacy"
-        intro="This website does not store your contact form details. Submitting the form opens your own email app so you decide what to send."
+        intro="When you send the contact form, your details are emailed to our team so we can reply. This website does not keep a database of them."
       />
       <section className="container-z max-w-3xl pb-28 text-muted-foreground">
         <Reveal>
           <p>
-            Information you email us is used only to reply to your enquiry. To request deletion,
-            write to {COMPANY.email}.
+            Information you send us is used only to reply to your enquiry. The form is delivered by
+            email through a form-delivery service, which passes it to us. To request deletion, write
+            to {COMPANY.email}.
           </p>
         </Reveal>
       </section>
