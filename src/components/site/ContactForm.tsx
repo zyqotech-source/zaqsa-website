@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
 import { COMPANY, INDUSTRIES, NEEDS } from "@/lib/content";
+
+/** Session key the thank-you page reads, so no personal details travel in the address. */
+export const THANK_YOU_KEY = "zaqsa-thank-you";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
@@ -29,6 +33,7 @@ function FieldError({ field, message }: { field: string; message: string | undef
 export function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+  const navigate = useNavigate();
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,6 +61,15 @@ export function ContactForm() {
     ].join("\n");
     window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(`New idea: ${values.need} — ${values.name}`)}&body=${encodeURIComponent(body)}`;
     setSent(true);
+    try {
+      window.sessionStorage.setItem(
+        THANK_YOU_KEY,
+        JSON.stringify({ name: values.name, need: values.need }),
+      );
+    } catch {
+      /* storage blocked: the thank-you page falls back to a general message */
+    }
+    void navigate({ to: "/thank-you" });
   }
 
   const invalid = (field: string) =>
