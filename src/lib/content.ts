@@ -1724,6 +1724,19 @@ export const JOURNEY_STEPS = [
  * People shown as cards on the About page. To add a teammate, add an entry here and drop a photo
  * named after its slot (for example `team-priya.webp`) into src/assets/photos.
  */
-export const TEAM: { name: string; role: string; slot: `team-${string}` }[] = [
-  { name: COMPANY.founder, role: COMPANY.role, slot: "team-founder" },
+export const TEAM: {
+  name: string;
+  role: string;
+  slot: `team-${string}`;
+  group: "founder" | "engineer";
+}[] = [
+  { name: COMPANY.founder, role: COMPANY.role, slot: "team-founder", group: "founder" },
+  { name: "Drona Singh Rajpoot", role: "Co-Founder", slot: "team-drona", group: "founder" },
+  { name: "Nishi Kumari", role: "Software Engineer", slot: "team-nishi", group: "engineer" },
+  {
+    name: "Surajit Sadhukhan",
+    role: "Software Engineer",
+    slot: "team-surajit",
+    group: "engineer",
+  },
 ];

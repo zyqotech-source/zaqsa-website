@@ -8,8 +8,8 @@ import { seo } from "@/lib/seo";
 export const Route = createFileRoute("/about")({
   head: () =>
     seo(
-      "About ZAQSA — Meet Founder Chinmay Anand",
-      "ZAQSA is a New Delhi technology and business solutions company founded by Chinmay Anand. Learn what we believe and where we're going.",
+      "About ZAQSA — Founders and Engineering Team",
+      "ZAQSA is a New Delhi technology and business solutions company founded by Chinmay Anand and Drona Singh Rajpoot. Meet the founders and the engineering team.",
     ),
   component: Page,
 });
@@ -34,6 +34,25 @@ const BLOCKS = [
   ],
 ];
 
+function TeamGrid({ group }: { group: "founder" | "engineer" }) {
+  const people = TEAM.filter((person) => person.group === group);
+  return (
+    <ul className="team-grid mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {people.map((person, index) => (
+        <Reveal as="li" key={person.name} delay={index * 80} className="team-card">
+          <div className="team-photo">
+            <Photo slot={person.slot} ratio="4 / 5" />
+          </div>
+          <div className="team-meta">
+            <strong>{person.name}</strong>
+            <span>{person.role}</span>
+          </div>
+        </Reveal>
+      ))}
+    </ul>
+  );
+}
+
 function Page() {
   return (
     <main>
@@ -46,22 +65,20 @@ function Page() {
               id="team-h"
               className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-medium tracking-[-.02em]"
             >
-              Real engineers. Real conversations.
+              Our founders
             </h2>
           </Reveal>
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {TEAM.map((person, index) => (
-              <Reveal as="li" key={person.name} delay={index * 80} className="team-card">
-                <div className="team-photo">
-                  <Photo slot={person.slot} ratio="4 / 5" />
-                </div>
-                <div className="team-meta">
-                  <strong>{person.name}</strong>
-                  <span>{person.role}</span>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+          <TeamGrid group="founder" />
+
+          <Reveal>
+            <h2 className="mt-20 text-[clamp(2rem,4vw,3.2rem)] font-medium tracking-[-.02em]">
+              Our engineering team
+            </h2>
+            <p className="mt-3 max-w-xl text-muted-foreground">
+              Real engineers. Real conversations. The people who build what you ask for.
+            </p>
+          </Reveal>
+          <TeamGrid group="engineer" />
         </div>
       </section>
       <section className="bg-paper py-20 text-paper-foreground sm:py-28">

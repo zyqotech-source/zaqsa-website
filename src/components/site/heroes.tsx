@@ -314,7 +314,7 @@ export function AboutHero() {
           <h1 className="hero-title">
             Meet the
             <br />
-            <em>founder.</em>
+            <em>founders.</em>
           </h1>
           <p className="hero-lead">{COMPANY.support}</p>
           <blockquote className="portrait-quote">
@@ -341,8 +341,8 @@ export function AboutHero() {
           <div className="founder-panel-caption">
             <span className="founder-caption-mark" aria-hidden="true" />
             <span>
-              {COMPANY.founder}
-              <small>{COMPANY.role}</small>
+              {COMPANY.founder} &amp; Drona Singh Rajpoot
+              <small>Founders</small>
             </span>
           </div>
           <span className="founder-panel-coordinate founder-coordinate-bottom">

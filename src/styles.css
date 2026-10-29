@@ -5171,7 +5171,6 @@ html.lenis body {
   padding: 1.1rem 1.2rem;
   background: linear-gradient(0deg, rgba(15, 27, 77, 0.88), rgba(15, 27, 77, 0));
   color: #fff;
-  transform: translateY(0.9rem);
   transition: transform 0.5s var(--ease-out);
 }
 .team-card:hover .team-meta,

@@ -77,6 +77,9 @@ const ALT: Record<string, string> = {
   "cta-group": "A group of colleagues standing together by office windows",
   "contact-team": "Four smiling colleagues posing together",
   "team-founder": "Chinmay Anand, founder and director of ZAQSA",
+  "team-drona": "Drona Singh Rajpoot, co-founder of ZAQSA",
+  "team-nishi": "Nishi Kumari, software engineer at ZAQSA",
+  "team-surajit": "Surajit Sadhukhan, software engineer at ZAQSA",
 };
 
 // Stand-ins for large slots until real team photos are uploaded.
@@ -124,7 +127,12 @@ const ART: Partial<Record<string, ArtName>> = {
   "stat-4": "icon-building",
 };
 
-const INITIALS: Record<string, string> = { "team-founder": "CA" };
+const INITIALS: Record<string, string> = {
+  "team-founder": "CA",
+  "team-drona": "DR",
+  "team-nishi": "NK",
+  "team-surajit": "SS",
+};
 
 export function getPhoto(slot: PhotoSlot): {
   src: string | undefined;
