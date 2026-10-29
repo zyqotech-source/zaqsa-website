@@ -15,7 +15,7 @@ import technologyBusinessImg from "@/assets/industries/technology-business.jpg";
 export const COMPANY = {
   name: "ZAQSA",
   founder: "Chinmay Anand",
-  role: "Founder & Director",
+  role: "Co-Founder",
   address: "Mahavir Enclave, New Delhi – 110045, India",
   email: "zyqotech@gmail.com",
   phone: "+91 9570752983",
@@ -1740,8 +1740,8 @@ export const TEAM: {
   slot: `team-${string}`;
   group: "founder" | "engineer";
 }[] = [
+  { name: "Drona Singh Rajpoot", role: "Founder", slot: "team-drona", group: "founder" },
   { name: COMPANY.founder, role: COMPANY.role, slot: "team-founder", group: "founder" },
-  { name: "Drona Singh Rajpoot", role: "Co-Founder", slot: "team-drona", group: "founder" },
   { name: "Nishi Kumari", role: "Software Engineer", slot: "team-nishi", group: "engineer" },
   {
     name: "Surajit Sadhukhan",

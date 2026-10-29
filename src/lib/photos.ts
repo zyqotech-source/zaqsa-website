@@ -76,8 +76,8 @@ const ALT: Record<string, string> = {
   "stat-4": "A ZAQSA team member presenting to a client",
   "cta-group": "A group of colleagues standing together by office windows",
   "contact-team": "Four smiling colleagues posing together",
-  "team-founder": "Chinmay Anand, founder and director of ZAQSA",
-  "team-drona": "Drona Singh Rajpoot, co-founder of ZAQSA",
+  "team-founder": "Chinmay Anand, co-founder of ZAQSA",
+  "team-drona": "Drona Singh Rajpoot, founder of ZAQSA",
   "team-nishi": "Nishi Kumari, software engineer at ZAQSA",
   "team-surajit": "Surajit Sadhukhan, software engineer at ZAQSA",
 };

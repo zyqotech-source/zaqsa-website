@@ -93,7 +93,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "ZAQSA",
           email: "zyqotech@gmail.com",
           telephone: "+91 9570752983",
-          founder: { "@type": "Person", name: "Chinmay Anand" },
+          founder: [
+            { "@type": "Person", name: "Drona Singh Rajpoot" },
+            { "@type": "Person", name: "Chinmay Anand" },
+          ],
           address: {
             "@type": "PostalAddress",
             streetAddress: "Mahavir Enclave",

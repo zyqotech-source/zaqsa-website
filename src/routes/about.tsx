@@ -9,7 +9,7 @@ export const Route = createFileRoute("/about")({
   head: () =>
     seo(
       "About ZAQSA — Founders and Engineering Team",
-      "ZAQSA is a New Delhi technology and business solutions company founded by Chinmay Anand and Drona Singh Rajpoot. Meet the founders and the engineering team.",
+      "ZAQSA is a New Delhi technology and business solutions company founded by Drona Singh Rajpoot and Chinmay Anand. Meet the founders and the engineering team.",
     ),
   component: Page,
 });
