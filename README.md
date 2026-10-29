@@ -15,4 +15,4 @@ Run the routing tests with `npm test`. Build the production Node server with `LO
 
 ## Production runtime
 
-The root `Dockerfile` builds the app and runs the Nitro Node server on port 3000. The `/_health` endpoint is used for container readiness. `public/manus-routes.json` lists the site's page routes, including the dynamic service-detail route.
+The root `Dockerfile` builds the app and runs the Nitro Node server on port 3000. The `/_health` endpoint is used for container readiness.
