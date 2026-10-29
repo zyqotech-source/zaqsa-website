@@ -6998,10 +6998,13 @@ a.core-visual:hover {
 }
 .core-float {
   position: absolute;
-  right: -0.6rem;
-  bottom: -0.2rem;
+  right: 0.9rem;
+  bottom: 0.9rem;
   display: block;
-  width: 72%;
+  width: 26rem;
+  max-width: none;
+  transform: scale(0.58);
+  transform-origin: bottom right;
   transition: transform 0.5s ease;
 }
 .core-float .cv {
@@ -7009,7 +7012,7 @@ a.core-visual:hover {
   box-shadow: 0 30px 60px -22px rgba(22, 38, 64, 0.6);
 }
 a.core-visual:hover .core-float {
-  transform: translateY(-6px);
+  transform: scale(0.62) translateY(-4px);
 }
 @media (max-width: 899px) {
   .core-scene {
