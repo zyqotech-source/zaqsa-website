@@ -7077,3 +7077,138 @@ a.core-visual:hover .core-float {
     margin-top: 0.7rem;
   }
 }
+
+/* About hero: founders as a fanned pair of glowing portrait cards */
+.fdeck {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 34rem;
+  min-height: 34rem;
+  justify-self: center;
+}
+@media (min-width: 1024px) {
+  .fdeck {
+    justify-self: end;
+  }
+}
+.fdeck-ring {
+  position: absolute;
+  inset: 8% 4%;
+  border: 1px dashed rgba(99, 102, 241, 0.35);
+  border-radius: 50%;
+  animation: fdeck-spin 40s linear infinite;
+}
+@keyframes fdeck-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.fcard {
+  --px: -10;
+  --py: -10;
+  position: relative;
+  z-index: calc(2 - var(--i));
+  width: min(16rem, 47%);
+  margin: 0;
+  padding: 3px;
+  border-radius: 1.5rem;
+  background: radial-gradient(
+    circle at calc(50% + var(--px) * 50%) calc(50% + var(--py) * 50%),
+    #4f46e5,
+    #06b6d4 38%,
+    rgba(99, 102, 241, 0.18) 70%
+  );
+  box-shadow: 0 40px 70px -34px rgba(49, 46, 129, 0.65);
+  transition:
+    transform 0.6s var(--ease-out, ease),
+    box-shadow 0.6s ease;
+}
+.fcard:nth-of-type(1) {
+  transform: translateX(-9%) rotate(-6deg);
+}
+.fcard:nth-of-type(2) {
+  transform: translateX(9%) translateY(2.2rem) rotate(5deg);
+}
+.fdeck:hover .fcard:nth-of-type(1) {
+  transform: translateX(-12%) rotate(-3deg) translateY(-6px);
+}
+.fdeck:hover .fcard:nth-of-type(2) {
+  transform: translateX(12%) translateY(2rem) rotate(3deg);
+}
+.fcard-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(1.5rem - 3px);
+  background: #fff;
+}
+.fcard-photo {
+  border-radius: 0;
+}
+.fcard figcaption {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  left: 0.6rem;
+  display: grid;
+  gap: 0.1rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.5rem 0.65rem;
+  backdrop-filter: blur(10px);
+}
+.fcard figcaption strong {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  line-height: 1.15;
+}
+.fcard figcaption span {
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.fdeck-chip {
+  position: absolute;
+  z-index: 3;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.4rem 0.85rem;
+  color: var(--foreground);
+  font-size: 0.74rem;
+  font-weight: 700;
+  box-shadow: 0 14px 30px -18px rgba(49, 46, 129, 0.6);
+  animation: fdeck-bob 6s ease-in-out infinite alternate;
+}
+.fdeck-chip-a {
+  top: 6%;
+  left: 2%;
+}
+.fdeck-chip-b {
+  right: 0;
+  bottom: 8%;
+  animation-delay: -3s;
+}
+@keyframes fdeck-bob {
+  to {
+    transform: translateY(-10px);
+  }
+}
+@media (max-width: 640px) {
+  .fdeck {
+    min-height: 28rem;
+  }
+  .fcard {
+    width: min(12.5rem, 46%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fdeck-ring,
+  .fdeck-chip {
+    animation: none;
+  }
+}

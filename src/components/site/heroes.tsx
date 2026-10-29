@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { COMPANY, INDUSTRIES, JOURNEY_STEPS, LAB, TECHNOLOGY } from "@/lib/content";
 import { GlassButton } from "@/components/site/primitives";
+import { FounderDeck } from "@/components/site/FounderDeck";
 import { TechBackdrop } from "@/components/site/motion";
 import { Scene3D } from "@/components/site/Scene3D";
 
@@ -330,25 +331,7 @@ export function AboutHero() {
             <GlassButton to="/contact">Talk to ZAQSA</GlassButton>
           </div>
         </div>
-        <div className="founder-panel relative grid aspect-[4/4.6] w-full max-w-md place-items-center justify-self-center overflow-hidden border border-border lg:justify-self-end">
-          <Scene3D kind="cluster" className="scene3d-panel" />
-          <span className="founder-panel-coordinate founder-coordinate-top">
-            ZAQSA / LEADERSHIP
-          </span>
-          <div className="founder-monogram" aria-hidden="true">
-            CA
-          </div>
-          <div className="founder-panel-caption">
-            <span className="founder-caption-mark" aria-hidden="true" />
-            <span>
-              {COMPANY.founder} &amp; Drona Singh Rajpoot
-              <small>Founders</small>
-            </span>
-          </div>
-          <span className="founder-panel-coordinate founder-coordinate-bottom">
-            NEW DELHI · INDIA
-          </span>
-        </div>
+        <FounderDeck />
       </div>
     </header>
   );
