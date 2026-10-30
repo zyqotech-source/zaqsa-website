@@ -105,6 +105,9 @@ export function Footer() {
           © {new Date().getFullYear()} ZAQSA. {COMPANY.support}
         </p>
         <div className="footer-bottom-links">
+          <a href="https://www.streamlinehq.com" target="_blank" rel="noopener noreferrer">
+            Icons: Streamline
+          </a>
           <Link to="/privacy">Privacy</Link>
           <Link to="/terms">Terms</Link>
         </div>

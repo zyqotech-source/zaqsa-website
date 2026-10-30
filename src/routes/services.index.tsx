@@ -93,7 +93,7 @@ function Page() {
                             <Photo slot={`service-photo-${s.id}`} ratio="16 / 10" />
                             <span className="svc-feature-badge">Core service</span>
                             <span className="svc-feature-icon">
-                              <Icon size={24} strokeWidth={1.6} />
+                              <Icon size={34} />
                             </span>
                           </span>
                           <h2 className="mt-10 text-2xl font-semibold">{s.title}</h2>

@@ -3,63 +3,43 @@ import {
   ArrowDown as PhArrowDown,
   ArrowUpRight as PhArrowUpRight,
   ArrowsClockwise,
-  Bank,
-  Briefcase as PhBriefcase,
-  Buildings,
-  ChartLineUp,
-  ChatCenteredDots,
-  ChatCircle,
-  ChatText,
-  Chats,
   Check as PhCheck,
-  Code,
-  Compass as PhCompass,
-  Cpu as PhCpu,
-  Cube,
-  EnvelopeSimple,
-  Factory as PhFactory,
-  Flag,
-  GraduationCap as PhGraduationCap,
-  Heartbeat,
-  House,
   Icon as PhosphorIcon,
   List,
-  MapPin as PhMapPin,
-  Megaphone as PhMegaphone,
-  Palette as PhPalette,
-  Phone as PhPhone,
-  PhoneCall as PhPhoneCall,
-  Plant,
   Play as PhPlay,
   Plus as PhPlus,
-  Receipt,
-  Robot,
-  RocketLaunch,
-  ShareNetwork,
-  ShoppingBag as PhShoppingBag,
-  ShoppingCart as PhShoppingCart,
-  Sparkle,
-  Stack,
-  Storefront,
-  TreeStructure,
-  Truck as PhTruck,
-  UserPlus as PhUserPlus,
-  WifiHigh,
-  WifiSlash,
   X as PhX,
 } from "@phosphor-icons/react";
 
 /**
- * One place that decides how every icon on the site looks: Phosphor, duotone for feature
- * icons and bold for small controls. Components keep the size / className props they used.
+ * One place that decides how every icon on the site looks. Topic icons are the two-tone blue
+ * "Plump" illustrations from Streamline (CC BY 4.0, credited in the footer); small controls
+ * such as arrows and the menu stay as plain Phosphor glyphs so they follow the text colour.
  */
 export type IconComponent = ComponentType<
   { size?: number | string; strokeWidth?: number } & Omit<SVGProps<SVGSVGElement>, "ref">
 >;
 
-const feature = (Icon: PhosphorIcon): IconComponent =>
-  function FeatureIcon({ size = 24, strokeWidth: _stroke, ...rest }) {
-    return <Icon size={size} weight="duotone" {...(rest as object)} />;
+const files = import.meta.glob("/src/assets/icons/*.svg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+}) as Record<string, string>;
+
+const topic = (file: string): IconComponent =>
+  function TopicIcon({ size = 24, className, style }) {
+    return (
+      <img
+        src={files[`/src/assets/icons/${file}.svg`]}
+        width={size}
+        height={size}
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className={className}
+        style={{ ...(style as object), flex: "none" }}
+      />
+    );
   };
 const control = (Icon: PhosphorIcon): IconComponent =>
   function ControlIcon({ size = 24, strokeWidth: _stroke, ...rest }) {
@@ -68,47 +48,48 @@ const control = (Icon: PhosphorIcon): IconComponent =>
 
 export const ArrowDown = control(PhArrowDown);
 export const ArrowUpRight = control(PhArrowUpRight);
-export const Bot = feature(Robot);
-export const Boxes = feature(Cube);
-export const Briefcase = feature(PhBriefcase);
-export const Building2 = feature(Buildings);
 export const Check = control(PhCheck);
-export const Code2 = feature(Code);
-export const Compass = feature(PhCompass);
-export const Cpu = feature(PhCpu);
-export const Factory = feature(PhFactory);
-export const GraduationCap = feature(PhGraduationCap);
-export const HeartPulse = feature(Heartbeat);
-export const Home = feature(House);
-export const Landmark = feature(Bank);
-export const Layers = feature(Stack);
-export const LineChart = feature(ChartLineUp);
-export const Mail = feature(EnvelopeSimple);
-export const MapPin = feature(PhMapPin);
-export const Megaphone = feature(PhMegaphone);
 export const Menu = control(List);
-export const MessageCircle = feature(ChatCircle);
-export const MessageSquare = feature(ChatText);
-export const MessageSquareText = feature(ChatCenteredDots);
-export const MessagesSquare = feature(Chats);
-export const Palette = feature(PhPalette);
-export const Phone = feature(PhPhone);
-export const PhoneCall = feature(PhPhoneCall);
 export const Play = control(PhPlay);
 export const Plus = control(PhPlus);
-export const ReceiptText = feature(Receipt);
 export const RefreshCw = control(ArrowsClockwise);
-export const Rocket = feature(RocketLaunch);
-export const Share2 = feature(ShareNetwork);
-export const ShoppingBag = feature(PhShoppingBag);
-export const ShoppingCart = feature(PhShoppingCart);
-export const Sparkles = feature(Sparkle);
-export const Store = feature(Storefront);
-export const Truck = feature(PhTruck);
-export const UserPlus = feature(PhUserPlus);
-export const Vote = feature(Flag);
-export const Wheat = feature(Plant);
-export const Wifi = feature(WifiHigh);
-export const WifiOff = feature(WifiSlash);
-export const Workflow = feature(TreeStructure);
 export const X = control(PhX);
+
+export const Bot = topic("ai-science-robot");
+export const Boxes = topic("archive-box");
+export const Briefcase = topic("bag-suitcase-4");
+export const Building2 = topic("building-office");
+export const Code2 = topic("code-monitor-2");
+export const Compass = topic("compass-navigator");
+export const Cpu = topic("ai-technology-spark");
+export const Factory = topic("factory-plant");
+export const GraduationCap = topic("graduation-cap");
+export const HeartPulse = topic("hospital-sign-square");
+export const Home = topic("home-1");
+export const Landmark = topic("government-building-1");
+export const Layers = topic("layers-1");
+export const LineChart = topic("graph-arrow-user-increase");
+export const Mail = topic("mail-send-email-message");
+export const MapPin = topic("location-pin");
+export const Megaphone = topic("announcement-megaphone");
+export const MessageCircle = topic("chat-bubble-oval-smiley-1");
+export const MessageSquare = topic("chat-bubble-text-square");
+export const MessageSquareText = topic("chat-two-bubbles-oval");
+export const MessagesSquare = topic("chat-two-bubbles-oval");
+export const Palette = topic("paint-palette");
+export const Phone = topic("phone");
+export const PhoneCall = topic("call-center-support-service");
+export const ReceiptText = topic("receipt-cross");
+export const Rocket = topic("magic-wand-1");
+export const Share2 = topic("share-link");
+export const ShoppingBag = topic("shopping-basket-1");
+export const ShoppingCart = topic("shopping-cart-add");
+export const Sparkles = topic("ai-technology-spark");
+export const Store = topic("store-2");
+export const Truck = topic("warehouse-1");
+export const UserPlus = topic("user-multiple-accounts");
+export const Vote = topic("politics-vote-2");
+export const Wheat = topic("wheat");
+export const Wifi = topic("wifi");
+export const WifiOff = topic("cloud-off");
+export const Workflow = topic("arrow-curvy-both-direction-2");
