@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle, X } from "@/components/site/icons";
 
 /** Text-first discovery helper. Answers are local; the `answer` lookup can later be swapped for an AI or voice backend. */
 const TOPICS: { k: string; to: string; a: string }[] = [

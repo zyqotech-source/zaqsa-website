@@ -1,6 +1,6 @@
 import { useCallback, useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@/components/site/icons";
 import { cn } from "@/lib/utils";
 import { useOnceInView } from "@/lib/motion";
 import { TechBackdrop } from "@/components/site/motion";

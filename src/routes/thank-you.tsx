@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Check, Mail, MessageSquareText, PhoneCall } from "lucide-react";
+import { ArrowUpRight, Check, Mail, MessageSquareText, PhoneCall } from "@/components/site/icons";
 import { COMPANY } from "@/lib/content";
 import { LogoMark } from "@/components/site/LogoMark";
 import { THANK_YOU_KEY } from "@/components/site/ContactForm";

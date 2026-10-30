@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Check, Play } from "lucide-react";
+import { Check, Play } from "@/components/site/icons";
 
 const vars = (values: Record<string, string | number>) => values as CSSProperties;
 

@@ -7494,15 +7494,26 @@ a.core-visual:hover .core-float {
   box-shadow: 0 26px 50px -30px rgba(49, 46, 129, 0.55);
   transform: translateY(-4px);
 }
+.family-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.family-no {
+  color: var(--muted-foreground);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
 .family-icon {
-  display: grid;
-  width: 2.8rem;
-  height: 2.8rem;
-  margin-bottom: 0.7rem;
-  place-items: center;
-  border-radius: 0.85rem;
-  background: linear-gradient(135deg, #4f46e5, #06b6d4);
-  color: #fff;
+  color: var(--primary);
+  transition:
+    transform 0.4s var(--ease-out, ease),
+    color 0.3s ease;
+}
+.family-card:hover .family-icon {
+  transform: translateY(-3px) rotate(-6deg);
 }
 .family-card strong {
   font-family: var(--font-display);
@@ -7524,8 +7535,8 @@ a.core-visual:hover .core-float {
 }
 .family-arrow {
   position: absolute;
-  top: 1.2rem;
   right: 1.1rem;
+  bottom: 1.2rem;
   color: var(--muted-foreground);
   transition:
     transform 0.3s ease,

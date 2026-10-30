@@ -11,7 +11,7 @@ import {
   Share2,
   Store,
   Vote,
-} from "lucide-react";
+} from "@/components/site/icons";
 import { CORE_SERVICES } from "@/lib/content";
 import { getGsap, prefersReducedMotion, smooth } from "@/lib/motion";
 import {

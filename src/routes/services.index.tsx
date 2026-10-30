@@ -10,7 +10,7 @@ import {
   Share2,
   Store,
   Vote,
-} from "lucide-react";
+} from "@/components/site/icons";
 import { GlassButton, PageHero, Reveal } from "@/components/site/primitives";
 import { Photo } from "@/components/site/Photo";
 import { CATEGORY_LABEL, SERVICES, type Service } from "@/lib/content";

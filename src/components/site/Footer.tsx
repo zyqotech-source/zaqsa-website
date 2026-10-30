@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "@/components/site/icons";
 import { Logo } from "./Nav";
 import { COMPANY, NAV } from "@/lib/content";
 

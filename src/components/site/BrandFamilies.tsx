@@ -9,7 +9,7 @@ import {
   Palette,
   Sparkles,
   Vote,
-} from "lucide-react";
+} from "@/components/site/icons";
 import { Reveal } from "@/components/site/primitives";
 
 const FAMILIES = [
@@ -75,8 +75,9 @@ export function BrandFamilies() {
           {FAMILIES.map(({ name, line, slug, Icon }, index) => (
             <Reveal as="li" key={name} delay={index * 60}>
               <Link to="/services/$slug" params={{ slug }} className="family-card group">
-                <span className="family-icon">
-                  <Icon size={22} strokeWidth={1.6} aria-hidden />
+                <span className="family-top">
+                  <span className="family-no">{String(index + 1).padStart(2, "0")}</span>
+                  <Icon className="family-icon" size={38} aria-hidden />
                 </span>
                 <strong>
                   <small>ZAQSA</small> {name}

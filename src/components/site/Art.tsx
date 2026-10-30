@@ -8,8 +8,8 @@ import {
   Landmark,
   Megaphone,
   Layers,
-  type LucideIcon,
-} from "lucide-react";
+  type IconComponent,
+} from "@/components/site/icons";
 
 export type ArtName =
   | "whiteboard"
@@ -289,7 +289,7 @@ function Meeting() {
   );
 }
 
-const ICONS: Record<string, LucideIcon> = {
+const ICONS: Record<string, IconComponent> = {
   "icon-compass": Compass,
   "icon-cpu": Cpu,
   "icon-briefcase": Briefcase,

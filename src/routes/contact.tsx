@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Reveal } from "@/components/site/primitives";
-import { Check } from "lucide-react";
+import { Check } from "@/components/site/icons";
 import { Photo } from "@/components/site/Photo";
 import { ContactHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";

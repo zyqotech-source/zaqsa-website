@@ -12,7 +12,7 @@ import {
   LineChart,
   Vote,
   Workflow,
-} from "lucide-react";
+} from "@/components/site/icons";
 import strategySession from "@/assets/strategy-session.jpg";
 import transformationOperations from "@/assets/transformation-operations.jpg";
 import { ConsultingGlobe } from "@/components/site/ConsultingGlobe";

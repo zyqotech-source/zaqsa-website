@@ -10,7 +10,7 @@ import {
   RefreshCw,
   Wifi,
   WifiOff,
-} from "lucide-react";
+} from "@/components/site/icons";
 import { TechBackdrop } from "@/components/site/motion";
 
 const POPULAR = [

@@ -20,7 +20,7 @@ import {
   Truck,
   UserPlus,
   Wheat,
-} from "lucide-react";
+} from "@/components/site/icons";
 import {
   COMPANY,
   CORE_SERVICES,

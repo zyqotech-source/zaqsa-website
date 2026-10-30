@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus } from "@/components/site/icons";
 import { Reveal } from "@/components/site/primitives";
 import type { Industry } from "@/lib/content";
 import { cn } from "@/lib/utils";
