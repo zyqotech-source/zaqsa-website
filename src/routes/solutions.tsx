@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Timeline } from "@/components/site/IdeaBuilder";
 import { Chip, GlassButton, Reveal, SectionHead } from "@/components/site/primitives";
-import { CIVIC, CONSULTING, PRODUCTS } from "@/lib/content";
+import { ALSO_BUILT, CIVIC, CONSULTING, PRODUCT_LINES, SHARED_FOUNDATION } from "@/lib/content";
 import { SolutionsHero } from "@/components/site/heroes";
 import { seo } from "@/lib/seo";
 
@@ -106,21 +106,43 @@ function Page() {
         <div className="container-z">
           <SectionHead
             eyebrow="Products & platforms"
-            title="Explore what we are building."
-            intro="Product ecosystem coming soon."
+            title="Software we are building."
+            intro="Ready-to-run software for the businesses we work with most, built on one shared foundation."
           />
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {PRODUCTS.map((p, index) => (
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {PRODUCT_LINES.map((p, index) => (
               <Reveal
-                key={p}
-                delay={index * 70}
-                className="platform-card flex min-h-24 items-end justify-between gap-3 rounded-2xl border border-border p-5"
+                key={p.name}
+                delay={index * 60}
+                className="platform-card flex min-h-28 flex-col justify-between gap-3 rounded-2xl border border-border p-5"
               >
-                <span className="text-lg font-light">{p}</span>
-                <span className="eyebrow shrink-0 text-[0.6rem] text-muted-foreground">Soon</span>
+                <span>
+                  <span className="block text-lg font-medium">{p.name}</span>
+                  <span className="mt-1 block text-sm text-muted-foreground">{p.line}</span>
+                </span>
+                <span className="eyebrow text-[0.6rem] text-primary">In development</span>
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-12">
+            <p className="eyebrow text-teal">One foundation under every product</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {SHARED_FOUNDATION.map((f) => (
+                <Chip key={f}>{f}</Chip>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal className="mt-14">
+            <p className="eyebrow text-teal">Also built to order</p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {ALSO_BUILT.map((a) => (
+                <li key={a.name} className="rounded-2xl border border-border p-5">
+                  <strong className="block font-medium">{a.name}</strong>
+                  <span className="mt-1 block text-sm text-muted-foreground">{a.line}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
           <Reveal delay={180} className="mt-14">
             <GlassButton to="/contact">Start the conversation</GlassButton>
           </Reveal>

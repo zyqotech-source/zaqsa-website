@@ -455,6 +455,80 @@ export const PRODUCTS = [
   "Internal Business Tools",
 ];
 
+export const PRODUCT_LINES = [
+  { name: "Retail & inventory", line: "Shop, stock and billing management" },
+  { name: "Restaurant POS", line: "Orders, tables and kitchen flow" },
+  { name: "Clinic & appointments", line: "Patient queues, bookings and records" },
+  { name: "Hospital management", line: "Wards, billing, pharmacy and reports" },
+  { name: "Customer & lead CRM", line: "Every enquiry tracked to a result" },
+  { name: "AI support desk", line: "Chatbot and customer support that never sleeps" },
+  { name: "Campaign office", line: "Constituency and campaign operations" },
+  { name: "Social planning", line: "Content calendar and performance analytics" },
+  { name: "Workflow automation", line: "Repeated business steps, handled for you" },
+] as const;
+
+export const SHARED_FOUNDATION = [
+  "Secure login",
+  "Multi-organisation accounts",
+  "Role-based permissions",
+  "Billing & subscriptions",
+  "Notifications",
+  "Reports & analytics",
+  "AI integrations",
+  "Audit logs",
+  "Cloud storage",
+  "API integrations",
+];
+
+export const ALSO_BUILT = [
+  { name: "E-commerce", line: "Online stores and payment integration" },
+  { name: "Recruitment automation", line: "Applicant tracking and HR tools" },
+  { name: "Booking systems", line: "Salons, hotels, clinics and service providers" },
+  { name: "Digital transformation", line: "Helping traditional businesses adopt technology" },
+  { name: "AI knowledge assistants", line: "Search across internal documents and know-how" },
+  { name: "API integrations", line: "Connecting the business apps you already use" },
+] as const;
+
+export const WHO_WE_SERVE = [
+  {
+    name: "Local businesses & professionals",
+    who: [
+      "Retail stores and wholesalers",
+      "Restaurants and cafes",
+      "Clinics and professionals",
+      "Real estate businesses",
+      "Hotels and service providers",
+    ],
+    need: "Easier customer access, steady marketing and the software to run daily work.",
+  },
+  {
+    name: "Schools, coaching & libraries",
+    who: [
+      "Private schools",
+      "Coaching institutes",
+      "Computer institutes",
+      "Libraries",
+      "Training centres",
+    ],
+    need: "Admissions, fees, attendance and records in one dependable system.",
+  },
+  {
+    name: "Public representatives & civic teams",
+    who: [
+      "Elected representatives",
+      "Political offices",
+      "Civic organisations",
+      "Campaign management teams",
+    ],
+    need: "Clear communication systems and tools for running an office or campaign.",
+  },
+  {
+    name: "Hospitals & clinics",
+    who: ["Clinics", "Nursing homes", "Hospitals"],
+    need: "Appointments, patient records and billing, built with data security first.",
+  },
+] as const;
+
 export const LAB = [
   "AI Experiments",
   "Software Prototypes",
