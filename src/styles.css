@@ -7466,3 +7466,72 @@ a.core-visual:hover .core-float {
   font-size: 1.1rem;
   line-height: 1.6;
 }
+
+/* Home: the eight ZAQSA areas */
+.family-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+.family-card {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  background: var(--card, #fff);
+  padding: 1.4rem 1.3rem 1.5rem;
+  transition:
+    transform 0.4s var(--ease-out, ease),
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
+}
+.family-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 26px 50px -30px rgba(49, 46, 129, 0.55);
+  transform: translateY(-4px);
+}
+.family-icon {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-bottom: 0.7rem;
+  place-items: center;
+  border-radius: 0.85rem;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #fff;
+}
+.family-card strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.family-card strong small {
+  color: var(--muted-foreground);
+  font-family: inherit;
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.family-card > span:not(.family-icon) {
+  color: var(--muted-foreground);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.family-arrow {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.1rem;
+  color: var(--muted-foreground);
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+.family-card:hover .family-arrow {
+  color: var(--primary);
+  transform: translate(3px, -3px);
+}

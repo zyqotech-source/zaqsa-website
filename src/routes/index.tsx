@@ -33,6 +33,7 @@ import {
   TiltFrame,
 } from "@/components/site/HumanMotion";
 import { Photo } from "@/components/site/Photo";
+import { BrandFamilies } from "@/components/site/BrandFamilies";
 import { CoreShowcase } from "@/components/site/CoreShowcase";
 import { ProcessSticky } from "@/components/site/ProcessSticky";
 import { useOnceInView } from "@/lib/motion";
@@ -309,6 +310,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <BrandFamilies />
 
       <section className="build-section py-24 sm:py-32" aria-labelledby="build-h">
         <TechBackdrop />
